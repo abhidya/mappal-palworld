@@ -184,6 +184,67 @@ PST limitation, not ours; for same-world duplication PST's own Clone Base is
 the supported path. The round-trip gate's in-game legs must be re-run
 cross-world before Phase 1 is declared verified.
 
+## PST v2.2.8 re-test (2026-07-31) — collisions fixed, connectors still not remapped
+
+PST's maintainer reported that v2.2.8 regenerates all base-related IDs on
+import, so same-world import should no longer break. Re-tested here **at the
+file level only** — no in-game load — by driving PST's real
+`export_base_json` / `import_base_json` against copies of Alex's saves.
+Harness and how to re-run: `tools/pst-compat/`.
+
+Control first: the harness reproduces the original incident on v2.1.0.
+Same-world import of a 17-object base produced **17 duplicate `instance_id`s,
+including the palbox** (`9d3e77dc…` twice) — the signature recorded above.
+The cause is literal identity mapping, confirmed by diffing the two versions:
+
+```
+v2.1.0:  instance_id_map[old_inst] = old_inst      # identity
+v2.2.8:  instance_id_map[old_inst] = _new_uuid()
+```
+
+On v2.2.8 the same import yields **0 duplicate instance_ids, 0 duplicate
+palbox ids**. Mechanism (b) is genuinely fixed.
+
+**Correction to mechanism (a) above.** Works were never mis-bound: both
+versions set `base_camp_id_belong_to = new_base_id` on every imported work
+(`base_manager.py:280`), and the original camp's work count is unchanged by an
+import on either version. The observed "original camp owns 3× its works" was
+the *same* identity-mapping bug seen through the object graph — imported works
+had their `owner_map_object_model_id` remapped through the identity map, so
+they pointed at the **original** map objects. One root cause, not two.
+
+**Remaining defect — `Connector.connect.any_place` is never remapped.**
+Nothing in `import_base_json` touches it, on either version. Each entry is
+`{connect_to_model_instance_id, index}` (`palsav/rawdata/connector.py:13`).
+While IDs were identity-mapped this was invisible. Now that every ID is
+regenerated it misfires two ways, both measured:
+
+| Import | v2.1.0 | v2.2.8 |
+|---|---|---|
+| Cross-world (22-object MapPal export) | 0 dangling refs | **10 dangling** — point at IDs absent from the destination world |
+| Same-world (17-object base) | n/a (collides instead) | **14 of 14** refs on imported objects point back at the **original** base's objects |
+
+The same-world number is the concerning one: the imported copy is structurally
+wired into the original base's connector network. Our own forensics established
+that deletion propagates along `any_place` links — so the mechanism that gutted
+the base in the original incident is still reachable, even though its trigger
+(the ID collision) is gone. **Unverified either way in-game.**
+
+A candidate one-block fix — remap `connect_to_model_instance_id` through the
+existing `instance_id_map` inside the map-object loop — takes cross-world
+dangling refs 10 → 0 and same-world cross-links 14 → 0, with collisions still
+at 0 and all objects still imported. Patch: `tools/pst-compat/connector_remap.patch`.
+Reported upstream 2026-07-31.
+
+**The "never import into the world it came from" warning stays as-is** until
+someone loads a same-world 2.2.8 import in-game and confirms the structures
+survive. A file that no longer collides is not the same claim as a base the
+game keeps — that distinction is exactly what CLAUDE.md §6 was written about.
+
+Incidental v2.2.8 change worth knowing: objects whose `work_ids` don't resolve
+are no longer dropped from the import. v2.1.0 set `has_invalid` and skipped the
+whole object; v2.2.8 filters the bad IDs and keeps it. Fewer silent losses.
+
 PST workflow gotchas (README must warn about all of these):
 - Import Base creates a **new base copy offset ~80 m** (collision-avoided).
 - After importing, you must **save in PST** (game fully closed) or nothing

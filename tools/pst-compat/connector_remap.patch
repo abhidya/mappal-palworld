@@ -1,0 +1,22 @@
+diff --git a/src/palworld_aio/managers/base_manager.py b/src/palworld_aio/managers/base_manager.py
+index f978b5b..97d9108 100644
+--- a/src/palworld_aio/managers/base_manager.py
++++ b/src/palworld_aio/managers/base_manager.py
+@@ -435,6 +435,17 @@ def import_base_json(loaded_level_json, exported_data, target_guild_id, offset=(
+         nmr['concrete_model_instance_id'] = new_conc
+         nmr['base_camp_id_belong_to'] = new_base_id
+         nmr['group_id_belong_to'] = target_guild_id
++        # CANDIDATE FIX (MapPal): connector links still carry SOURCE instance
++        # ids. Harmless while ids were identity-mapped; since 2.2.8 every id is
++        # regenerated, so these dangle. Remap through the same map.
++        try:
++            _cc = no['Model']['value']['Connector']['value']['RawData']['value']['connect']
++            for _e in _cc.get('any_place', []) or []:
++                _old = _s(_e.get('connect_to_model_instance_id', ''))
++                if _old in instance_id_map:
++                    _e['connect_to_model_instance_id'] = instance_id_map[_old]
++        except Exception:
++            pass
+         try:
+             _offset_translation(nmr['initital_transform_cache']['translation'], total_offset)
+         except:
