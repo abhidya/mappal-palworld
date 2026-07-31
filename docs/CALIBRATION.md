@@ -236,10 +236,21 @@ dangling refs 10 → 0 and same-world cross-links 14 → 0, with collisions stil
 at 0 and all objects still imported. Patch: `tools/pst-compat/connector_remap.patch`.
 Reported upstream 2026-07-31.
 
-**The "never import into the world it came from" warning stays as-is** until
-someone loads a same-world 2.2.8 import in-game and confirms the structures
-survive. A file that no longer collides is not the same claim as a base the
-game keeps — that distinction is exactly what CLAUDE.md §6 was written about.
+**In-game verification (2026-07-31, Alex).** Same-world import on v2.2.8,
+loaded in-game: the imported copy spawned intact and the original base was
+undisturbed. The connector cross-linking above did **not** trigger the
+deletion cascade. The warning is therefore now version-scoped rather than
+absolute, in the README and in the export panel: same-world import requires
+PST ≥ 2.2.8, cross-world is fine on any version.
+
+Scope of that claim, honestly: one import, on the small test world, at
+small-base scale. It does not cover the 7,700-piece skyscraper, repeated
+imports into one world, or bases whose connector networks are denser than a
+17-object camp. The upstream connector-remap defect is still unfixed, so the
+cross-linking is still there on every same-world import — it is now known to be
+survivable in at least one real case, not known to be harmless. If a
+same-world import ever does eat a base again, this is the first thing to look
+at.
 
 Incidental v2.2.8 change worth knowing: objects whose `work_ids` don't resolve
 are no longer dropped from the import. v2.1.0 set `has_invalid` and skipped the

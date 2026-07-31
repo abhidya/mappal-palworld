@@ -63,17 +63,14 @@ JSON. Schema understanding builds on the GVAS structure work in
 
 ### The three rules (each one learned the hard way)
 
-- **Never import into the world the export came from.** The game silently
-  deletes the imported structures on next load. Export from world A, import
-  into world B. Your main world can be the destination — an import only
-  *adds* a base, it never resets anything.
-  <br>PST **v2.2.8** (2026-07-31) fixed the ID collisions that caused this, and
-  we've confirmed at the file level that they're gone. Keep following the rule
-  anyway: imported objects' connector links still aren't remapped, so a
-  same-world import wires the copy into the original base's structure network —
-  and structure deletion is known to travel along exactly those links. Nobody
-  has yet loaded a same-world 2.2.8 import in-game and confirmed it survives.
-  Details in [docs/CALIBRATION.md](docs/CALIBRATION.md).
+- **To import back into the world the export came from, you need PST v2.2.8 or
+  newer.** Older versions reuse the base's object IDs, and the game silently
+  deletes the imported structures on next load — this ate a base during
+  development. v2.2.8 (2026-07-31) regenerates every ID; we re-tested it
+  against the old failure and then verified a same-world import in-game.
+  Importing into a *different* world is safe on any version, and your main
+  world can be the destination — an import only *adds* a base, it never resets
+  anything. Details in [docs/CALIBRATION.md](docs/CALIBRATION.md).
 - **The game must be fully closed** whenever PST saves. A running game
   ignores the change and overwrites it on its next save.
 - **Imports land ~80 m away from the blueprint's original coordinates**

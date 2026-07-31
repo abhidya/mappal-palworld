@@ -15,16 +15,21 @@ export function ExportNotesPanel({ notes, onDismiss }: ExportNotesPanelProps) {
           ✕
         </button>
       </div>
-      {/* Shown on EVERY export, permanently. Same-world re-import silently
-          destroys the base in-game (verified 2026-07-16, docs/CALIBRATION.md)
-          — this warning existing only in the README is how someone loses a
-          500-hour save. */}
+      {/* Shown on EVERY export, permanently. Before PST v2.2.8 a same-world
+          re-import silently destroyed the base in-game (verified 2026-07-16);
+          v2.2.8 regenerates the colliding IDs and a same-world import was
+          verified intact in-game 2026-07-31 — both in docs/CALIBRATION.md.
+          The version condition is the whole warning now: users on an older PST
+          are still one import away from losing a 500-hour save, and this
+          warning existing only in the README is how that happens. */}
       <div className="export-notes__danger">
-        <strong>⚠ Import this file into a DIFFERENT world than it came from.</strong>{" "}
-        Re-importing into the same world will make the game silently delete the
-        base's structures. Back up your save folder before every import
-        (<code>%LOCALAPPDATA%\Pal\Saved\SaveGames</code>), and make sure the
-        game is fully closed whenever PalworldSaveTools saves.
+        <strong>⚠ Importing back into the world this base came from requires
+        PalworldSaveTools v2.2.8 or newer.</strong>{" "}
+        Older versions reuse the base's object IDs, and the game silently
+        deletes the imported structures on next load. Any PST version is fine
+        for importing into a different world. Back up your save folder before
+        every import (<code>%LOCALAPPDATA%\Pal\Saved\SaveGames</code>), and make
+        sure the game is fully closed whenever PalworldSaveTools saves.
       </div>
       {notes.length === 0 ? (
         <p>No changes to report — the file round-tripped as-is.</p>
