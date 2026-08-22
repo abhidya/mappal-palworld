@@ -13,6 +13,12 @@
 // (docs/SCHEMA.md). Anything unexpected throws rather than guessing.
 
 import type { PlacedObject } from "./types";
+import {
+  OPAQUE_BLOB_KEY,
+  decodeConcreteBlobIds,
+  opaqueConcreteBlob,
+  withConcreteBlobIds,
+} from "./concreteBlob";
 
 // The blob is untyped by design (CLAUDE.md §4): we navigate it with runtime
 // checks and loud failures instead of pretending we have a full static schema.
@@ -70,6 +76,35 @@ interface CloneOptions {
 }
 
 /**
+ * Rewrite both ids inside a shape-2b ConcreteModel's opaque blob, in place.
+ *
+ * The byte layout is not guessed: bytes 0..15 are concrete_model_instance_id
+ * and bytes 16..31 are the model instance_id (docs/SCHEMA.md), confirmed on
+ * every one of the 25 affected donor types. That expectation is re-checked
+ * here against the blob we were actually handed — if the head does not already
+ * spell the declared concrete id, this is not the layout we verified, and a
+ * wrong write would silently corrupt a save. Throw instead (C4).
+ */
+function remintOpaqueConcrete(
+  crd: any,
+  oldConcreteId: string,
+  newConcreteId: string,
+  newModelId: string,
+  label: string
+): void {
+  const blob: string =
+    opaqueConcreteBlob(crd) ?? die(`${label}: ConcreteModel has neither ids nor an opaque blob`);
+  const ids =
+    decodeConcreteBlobIds(blob) ?? die(`${label}: opaque ConcreteModel blob is too short to carry ids`);
+  if (ids.concreteId !== oldConcreteId) {
+    die(
+      `${label}: opaque ConcreteModel blob starts with ${ids.concreteId.slice(0, 8)}…, not the declared concrete_model_instance_id ${oldConcreteId.slice(0, 8)}…`
+    );
+  }
+  crd.values[OPAQUE_BLOB_KEY] = withConcreteBlobIds(blob, newConcreteId, newModelId);
+}
+
+/**
  * Clone one object bundle (map_object + its works + its containers) with
  * fresh, mutually consistent GUIDs. This is the in-game-proven path: a bundle
  * cloned this way was the only imported building object the game accepted
@@ -93,18 +128,26 @@ function cloneBundle(
   // model with cross-referencing ids. Plain structural pieces carry the zero
   // GUID and an opaque ConcreteModel blob with NO id fields (observed in
   // fixtures — see docs/SCHEMA.md). Never invent fields there (C4): remint
-  // only when the source genuinely has them.
+  // only when the source genuinely has a concrete id.
   const ZERO = "00000000-0000-0000-0000-000000000000";
-  const hasConcrete =
-    typeof srcRd.concrete_model_instance_id === "string" &&
-    srcRd.concrete_model_instance_id !== ZERO &&
-    typeof crd.instance_id === "string";
+  const oldConcreteId = srcRd.concrete_model_instance_id;
+  const hasConcrete = typeof oldConcreteId === "string" && oldConcreteId !== ZERO;
   let newConcreteId: string | null = null;
   if (hasConcrete) {
     newConcreteId = mintGuid();
     rd.concrete_model_instance_id = newConcreteId;
-    crd.instance_id = newConcreteId;
-    crd.model_instance_id = opts.newModelId;
+    if (typeof crd.instance_id === "string") {
+      // Shape 1: PST decoded the ConcreteModel, so the ids are plain fields.
+      crd.instance_id = newConcreteId;
+      crd.model_instance_id = opts.newModelId;
+    } else {
+      // Shape 2b: PST could not decode this ConcreteModel, so the same two ids
+      // survive only as bytes inside its opaque blob (docs/SCHEMA.md, 25 donor
+      // types). Left alone, every copy would ship the DONOR's concrete id and
+      // PST's old→new id dict would collapse them onto one object — the
+      // collision that gutted a base (docs/CALIBRATION.md).
+      remintOpaqueConcrete(crd, oldConcreteId, newConcreteId, opts.newModelId, opts.label);
+    }
   }
   if (opts.rebase) {
     rd.base_camp_id_belong_to = opts.rebase.campId;

@@ -7,6 +7,8 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { decodeConcreteBlobIds, opaqueConcreteBlob } from "./concreteBlob";
+
 const ZERO_GUID = "00000000-0000-0000-0000-000000000000";
 
 export function validateLinkage(raw: unknown): string[] {
@@ -32,8 +34,16 @@ export function validateLinkage(raw: unknown): string[] {
       }
       modelIds.add(rd.instance_id);
     }
-    const crd = mo?.ConcreteModel?.value?.RawData?.value;
-    if (typeof crd?.instance_id === "string") concreteIds.add(crd.instance_id);
+    // Concrete ids must be unique too: PST's importer remaps them through a
+    // dict keyed by the old id, so two objects sharing one collapse into a
+    // single object on import (docs/CALIBRATION.md).
+    const concreteId = rd?.concrete_model_instance_id;
+    if (typeof concreteId === "string" && concreteId !== ZERO_GUID) {
+      if (concreteIds.has(concreteId)) {
+        warnings.push(`duplicate concrete_model_instance_id ${concreteId} — PST import will collapse these`);
+      }
+      concreteIds.add(concreteId);
+    }
   }
 
   for (const mo of mapObjects) {
@@ -48,7 +58,24 @@ export function validateLinkage(raw: unknown): string[] {
     const hasConcrete =
       typeof rd.concrete_model_instance_id === "string" &&
       rd.concrete_model_instance_id !== ZERO_GUID;
-    if (hasConcrete) {
+    const opaqueBlob = opaqueConcreteBlob(crd);
+    if (hasConcrete && opaqueBlob !== null) {
+      // Shape 2b: PST could not decode this ConcreteModel, so the cross-refs
+      // are bytes in an opaque blob rather than fields (docs/SCHEMA.md).
+      // Compare against those bytes — the fields simply aren't there, and
+      // reading their absence as a mismatch is a false positive.
+      const ids = decodeConcreteBlobIds(opaqueBlob);
+      if (!ids) {
+        warnings.push(`${label}: has a concrete_model_instance_id but its opaque ConcreteModel blob is too short to carry ids`);
+      } else {
+        if (ids.concreteId !== rd.concrete_model_instance_id) {
+          warnings.push(`${label}: Model.concrete_model_instance_id does not match the id in its ConcreteModel blob`);
+        }
+        if (ids.modelId !== rd.instance_id) {
+          warnings.push(`${label}: ConcreteModel blob's model instance_id does not point back at the object`);
+        }
+      }
+    } else if (hasConcrete) {
       if (rd.concrete_model_instance_id !== crd.instance_id) {
         warnings.push(`${label}: Model.concrete_model_instance_id does not match its ConcreteModel.instance_id`);
       }

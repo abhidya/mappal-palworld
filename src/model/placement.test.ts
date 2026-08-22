@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import { loadBlueprint, serializeBlueprint } from "../parse/blueprint";
 import { extractObjects } from "./blueprintView";
 import { mintGuid, reconcileExport, type DonorLibrary } from "./writeback";
+import { decodeConcreteBlobIds, opaqueConcreteBlob } from "./concreteBlob";
 import donorsJson from "../data/donors.json";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -131,6 +132,117 @@ describe("palette placement (donor pattern)", () => {
     expect(added.map((m: any) => m.MapObjectId.value)).toEqual(["Wooden_pillar", "Wooden_pillar"]);
     const ids = added.map((m: any) => m.Model.value.RawData.value.instance_id);
     expect(new Set(ids).size).toBe(2);
+  });
+
+  // 25 of the 453 donor types carry a ConcreteModel PST could not decode
+  // ("shape 2b", docs/SCHEMA.md): no id fields, but a real non-zero
+  // Model.concrete_model_instance_id whose bytes live in the opaque blob.
+  // Reminting only the declared field would leave every copy carrying the
+  // DONOR's concrete id, and PST's old→new id dict collapses copies that share
+  // one — the collision that gutted a base (docs/CALIBRATION.md).
+  describe("opaque ConcreteModel donors (shape 2b)", () => {
+    const OPAQUE_TYPES = ["AncientWorkBench", "Clinic", "OilPump02"];
+
+    function blobIds(mo: any) {
+      const blob = opaqueConcreteBlob(mo.ConcreteModel.value.RawData.value);
+      expect(blob).not.toBeNull();
+      return decodeConcreteBlobIds(blob!)!;
+    }
+
+    it("gives every copy its own concrete id, in the blob and in the fields", () => {
+      const bp = loadBlueprint(FIXTURE);
+      const objects = extractObjects(bp.raw);
+      const toPlace = ["AncientWorkBench", ...OPAQUE_TYPES].map((typeId, i) => ({
+        id: mintGuid(),
+        typeId,
+        position: { ...POS, z: POS.z + i * 325 },
+        rotation: ROT,
+        scale: { x: 1, y: 1, z: 1 },
+        origin: "placed" as const,
+      }));
+      const before = JSON.parse(FIXTURE);
+      const { raw } = reconcileExport(bp.raw, [...objects, ...toPlace], DONORS);
+      const after = JSON.parse(serializeBlueprint({ raw, warnings: [] }));
+
+      const added = after.map_objects.slice(-toPlace.length);
+      expect(added.map((m: any) => m.MapObjectId.value)).toEqual(
+        toPlace.map((p) => p.typeId)
+      );
+
+      const concreteIds = added.map(
+        (m: any) => m.Model.value.RawData.value.concrete_model_instance_id
+      );
+      // The whole point: two AncientWorkBenches, two different concrete ids —
+      // and none of them the donor's.
+      expect(new Set(concreteIds).size).toBe(toPlace.length);
+      for (const typeId of OPAQUE_TYPES) {
+        const donorId = (DONORS[typeId].map_object as any).Model.value.RawData.value
+          .concrete_model_instance_id;
+        expect(donorId).not.toBe("00000000-0000-0000-0000-000000000000");
+        expect(concreteIds).not.toContain(donorId);
+      }
+      // And nothing anywhere else in the file shares one.
+      const allConcrete = after.map_objects
+        .map((m: any) => m.Model.value.RawData.value.concrete_model_instance_id)
+        .filter((id: string) => id && id !== "00000000-0000-0000-0000-000000000000");
+      expect(new Set(allConcrete).size).toBe(allConcrete.length);
+
+      for (const [i, p] of toPlace.entries()) {
+        const mo = added[i];
+        const rd = mo.Model.value.RawData.value;
+        const ids = blobIds(mo);
+        // Blob and declared fields agree, both ways.
+        expect(ids.concreteId).toBe(rd.concrete_model_instance_id);
+        expect(ids.modelId).toBe(rd.instance_id);
+        expect(rd.instance_id).toBe(p.id);
+        // Everything past the two ids is preserved byte-for-byte.
+        const donorBlob = opaqueConcreteBlob(
+          (DONORS[p.typeId].map_object as any).ConcreteModel.value.RawData.value
+        )!;
+        expect(atob(mo.ConcreteModel.value.RawData.value.values["~b"]).slice(32)).toBe(
+          atob(donorBlob).slice(32)
+        );
+        // Works follow the new concrete id, not the donor's.
+        for (const w of after.works.filter(
+          (w: any) => w.RawData.value.owner_map_object_model_id === p.id
+        )) {
+          expect(w.RawData.value.owner_map_object_concrete_model_id).toBe(
+            rd.concrete_model_instance_id
+          );
+        }
+      }
+      expect(after.map_objects).toHaveLength(before.map_objects.length + toPlace.length);
+    });
+
+    it("throws rather than guessing when the blob is not the verified layout", () => {
+      const bp = loadBlueprint(FIXTURE);
+      const objects = extractObjects(bp.raw);
+      // A donor whose blob head no longer spells its declared concrete id: the
+      // byte offsets we verified do not hold, so a rewrite would be a guess.
+      const donors: DonorLibrary = {
+        ...DONORS,
+        AncientWorkBench: structuredClone(DONORS.AncientWorkBench),
+      };
+      (donors.AncientWorkBench.map_object as any).Model.value.RawData.value
+        .concrete_model_instance_id = mintGuid();
+      expect(() =>
+        reconcileExport(
+          bp.raw,
+          [
+            ...objects,
+            {
+              id: mintGuid(),
+              typeId: "AncientWorkBench",
+              position: POS,
+              rotation: ROT,
+              scale: { x: 1, y: 1, z: 1 },
+              origin: "placed" as const,
+            },
+          ],
+          donors
+        )
+      ).toThrow(/not the declared concrete_model_instance_id/);
+    });
   });
 
   it("refuses to place a palbox or an unknown type", () => {

@@ -84,6 +84,18 @@ appear as `{"~b": "<base64>"}` (`trailing_bytes`, `CustomVersionData`,
       //    Model.RawData.concrete_model_instance_id is the ZERO GUID and
       //    RawData.value is just {"values": <opaque>} with NO id fields.
       //    Preserve verbatim; never mint concrete ids for these (C4).
+      // 2b. Smart objects whose ConcreteModel PST could not decode (25 of the
+      //    453 harvested donor types — AncientWorkBench, Clinic, OilPump02,
+      //    FishingPond1, … see src/model/concreteBlob.ts): RawData.value is
+      //    {"values": {"~b": <base64>}} with no id fields like shape 2, but
+      //    Model.RawData.concrete_model_instance_id is a real NON-zero GUID
+      //    like shape 1. Shape 2b is shape 1 with the ids still packed in the
+      //    undecoded bytes: verified across all 25, blob bytes 0..15 are
+      //    concrete_model_instance_id and bytes 16..31 are the model
+      //    instance_id, each an FGuid (four little-endian uint32s). A clone
+      //    MUST remint both in place — otherwise every copy ships the donor's
+      //    concrete id, and PST's old→new id dict collapses them into one
+      //    object on import (docs/CALIBRATION.md's id-collision failure).
       "RawData": { "value": {
         "instance_id": "<guid>",   // == concrete_model_instance_id above (shape 1 only)
         "model_instance_id": "<guid>",  // == Model instance_id (backref, shape 1 only)

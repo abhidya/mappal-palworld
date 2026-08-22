@@ -47,6 +47,34 @@ describe("validateLinkage", () => {
     expect(validateLinkage(raw)).toEqual([]);
   });
 
+  it("passes objects whose ConcreteModel PST could not decode (shape 2b)", () => {
+    // These carry a real concrete_model_instance_id but no ConcreteModel id
+    // FIELDS — the ids are bytes in an opaque blob. Reading their absence as a
+    // mismatch used to cost 2 false-positive warnings per placed object.
+    const bp = loadBlueprint(FIXTURE);
+    const objects = extractObjects(bp.raw);
+    const placed = ["AncientWorkBench", "AncientWorkBench", "Clinic"].map((typeId) => ({
+      id: mintGuid(),
+      typeId,
+      position: { x: -350000, y: 268000, z: 7139.69 },
+      rotation: { x: 0, y: 0, z: 0, w: 1 },
+      scale: { x: 1, y: 1, z: 1 },
+      origin: "placed" as const,
+    }));
+    const { raw } = reconcileExport(bp.raw, [...objects, ...placed], DONORS);
+    expect(validateLinkage(raw)).toEqual([]);
+  });
+
+  it("catches a concrete id shared by two objects (the id-collision pattern)", () => {
+    const raw = freshRaw();
+    const donor: any = structuredClone((DONORS.AncientWorkBench as any).map_object);
+    const twin: any = structuredClone(donor);
+    twin.Model.value.RawData.value.instance_id = mintGuid(); // distinct object…
+    raw.map_objects.push(donor, twin); // …same concrete_model_instance_id
+    const warnings = validateLinkage(raw);
+    expect(warnings.some((w) => w.includes("duplicate concrete_model_instance_id"))).toBe(true);
+  });
+
   it("catches a dangling repair_work_id", () => {
     const raw = freshRaw();
     raw.works.pop(); // remove some object's work entry
