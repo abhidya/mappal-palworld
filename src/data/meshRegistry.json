@@ -1,0 +1,1890 @@
+{
+ "Altar": {
+  "mesh": "SM_PalSummoningStand",
+  "url": "/meshes/SM_PalSummoningStand.glb"
+ },
+ "AncientBlastFurnace": {
+  "mesh": "SM_BlastFurnaceAncient",
+  "url": "/meshes/SM_BlastFurnaceAncient.glb"
+ },
+ "AncientCookingStove": {
+  "mesh": "SM_KitchenAncient",
+  "url": "/meshes/SM_KitchenAncient.glb"
+ },
+ "AncientElectricGenerator": {
+  "mesh": "SK_GeneratorAncient",
+  "url": "/meshes/SK_GeneratorAncient.glb"
+ },
+ "AncientFarmBlock": {
+  "mesh": "SM_HydroponicsAncient",
+  "url": "/meshes/SM_HydroponicsAncient.glb"
+ },
+ "AncientMultiProduct": {
+  "mesh": "SK_AncientFabricator",
+  "url": "/meshes/SK_AncientFabricator.glb"
+ },
+ "AncientRelicRecycler": {
+  "mesh": "SK_ArtifactRecycler",
+  "url": "/meshes/SK_ArtifactRecycler.glb"
+ },
+ "AncientWorkBench": {
+  "mesh": "SM_WorkBenchAncient",
+  "url": "/meshes/SM_WorkBenchAncient.glb"
+ },
+ "Ancient_Clinic": {
+  "mesh": "SM_InfirmaryAncient",
+  "url": "/meshes/SM_InfirmaryAncient.glb"
+ },
+ "Ancient_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_Ancient",
+  "url": "/meshes/SM_WallDiagonal_Ancient.glb"
+ },
+ "Ancient_DoorWall": {
+  "mesh": "SM_Doorbase_Ancient",
+  "url": "/meshes/SM_Doorbase_Ancient.glb"
+ },
+ "Ancient_Fence": {
+  "mesh": "SM_Fence_Ancient",
+  "url": "/meshes/SM_Fence_Ancient.glb"
+ },
+ "Ancient_MedicalPalBed": {
+  "mesh": "SM_PalBedAncient",
+  "url": "/meshes/SM_PalBedAncient.glb"
+ },
+ "Ancient_Pillars": {
+  "mesh": "SM_Pillar_Ancient",
+  "url": "/meshes/SM_Pillar_Ancient.glb"
+ },
+ "Ancient_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_Ancient",
+  "url": "/meshes/SM_PyramidRoof_Ancient.glb"
+ },
+ "Ancient_SlantedRoof": {
+  "mesh": "SM_RoofB_Ancient",
+  "url": "/meshes/SM_RoofB_Ancient.glb"
+ },
+ "Ancient_SlopedRoofCorner": {
+  "mesh": "SM_SlopeRoofCorner_Ancient",
+  "url": "/meshes/SM_SlopeRoofCorner_Ancient.glb"
+ },
+ "Ancient_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopeRoofCornerReverse_Ancient",
+  "url": "/meshes/SM_SlopeRoofCornerReverse_Ancient.glb"
+ },
+ "Ancient_Spa": {
+  "mesh": "SM_PalSpaAncient",
+  "url": "/meshes/SM_PalSpaAncient.glb"
+ },
+ "Ancient_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_Ancient",
+  "url": "/meshes/SM_FloorTryangle_Ancient.glb"
+ },
+ "Ancient_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_Ancient",
+  "url": "/meshes/SM_RoofTriangle_Ancient.glb"
+ },
+ "Ancient_TriangleStairsCorner": {
+  "mesh": "SM_TriangleStairsCorner_Ancient",
+  "url": "/meshes/SM_TriangleStairsCorner_Ancient.glb"
+ },
+ "Ancient_TriangleWall": {
+  "mesh": "SM_WallTryangle_Ancient",
+  "url": "/meshes/SM_WallTryangle_Ancient.glb"
+ },
+ "Ancient_TriangleWallReverse": {
+  "mesh": "SM_WallTryangleReverse_Ancient",
+  "url": "/meshes/SM_WallTryangleReverse_Ancient.glb"
+ },
+ "Ancient_WallGate": {
+  "mesh": "SM_WallGate_Ancient",
+  "url": "/meshes/SM_WallGate_Ancient.glb"
+ },
+ "Ancient_WindowWall": {
+  "mesh": "SM_WallWindow_Ancient",
+  "url": "/meshes/SM_WallWindow_Ancient.glb"
+ },
+ "Ancient_foundation": {
+  "mesh": "SM_Floor_Ancient",
+  "url": "/meshes/SM_Floor_Ancient.glb"
+ },
+ "Ancient_roof": {
+  "mesh": "SM_Roof_Ancient",
+  "url": "/meshes/SM_Roof_Ancient.glb"
+ },
+ "Ancient_stair": {
+  "mesh": "SM_Stair_Ancient",
+  "url": "/meshes/SM_Stair_Ancient.glb"
+ },
+ "Ancient_wall": {
+  "mesh": "SM_wall_Ancient",
+  "url": "/meshes/SM_wall_Ancient.glb"
+ },
+ "Andon": {
+  "mesh": "SM_JapaneseLantern",
+  "url": "/meshes/SM_JapaneseLantern.glb"
+ },
+ "ArcadeVideoGame": {
+  "mesh": "SM_ArcadeCab_07a",
+  "url": "/meshes/SM_ArcadeCab_07a.glb"
+ },
+ "Barrel01_Iron": {
+  "mesh": "SM_barrel1",
+  "url": "/meshes/SM_barrel1.glb"
+ },
+ "Barrel02_Iron": {
+  "mesh": "SM_barrel2",
+  "url": "/meshes/SM_barrel2.glb"
+ },
+ "Barrel03_Iron": {
+  "mesh": "SM_barrel2",
+  "url": "/meshes/SM_barrel2.glb"
+ },
+ "Barrel_Wood": {
+  "mesh": "SM_cask_01",
+  "url": "/meshes/SM_cask_01.glb"
+ },
+ "BaseCampBattleDirector": {
+  "mesh": "SK_BellTower",
+  "url": "/meshes/SK_BellTower.glb"
+ },
+ "BaseCampItemDispenser": {
+  "mesh": "SM_ItemTransporter",
+  "url": "/meshes/SM_ItemTransporter.glb"
+ },
+ "BaseCampWorkHard": {
+  "mesh": "SM_SurveillanceTable",
+  "url": "/meshes/SM_SurveillanceTable.glb"
+ },
+ "BaseCampWorkHard02": {
+  "mesh": "SM_SurveillanceTableAdvanced",
+  "url": "/meshes/SM_SurveillanceTableAdvanced.glb"
+ },
+ "BaseCampWorkHard03": {
+  "mesh": "SM_SurveillanceTableAncient",
+  "url": "/meshes/SM_SurveillanceTableAncient.glb"
+ },
+ "BaseCampWorkerExtraStation": {
+  "mesh": "SM_RemotePalBox",
+  "url": "/meshes/SM_RemotePalBox.glb"
+ },
+ "BathTub_Stone": {
+  "mesh": "SM_bathtub_Set2",
+  "url": "/meshes/SM_bathtub_Set2.glb"
+ },
+ "Believer_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "Believer_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "Bench_Wood": {
+  "mesh": "SM_Bench",
+  "url": "/meshes/SM_Bench.glb"
+ },
+ "BlastFurnace": {
+  "mesh": "SM_BlastFurnacePrimitive",
+  "url": "/meshes/SM_BlastFurnacePrimitive.glb"
+ },
+ "BlastFurnace2": {
+  "mesh": "SM_BlastFurnaceMedieval",
+  "url": "/meshes/SM_BlastFurnaceMedieval.glb"
+ },
+ "BlastFurnace3": {
+  "mesh": "SM_BlastFurnaceElectric",
+  "url": "/meshes/SM_BlastFurnaceElectric.glb"
+ },
+ "BlastFurnace4": {
+  "mesh": "SM_BlastFurnaceFuturistic",
+  "url": "/meshes/SM_BlastFurnaceFuturistic.glb"
+ },
+ "Bonsai": {
+  "mesh": "SM_Bonsai",
+  "url": "/meshes/SM_Bonsai.glb"
+ },
+ "Box01_Iron": {
+  "mesh": "SM_Box1",
+  "url": "/meshes/SM_Box1.glb"
+ },
+ "Box01_Stone": {
+  "mesh": "SM_wicker_basket",
+  "url": "/meshes/SM_wicker_basket.glb"
+ },
+ "Box02_Iron": {
+  "mesh": "SM_Box2",
+  "url": "/meshes/SM_Box2.glb"
+ },
+ "Box_Wood": {
+  "mesh": "SM_Wooden_Box_01",
+  "url": "/meshes/SM_Wooden_Box_01.glb"
+ },
+ "BreedFarm": {
+  "mesh": "SM_MatingStation",
+  "url": "/meshes/SM_MatingStation.glb"
+ },
+ "BuildableGoddessStatue": {
+  "mesh": "SM_GoddessStatue",
+  "url": "/meshes/SM_GoddessStatue.glb"
+ },
+ "Byobu": {
+  "mesh": "SM_FoldingScreen",
+  "url": "/meshes/SM_FoldingScreen.glb"
+ },
+ "CableCoil01_Iron": {
+  "mesh": "SM_coilWire",
+  "url": "/meshes/SM_coilWire.glb"
+ },
+ "CampFire": {
+  "mesh": "SM_Campfire",
+  "url": "/meshes/SM_Campfire.glb"
+ },
+ "Cauldron": {
+  "mesh": "SM_Caldron",
+  "url": "/meshes/SM_Caldron.glb"
+ },
+ "CeilingLamp": {
+  "mesh": "SM_LampTop",
+  "url": "/meshes/SM_LampTop.glb"
+ },
+ "Chair01_Iron": {
+  "mesh": "SM_Chair4",
+  "url": "/meshes/SM_Chair4.glb"
+ },
+ "Chair01_Pal": {
+  "mesh": "SM_Froggy_Chair",
+  "url": "/meshes/SM_Froggy_Chair.glb"
+ },
+ "Chair01_Stone": {
+  "mesh": "SM_Chair01",
+  "url": "/meshes/SM_Chair01.glb"
+ },
+ "Chair01_Wood": {
+  "mesh": "SM_Chair_Dining_Wood",
+  "url": "/meshes/SM_Chair_Dining_Wood.glb"
+ },
+ "Chair02_Iron": {
+  "mesh": "SM_Rusty_Tolix_A56",
+  "url": "/meshes/SM_Rusty_Tolix_A56.glb"
+ },
+ "Chair02_Stone": {
+  "mesh": "SM_chair",
+  "url": "/meshes/SM_chair.glb"
+ },
+ "CharacterRankUp": {
+  "mesh": "SM_PalSynthesizer",
+  "url": "/meshes/SM_PalSynthesizer.glb"
+ },
+ "Clinic": {
+  "mesh": "SM_Infirmary",
+  "url": "/meshes/SM_Infirmary.glb"
+ },
+ "Clock01_Stone": {
+  "mesh": "SM_Floor_Clock_comb",
+  "url": "/meshes/SM_Floor_Clock_comb.glb"
+ },
+ "CoalPit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "CompositeDesk": {
+  "mesh": "SM_DraftingDesk",
+  "url": "/meshes/SM_DraftingDesk.glb"
+ },
+ "Container01_Iron": {
+  "mesh": "SM_Container",
+  "url": "/meshes/SM_Container.glb"
+ },
+ "CookingStove": {
+  "mesh": "SM_KitchenMedieval",
+  "url": "/meshes/SM_KitchenMedieval.glb"
+ },
+ "Cooler": {
+  "mesh": "SM_CoolerMedieval",
+  "url": "/meshes/SM_CoolerMedieval.glb"
+ },
+ "CoolerBox": {
+  "mesh": "SM_FridgeSmall",
+  "url": "/meshes/SM_FridgeSmall.glb"
+ },
+ "CoolerPalFoodBox": {
+  "mesh": "SM_PalCoolingFeedBox",
+  "url": "/meshes/SM_PalCoolingFeedBox.glb"
+ },
+ "CopperPit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "CopperPit_2": {
+  "mesh": "SM_StonePitLarge",
+  "url": "/meshes/SM_StonePitLarge.glb"
+ },
+ "Counter_Wood": {
+  "mesh": "SM_bar_03",
+  "url": "/meshes/SM_bar_03.glb"
+ },
+ "Crusher": {
+  "mesh": "SK_Pulverizer",
+  "url": "/meshes/SK_Pulverizer.glb"
+ },
+ "CrystalPit": {
+  "mesh": "SM_Crystal_Plume",
+  "url": "/meshes/SM_Crystal_Plume.glb"
+ },
+ "Curtain01_Wall_Stone": {
+  "mesh": "SM_CurtainSet02",
+  "url": "/meshes/SM_CurtainSet02.glb"
+ },
+ "DamagableRock0002": {
+  "mesh": "SM_RockSteel",
+  "url": "/meshes/SM_RockSteel.glb"
+ },
+ "DamagableRock0004": {
+  "mesh": "SM_RockCoal",
+  "url": "/meshes/SM_RockCoal.glb"
+ },
+ "DamagableRock0006": {
+  "mesh": "SM_RockSulfur",
+  "url": "/meshes/SM_RockSulfur.glb"
+ },
+ "DamagableRock0009": {
+  "mesh": "SM_pal_b00_rock_MineableRocks",
+  "url": "/meshes/SM_pal_b00_rock_MineableRocks.glb"
+ },
+ "DamagableRock0010": {
+  "mesh": "SM_pal_b00_Rock_MineableRocks_GroundRevealRock_Cliff",
+  "url": "/meshes/SM_pal_b00_Rock_MineableRocks_GroundRevealRock_Cliff.glb"
+ },
+ "DamagableRock0012": {
+  "mesh": "SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+  "url": "/meshes/SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1.glb"
+ },
+ "DamagedScarecrow": {
+  "mesh": "SM_DamagedScarecrow",
+  "url": "/meshes/SM_DamagedScarecrow.glb"
+ },
+ "DarkIsland_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "DarkIsland_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "DefenseBowGun": {
+  "mesh": "DefenseFacilityMedieval_Base",
+  "url": "/meshes/DefenseFacilityMedieval_Base.glb"
+ },
+ "DefenseMachinegun": {
+  "mesh": "SK_DefenseFacilityModern",
+  "url": "/meshes/SK_DefenseFacilityModern.glb"
+ },
+ "DefenseMissile": {
+  "mesh": "SK_DefenseFacilityElectric",
+  "url": "/meshes/SK_DefenseFacilityElectric.glb"
+ },
+ "DefenseWait": {
+  "mesh": "DefenseFacilityMedieval_Sand",
+  "url": "/meshes/DefenseFacilityMedieval_Sand.glb"
+ },
+ "DefenseWall": {
+  "mesh": "SM_DefenseWall_Stone",
+  "url": "/meshes/SM_DefenseWall_Stone.glb"
+ },
+ "DefenseWall_Metal": {
+  "mesh": "SM_DefenseWall_Iron",
+  "url": "/meshes/SM_DefenseWall_Iron.glb"
+ },
+ "DefenseWall_Wood": {
+  "mesh": "SM_DefenseWall_Wood",
+  "url": "/meshes/SM_DefenseWall_Wood.glb"
+ },
+ "Desk01_Iron": {
+  "mesh": "SM_AVI_Deco_01",
+  "url": "/meshes/SM_AVI_Deco_01.glb"
+ },
+ "Desk01_Stone": {
+  "mesh": "SM_Clock_Small",
+  "url": "/meshes/SM_Clock_Small.glb"
+ },
+ "DimensionPalStorage": {
+  "mesh": "SM_PalFourDimensionalBox",
+  "url": "/meshes/SM_PalFourDimensionalBox.glb"
+ },
+ "DismantlingConveyor": {
+  "mesh": "SM_DismantlingConveyor_SM_DismantlingConveyor",
+  "url": "/meshes/SM_DismantlingConveyor_SM_DismantlingConveyor.glb"
+ },
+ "DisplayCharacter": {
+  "mesh": "SM_PalBox_Pillar",
+  "url": "/meshes/SM_PalBox_Pillar.glb"
+ },
+ "ElectricCooler": {
+  "mesh": "SM_CoolerElectric",
+  "url": "/meshes/SM_CoolerElectric.glb"
+ },
+ "ElectricGenerator": {
+  "mesh": "SM_Capacitor",
+  "url": "/meshes/SM_Capacitor.glb"
+ },
+ "ElectricGenerator_Large": {
+  "mesh": "SM_Capacitor_Large",
+  "url": "/meshes/SM_Capacitor_Large.glb"
+ },
+ "ElectricHeater": {
+  "mesh": "SM_HeaterElectric",
+  "url": "/meshes/SM_HeaterElectric.glb"
+ },
+ "ElectricKitchen": {
+  "mesh": "SM_KitchenModern",
+  "url": "/meshes/SM_KitchenModern.glb"
+ },
+ "EnergyStorage_Electric": {
+  "mesh": "SM_EnergyStorage",
+  "url": "/meshes/SM_EnergyStorage.glb"
+ },
+ "Expedition": {
+  "mesh": "SM_PalExpeditionFacilities",
+  "url": "/meshes/SM_PalExpeditionFacilities.glb"
+ },
+ "Factory_Hard_01": {
+  "mesh": "SM_WorkBenchMedieval",
+  "url": "/meshes/SM_WorkBenchMedieval.glb"
+ },
+ "Factory_Hard_02": {
+  "mesh": "SM_WorkBenchModern",
+  "url": "/meshes/SM_WorkBenchModern.glb"
+ },
+ "Factory_Hard_03": {
+  "mesh": "SM_WorkBenchElectric",
+  "url": "/meshes/SM_WorkBenchElectric.glb"
+ },
+ "Factory_Hard_04": {
+  "mesh": "SK_PalSphereFactoryFuturistic",
+  "url": "/meshes/SK_PalSphereFactoryFuturistic.glb"
+ },
+ "Factory_Money": {
+  "mesh": "SK_MintingMachine",
+  "url": "/meshes/SK_MintingMachine.glb"
+ },
+ "FarmBlockV2_Berries": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_Carrot": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_Lettuce": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_Onion": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_Potato": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_tomato": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FarmBlockV2_wheet": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "Farm_SkillFruits": {
+  "mesh": "SM_FarmGround",
+  "url": "/meshes/SM_FarmGround.glb"
+ },
+ "FireCult_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "FireCult_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "FishingPond1": {
+  "mesh": "SM_FishingPond",
+  "url": "/meshes/SM_FishingPond.glb"
+ },
+ "FishingPond2": {
+  "mesh": "SM_FishingPond_Rodpillow",
+  "url": "/meshes/SM_FishingPond_Rodpillow.glb"
+ },
+ "FlourMill": {
+  "mesh": "SK_StoneMill",
+  "url": "/meshes/SK_StoneMill.glb"
+ },
+ "Fudukue": {
+  "mesh": "SM_JapaneseWritingDesk",
+  "url": "/meshes/SM_JapaneseWritingDesk.glb"
+ },
+ "FurnitureBush01_Flower": {
+  "mesh": "SM_pal_b06_bush_hibiscus_01",
+  "url": "/meshes/SM_pal_b06_bush_hibiscus_01.glb"
+ },
+ "FurnitureBush01_Green": {
+  "mesh": "SM_pal_b00_bush_RainforestForestBush_01_B",
+  "url": "/meshes/SM_pal_b00_bush_RainforestForestBush_01_B.glb"
+ },
+ "FurnitureBush01_Snow": {
+  "mesh": "pal_b05_tree_Bush-01",
+  "url": "/meshes/pal_b05_tree_Bush-01.glb"
+ },
+ "FurnitureBush01_Tropical": {
+  "mesh": "SM_pal_b00_bush_RainforestMonstera_01",
+  "url": "/meshes/SM_pal_b00_bush_RainforestMonstera_01.glb"
+ },
+ "FurnitureBush01_Yellow": {
+  "mesh": "pal_b05_tree_Bush-01",
+  "url": "/meshes/pal_b05_tree_Bush-01.glb"
+ },
+ "FurnitureBush02_Flower": {
+  "mesh": "SM_pal_b06_bush_hibiscus_02",
+  "url": "/meshes/SM_pal_b06_bush_hibiscus_02.glb"
+ },
+ "FurnitureStone01": {
+  "mesh": "SM_pal_b00_rock_MineableRocks",
+  "url": "/meshes/SM_pal_b00_rock_MineableRocks.glb"
+ },
+ "FurnitureTree01_Bamboo": {
+  "mesh": "Bamboo_4_Hero_GiantTimber",
+  "url": "/meshes/Bamboo_4_Hero_GiantTimber.glb"
+ },
+ "FurnitureTree01_Cherry": {
+  "mesh": "pal_b00_tree_cherry_M_A",
+  "url": "/meshes/pal_b00_tree_cherry_M_A.glb"
+ },
+ "FurnitureTree01_Desert": {
+  "mesh": "SM_pal_b00_palm_tree_a",
+  "url": "/meshes/SM_pal_b00_palm_tree_a.glb"
+ },
+ "FurnitureTree01_Green": {
+  "mesh": "Oak_White_Desktop_Field_3_001",
+  "url": "/meshes/Oak_White_Desktop_Field_3_001.glb"
+ },
+ "FurnitureTree01_Red": {
+  "mesh": "Oak_White_Desktop_Field_3_001_Red",
+  "url": "/meshes/Oak_White_Desktop_Field_3_001_Red.glb"
+ },
+ "FurnitureTree01_Snow": {
+  "mesh": "Spruce_Norway_Desktop_3_Forest_001",
+  "url": "/meshes/Spruce_Norway_Desktop_3_Forest_001.glb"
+ },
+ "FurnitureTree01_Tropical": {
+  "mesh": "SM_pal_b00_coco_palm_medium",
+  "url": "/meshes/SM_pal_b00_coco_palm_medium.glb"
+ },
+ "FurnitureTree01_Yellow": {
+  "mesh": "Oak_White_Desktop_Field_3_001_Yellow",
+  "url": "/meshes/Oak_White_Desktop_Field_3_001_Yellow.glb"
+ },
+ "FurnitureTree02_Bamboo": {
+  "mesh": "Bamboo_2_Hero_BlueFountain_001",
+  "url": "/meshes/Bamboo_2_Hero_BlueFountain_001.glb"
+ },
+ "FurnitureTree02_Cherry": {
+  "mesh": "pal_b00_tree_cherry_M_B",
+  "url": "/meshes/pal_b00_tree_cherry_M_B.glb"
+ },
+ "FurnitureTree02_Desert": {
+  "mesh": "Palm_Yucca_Desktop_001",
+  "url": "/meshes/Palm_Yucca_Desktop_001.glb"
+ },
+ "FurnitureTree02_Red": {
+  "mesh": "Oak_White_Desktop_Field_3_002_Red",
+  "url": "/meshes/Oak_White_Desktop_Field_3_002_Red.glb"
+ },
+ "FurnitureTree02_Snow": {
+  "mesh": "Spruce_Norway_Desktop_2_Forest_001",
+  "url": "/meshes/Spruce_Norway_Desktop_2_Forest_001.glb"
+ },
+ "FurnitureTree02_Tropical": {
+  "mesh": "SM_pal_b00_tree_RainforestBananaTreeM_01",
+  "url": "/meshes/SM_pal_b00_tree_RainforestBananaTreeM_01.glb"
+ },
+ "FurnitureTree02_Yellow": {
+  "mesh": "Oak_White_Desktop_Field_3_002_Yellow",
+  "url": "/meshes/Oak_White_Desktop_Field_3_002_Yellow.glb"
+ },
+ "FurnitureTree03_Bamboo": {
+  "mesh": "SM_Plant_Bush_Bamboo_01",
+  "url": "/meshes/SM_Plant_Bush_Bamboo_01.glb"
+ },
+ "FurnitureTree03_Cherry": {
+  "mesh": "pal_b00_tree_cherry_M_C",
+  "url": "/meshes/pal_b00_tree_cherry_M_C.glb"
+ },
+ "FurnitureTree03_Desert": {
+  "mesh": "S_Dead_Tree_qlEtl_lod3",
+  "url": "/meshes/S_Dead_Tree_qlEtl_lod3.glb"
+ },
+ "FurnitureTree03_Green": {
+  "mesh": "Spruce_Norway_Desktop_3_Forest_001",
+  "url": "/meshes/Spruce_Norway_Desktop_3_Forest_001.glb"
+ },
+ "FurnitureTree03_Red": {
+  "mesh": "Oak_White_Desktop_Forest_001_Red",
+  "url": "/meshes/Oak_White_Desktop_Forest_001_Red.glb"
+ },
+ "FurnitureTree03_Snow": {
+  "mesh": "Spruce_Norway_Desktop_1_Forest",
+  "url": "/meshes/Spruce_Norway_Desktop_1_Forest.glb"
+ },
+ "FurnitureTree03_Tropical": {
+  "mesh": "Banyan_Hero_Forest_A",
+  "url": "/meshes/Banyan_Hero_Forest_A.glb"
+ },
+ "FurnitureTree03_Yellow": {
+  "mesh": "Oak_White_Desktop_Forest_001_Yellow",
+  "url": "/meshes/Oak_White_Desktop_Forest_001_Yellow.glb"
+ },
+ "GarbageBag_Iron": {
+  "mesh": "SM_garbageBag_set",
+  "url": "/meshes/SM_garbageBag_set.glb"
+ },
+ "Glass_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_Glass",
+  "url": "/meshes/SM_WallDiagonal_Glass.glb"
+ },
+ "Glass_DoorWall": {
+  "mesh": "SM_Door_Glass",
+  "url": "/meshes/SM_Door_Glass.glb"
+ },
+ "Glass_Fence": {
+  "mesh": "SM_Fence_Glass",
+  "url": "/meshes/SM_Fence_Glass.glb"
+ },
+ "Glass_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_Glass",
+  "url": "/meshes/SM_PyramidRoof_Glass.glb"
+ },
+ "Glass_SlantedRoof": {
+  "mesh": "SM_RoofB_Glass",
+  "url": "/meshes/SM_RoofB_Glass.glb"
+ },
+ "Glass_SlopedRoofCorner": {
+  "mesh": "SM_SlopeRoofCorner_Glass",
+  "url": "/meshes/SM_SlopeRoofCorner_Glass.glb"
+ },
+ "Glass_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopeRoofCornerReverse_Glass",
+  "url": "/meshes/SM_SlopeRoofCornerReverse_Glass.glb"
+ },
+ "Glass_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_Glass",
+  "url": "/meshes/SM_FloorTryangle_Glass.glb"
+ },
+ "Glass_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_Glass",
+  "url": "/meshes/SM_RoofTriangle_Glass.glb"
+ },
+ "Glass_TriangleStairsCorner": {
+  "mesh": "SM_TriangleStairsCorner_Glass",
+  "url": "/meshes/SM_TriangleStairsCorner_Glass.glb"
+ },
+ "Glass_TriangleWall": {
+  "mesh": "SM_WallTryangle_Glass",
+  "url": "/meshes/SM_WallTryangle_Glass.glb"
+ },
+ "Glass_TriangleWallReverse": {
+  "mesh": "SM_WallTryangleReverse_Glass",
+  "url": "/meshes/SM_WallTryangleReverse_Glass.glb"
+ },
+ "Glass_WallGate": {
+  "mesh": "SM_WallGate_Glass",
+  "url": "/meshes/SM_WallGate_Glass.glb"
+ },
+ "Glass_WindowWall": {
+  "mesh": "SM_WallWindow_Glass",
+  "url": "/meshes/SM_WallWindow_Glass.glb"
+ },
+ "Glass_foundation": {
+  "mesh": "SM_Floor_Glass",
+  "url": "/meshes/SM_Floor_Glass.glb"
+ },
+ "Glass_pillars": {
+  "mesh": "SM_Pillar_Glass",
+  "url": "/meshes/SM_Pillar_Glass.glb"
+ },
+ "Glass_roof": {
+  "mesh": "SM_Roof_Glass",
+  "url": "/meshes/SM_Roof_Glass.glb"
+ },
+ "Glass_stair": {
+  "mesh": "SM_Stair_Glass",
+  "url": "/meshes/SM_Stair_Glass.glb"
+ },
+ "Glass_wall": {
+  "mesh": "SM_Wall_Glass",
+  "url": "/meshes/SM_Wall_Glass.glb"
+ },
+ "GlobalPalStorage": {
+  "mesh": "SM_PalGlobalBox",
+  "url": "/meshes/SM_PalGlobalBox.glb"
+ },
+ "Globe01_Stone": {
+  "mesh": "SM_Globe",
+  "url": "/meshes/SM_Globe.glb"
+ },
+ "GoalSoccer_Iron": {
+  "mesh": "SM_Soccer_Goal",
+  "url": "/meshes/SM_Soccer_Goal.glb"
+ },
+ "GuildChest": {
+  "mesh": "SM_GuildChest",
+  "url": "/meshes/SM_GuildChest.glb"
+ },
+ "HatchingPalEgg": {
+  "mesh": "SM_EggHatchingMachine",
+  "url": "/meshes/SM_EggHatchingMachine.glb"
+ },
+ "Headstone": {
+  "mesh": "SM_pal_b00_Megascans_Japanese_Gravestone_ucnocfmfa_lod3",
+  "url": "/meshes/SM_pal_b00_Megascans_Japanese_Gravestone_ucnocfmfa_lod3.glb"
+ },
+ "Heater": {
+  "mesh": "SM_HeaterMedieval",
+  "url": "/meshes/SM_HeaterMedieval.glb"
+ },
+ "HugeKitchen": {
+  "mesh": "SM_KitchenMedievalLarge",
+  "url": "/meshes/SM_KitchenMedievalLarge.glb"
+ },
+ "Hunter_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "IceCrusher": {
+  "mesh": "SK_FrozenCrusher",
+  "url": "/meshes/SK_FrozenCrusher.glb"
+ },
+ "IceHorseStatue": {
+  "mesh": "SM_IcePegasusStatue",
+  "url": "/meshes/SM_IcePegasusStatue.glb"
+ },
+ "Iron_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_Iron",
+  "url": "/meshes/SM_WallDiagonal_Iron.glb"
+ },
+ "Iron_Fence": {
+  "mesh": "SM_Fence_Iron",
+  "url": "/meshes/SM_Fence_Iron.glb"
+ },
+ "Iron_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_Iron",
+  "url": "/meshes/SM_PyramidRoof_Iron.glb"
+ },
+ "Iron_SlopedRoofCorner": {
+  "mesh": "SM_SlopeRoofCorner_Iron",
+  "url": "/meshes/SM_SlopeRoofCorner_Iron.glb"
+ },
+ "Iron_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopeRoofCornerReverse_Iron",
+  "url": "/meshes/SM_SlopeRoofCornerReverse_Iron.glb"
+ },
+ "Iron_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_Iron",
+  "url": "/meshes/SM_FloorTryangle_Iron.glb"
+ },
+ "Iron_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_Iron",
+  "url": "/meshes/SM_RoofTriangle_Iron.glb"
+ },
+ "Iron_TriangleStairsCorner": {
+  "mesh": "SM_TriangleStairsCorner_Iron",
+  "url": "/meshes/SM_TriangleStairsCorner_Iron.glb"
+ },
+ "Iron_TriangleWallReverse": {
+  "mesh": "SM_WallTryangleReverse_Iron",
+  "url": "/meshes/SM_WallTryangleReverse_Iron.glb"
+ },
+ "Iron_WallGate": {
+  "mesh": "SM_WallGate_Iron",
+  "url": "/meshes/SM_WallGate_Iron.glb"
+ },
+ "Irori": {
+  "mesh": "SM_Hearth",
+  "url": "/meshes/SM_Hearth.glb"
+ },
+ "ItemChest": {
+  "mesh": "SM_ChestWood",
+  "url": "/meshes/SM_ChestWood.glb"
+ },
+ "ItemChest_02": {
+  "mesh": "SM_ChestCopper",
+  "url": "/meshes/SM_ChestCopper.glb"
+ },
+ "ItemChest_03": {
+  "mesh": "SM_ChestIron",
+  "url": "/meshes/SM_ChestIron.glb"
+ },
+ "ItemChest_04": {
+  "mesh": "SM_ChestFuturistic",
+  "url": "/meshes/SM_ChestFuturistic.glb"
+ },
+ "Ivy01": {
+  "mesh": "SM_Ivy12",
+  "url": "/meshes/SM_Ivy12.glb"
+ },
+ "Ivy02": {
+  "mesh": "SM_ivy01",
+  "url": "/meshes/SM_ivy01.glb"
+ },
+ "Ivy03": {
+  "mesh": "SM_Ivy09",
+  "url": "/meshes/SM_Ivy09.glb"
+ },
+ "JapaneseStyle_DiagonalWall": {
+  "mesh": "Architecture_JapaneseStyle_WallDiagonal",
+  "url": "/meshes/Architecture_JapaneseStyle_WallDiagonal.glb"
+ },
+ "JapaneseStyle_DoorWall_01": {
+  "mesh": "Architecture_JapaneseStyle_DoorA",
+  "url": "/meshes/Architecture_JapaneseStyle_DoorA.glb"
+ },
+ "JapaneseStyle_DoorWall_02": {
+  "mesh": "Architecture_JapaneseStyle_DoorB",
+  "url": "/meshes/Architecture_JapaneseStyle_DoorB.glb"
+ },
+ "JapaneseStyle_DoorWall_03": {
+  "mesh": "Architecture_JapaneseStyle_DoorC",
+  "url": "/meshes/Architecture_JapaneseStyle_DoorC.glb"
+ },
+ "JapaneseStyle_Fence": {
+  "mesh": "Architecture_JapaneseStyle_Fence",
+  "url": "/meshes/Architecture_JapaneseStyle_Fence.glb"
+ },
+ "JapaneseStyle_Pillar": {
+  "mesh": "Architecture_JapaneseStyle_Pillar",
+  "url": "/meshes/Architecture_JapaneseStyle_Pillar.glb"
+ },
+ "JapaneseStyle_PyramidRoof": {
+  "mesh": "Architecture_JapaneseStyle_PyramidRoof",
+  "url": "/meshes/Architecture_JapaneseStyle_PyramidRoof.glb"
+ },
+ "JapaneseStyle_SlantedRoof": {
+  "mesh": "Architecture_JapaneseStyle_RoofC",
+  "url": "/meshes/Architecture_JapaneseStyle_RoofC.glb"
+ },
+ "JapaneseStyle_SlopedRoofCorner": {
+  "mesh": "Architecture_JapaneseStyle_SlopeRoofCorner",
+  "url": "/meshes/Architecture_JapaneseStyle_SlopeRoofCorner.glb"
+ },
+ "JapaneseStyle_SlopedRoofCornerReverse": {
+  "mesh": "Architecture_JapaneseStyle_SlopeRoofCornerReverse",
+  "url": "/meshes/Architecture_JapaneseStyle_SlopeRoofCornerReverse.glb"
+ },
+ "JapaneseStyle_TriangleFoundation": {
+  "mesh": "Architecture_JapaneseStyle_FloorTryangle",
+  "url": "/meshes/Architecture_JapaneseStyle_FloorTryangle.glb"
+ },
+ "JapaneseStyle_TriangleRoof_01": {
+  "mesh": "Architecture_JapaneseStyle_RoofTriangle",
+  "url": "/meshes/Architecture_JapaneseStyle_RoofTriangle.glb"
+ },
+ "JapaneseStyle_TriangleRoof_02": {
+  "mesh": "Architecture_JapaneseStyle_RoofTriangleB",
+  "url": "/meshes/Architecture_JapaneseStyle_RoofTriangleB.glb"
+ },
+ "JapaneseStyle_TriangleStairsCorner_01": {
+  "mesh": "Architecture_JapaneseStyle_TriangleStairsCorner",
+  "url": "/meshes/Architecture_JapaneseStyle_TriangleStairsCorner.glb"
+ },
+ "JapaneseStyle_TriangleWall": {
+  "mesh": "Architecture_JapaneseStyle_WallTryangle",
+  "url": "/meshes/Architecture_JapaneseStyle_WallTryangle.glb"
+ },
+ "JapaneseStyle_TriangleWallReverse": {
+  "mesh": "Architecture_JapaneseStyle_WallTryangleReverse",
+  "url": "/meshes/Architecture_JapaneseStyle_WallTryangleReverse.glb"
+ },
+ "JapaneseStyle_WallGate": {
+  "mesh": "Architecture_JapaneseStyle_WallGate",
+  "url": "/meshes/Architecture_JapaneseStyle_WallGate.glb"
+ },
+ "JapaneseStyle_WindowWall": {
+  "mesh": "Architecture_JapaneseStyle_WallWindow",
+  "url": "/meshes/Architecture_JapaneseStyle_WallWindow.glb"
+ },
+ "JapaneseStyle_foundation": {
+  "mesh": "Architecture_JapaneseStyle_Floor",
+  "url": "/meshes/Architecture_JapaneseStyle_Floor.glb"
+ },
+ "JapaneseStyle_roof_01": {
+  "mesh": "Architecture_JapaneseStyle_Roof",
+  "url": "/meshes/Architecture_JapaneseStyle_Roof.glb"
+ },
+ "JapaneseStyle_roof_02": {
+  "mesh": "Architecture_JapaneseStyle_RoofB",
+  "url": "/meshes/Architecture_JapaneseStyle_RoofB.glb"
+ },
+ "JapaneseStyle_stair": {
+  "mesh": "Architecture_JapaneseStyle_Stair",
+  "url": "/meshes/Architecture_JapaneseStyle_Stair.glb"
+ },
+ "JapaneseStyle_wall_01": {
+  "mesh": "Architecture_JapaneseStyle_WallA",
+  "url": "/meshes/Architecture_JapaneseStyle_WallA.glb"
+ },
+ "JetDragonStatue": {
+  "mesh": "SM_JetDragonStatue",
+  "url": "/meshes/SM_JetDragonStatue.glb"
+ },
+ "Koro": {
+  "mesh": "SM_IncenseBurner",
+  "url": "/meshes/SM_IncenseBurner.glb"
+ },
+ "Lab": {
+  "mesh": "SM_Laboratory",
+  "url": "/meshes/SM_Laboratory.glb"
+ },
+ "Lamp": {
+  "mesh": "SM_LampStand",
+  "url": "/meshes/SM_LampStand.glb"
+ },
+ "LargeCeilingLamp": {
+  "mesh": "SM_LampTopLarge",
+  "url": "/meshes/SM_LampTopLarge.glb"
+ },
+ "LargeLamp": {
+  "mesh": "SM_LampStandLarge",
+  "url": "/meshes/SM_LampStandLarge.glb"
+ },
+ "Light_CandleSticks_Top": {
+  "mesh": "SM_Chandelier03",
+  "url": "/meshes/SM_Chandelier03.glb"
+ },
+ "Light_CandleSticks_Wall": {
+  "mesh": "SM_Chandelier02",
+  "url": "/meshes/SM_Chandelier02.glb"
+ },
+ "Light_FirePlace01": {
+  "mesh": "SM_Fireplace_01a",
+  "url": "/meshes/SM_Fireplace_01a.glb"
+ },
+ "Light_FirePlace02": {
+  "mesh": "SM_Fireplace_03e",
+  "url": "/meshes/SM_Fireplace_03e.glb"
+ },
+ "Light_FloorLamp01": {
+  "mesh": "SM_FloorLamp",
+  "url": "/meshes/SM_FloorLamp.glb"
+ },
+ "Light_FloorLamp02": {
+  "mesh": "SM_Night_lamp_2",
+  "url": "/meshes/SM_Night_lamp_2.glb"
+ },
+ "Light_LightPole01": {
+  "mesh": "SM_LightPole_A2",
+  "url": "/meshes/SM_LightPole_A2.glb"
+ },
+ "Light_LightPole02": {
+  "mesh": "SM_LightPole_A4",
+  "url": "/meshes/SM_LightPole_A4.glb"
+ },
+ "Light_LightPole03": {
+  "mesh": "SM_LightPole_A5",
+  "url": "/meshes/SM_LightPole_A5.glb"
+ },
+ "Light_LightPole04": {
+  "mesh": "SM_LightPole_A",
+  "url": "/meshes/SM_LightPole_A.glb"
+ },
+ "MachineGame01_Iron": {
+  "mesh": "SM_Grab_Machine_01c",
+  "url": "/meshes/SM_Grab_Machine_01c.glb"
+ },
+ "ManualElectricGenerator": {
+  "mesh": "SK_Generator",
+  "url": "/meshes/SK_Generator.glb"
+ },
+ "MedicalPalBed_02": {
+  "mesh": "SM_PalBedPrimitive",
+  "url": "/meshes/SM_PalBedPrimitive.glb"
+ },
+ "MedicalPalBed_03": {
+  "mesh": "SM_PalBedMedieval",
+  "url": "/meshes/SM_PalBedMedieval.glb"
+ },
+ "MedicalPalBed_04": {
+  "mesh": "SM_PalBedMedievalLarge",
+  "url": "/meshes/SM_PalBedMedievalLarge.glb"
+ },
+ "MedicalPalBed_05": {
+  "mesh": "SM_PalBedFuturistic",
+  "url": "/meshes/SM_PalBedFuturistic.glb"
+ },
+ "MedicineFacility_01": {
+  "mesh": "SM_MedicineFacilityMedieval",
+  "url": "/meshes/SM_MedicineFacilityMedieval.glb"
+ },
+ "MedicineFacility_02": {
+  "mesh": "SM_MedicineFacilityElectric",
+  "url": "/meshes/SM_MedicineFacilityElectric.glb"
+ },
+ "MedicineFacility_03": {
+  "mesh": "SM_MedicineFacilityFuture",
+  "url": "/meshes/SM_MedicineFacilityFuture.glb"
+ },
+ "Metal_DoorWall": {
+  "mesh": "SM_Door_Iron",
+  "url": "/meshes/SM_Door_Iron.glb"
+ },
+ "Metal_Foundation": {
+  "mesh": "SM_Floor_Iron",
+  "url": "/meshes/SM_Floor_Iron.glb"
+ },
+ "Metal_Gate": {
+  "mesh": "SM_GateBase_Iron",
+  "url": "/meshes/SM_GateBase_Iron.glb"
+ },
+ "Metal_Roof": {
+  "mesh": "SM_Roof_Iron",
+  "url": "/meshes/SM_Roof_Iron.glb"
+ },
+ "Metal_SlantedRoof": {
+  "mesh": "SM_RoofB_Iron",
+  "url": "/meshes/SM_RoofB_Iron.glb"
+ },
+ "Metal_Stair": {
+  "mesh": "SM_Stair_Iron",
+  "url": "/meshes/SM_Stair_Iron.glb"
+ },
+ "Metal_TriangleWall": {
+  "mesh": "SM_WallTryangle_Iron",
+  "url": "/meshes/SM_WallTryangle_Iron.glb"
+ },
+ "Metal_WindowWall": {
+  "mesh": "SM_WallWindow_Iron",
+  "url": "/meshes/SM_WallWindow_Iron.glb"
+ },
+ "Metal_pillars": {
+  "mesh": "SM_Pillar_Iron",
+  "url": "/meshes/SM_Pillar_Iron.glb"
+ },
+ "Metal_wall": {
+  "mesh": "SM_Wall_Iron",
+  "url": "/meshes/SM_Wall_Iron.glb"
+ },
+ "MiningTool": {
+  "mesh": "SM_MiningTool",
+  "url": "/meshes/SM_MiningTool.glb"
+ },
+ "Mirror01_Stone": {
+  "mesh": "SM_Mirror",
+  "url": "/meshes/SM_Mirror.glb"
+ },
+ "Mirror01_Wall_Stone": {
+  "mesh": "SM_floor_mirror",
+  "url": "/meshes/SM_floor_mirror.glb"
+ },
+ "Mirror02_Stone": {
+  "mesh": "SM_Pier-Mirror",
+  "url": "/meshes/SM_Pier-Mirror.glb"
+ },
+ "MonsterFarm": {
+  "mesh": "SM_PalFarm",
+  "url": "/meshes/SM_PalFarm.glb"
+ },
+ "MultiElectricHatchingPalEggWithBreed": {
+  "mesh": "SM_PalMatingStationAncient",
+  "url": "/meshes/SM_PalMatingStationAncient.glb"
+ },
+ "MultiHatchingPalEgg": {
+  "mesh": "SM_EggHatchingMachineLarge",
+  "url": "/meshes/SM_EggHatchingMachineLarge.glb"
+ },
+ "Ninja_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "Ninja_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "OilPump": {
+  "mesh": "SK_OilDrillingRig",
+  "url": "/meshes/SK_OilDrillingRig.glb"
+ },
+ "OilPump02": {
+  "mesh": "SK_OilDrillingRig",
+  "url": "/meshes/SK_OilDrillingRig.glb"
+ },
+ "OlympicCauldron": {
+  "mesh": "SM_Brazier",
+  "url": "/meshes/SM_Brazier.glb"
+ },
+ "OperatingTable": {
+  "mesh": "SM_OperatingTable",
+  "url": "/meshes/SM_OperatingTable.glb"
+ },
+ "PalBoxV2": {
+  "mesh": "SM_PalBox",
+  "url": "/meshes/SM_PalBox.glb"
+ },
+ "PalEgg_Dark": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_Dragon": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_Electricity": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_Fire": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_Ice": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_Leaf": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalEgg_MutationPal": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "PalFoodBox": {
+  "mesh": "SM_PalManger",
+  "url": "/meshes/SM_PalManger.glb"
+ },
+ "PalMedicineBox": {
+  "mesh": "SM_MedicineBox",
+  "url": "/meshes/SM_MedicineBox.glb"
+ },
+ "Palegg": {
+  "mesh": "SK_Kurinuki_EggA",
+  "url": "/meshes/SK_Kurinuki_EggA.glb"
+ },
+ "Partition_Stone": {
+  "mesh": "SM_room_divider",
+  "url": "/meshes/SM_room_divider.glb"
+ },
+ "Piano01_Stone": {
+  "mesh": "SM_GrandPiano01",
+  "url": "/meshes/SM_GrandPiano01.glb"
+ },
+ "Piano02_Stone": {
+  "mesh": "SM_Piano_set",
+  "url": "/meshes/SM_Piano_set.glb"
+ },
+ "PipeClay01_Iron": {
+  "mesh": "SM_ConcretePipe_03",
+  "url": "/meshes/SM_ConcretePipe_03.glb"
+ },
+ "Plant01_Plant": {
+  "mesh": "SM_PlantSet01",
+  "url": "/meshes/SM_PlantSet01.glb"
+ },
+ "Plant02_Plant": {
+  "mesh": "SM_PlantSet02",
+  "url": "/meshes/SM_PlantSet02.glb"
+ },
+ "Plant03_Plant": {
+  "mesh": "SM_doily",
+  "url": "/meshes/SM_doily.glb"
+ },
+ "Plant04_Plant": {
+  "mesh": "SM_PlantSet02",
+  "url": "/meshes/SM_PlantSet02.glb"
+ },
+ "PlayerBed_02": {
+  "mesh": "SM_BedPrimitive",
+  "url": "/meshes/SM_BedPrimitive.glb"
+ },
+ "PlayerBed_03": {
+  "mesh": "SM_BedMedieval",
+  "url": "/meshes/SM_BedMedieval.glb"
+ },
+ "Police_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "Police_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "QuartzPit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "Refrigerator": {
+  "mesh": "SM_FridgeLarge",
+  "url": "/meshes/SM_FridgeLarge.glb"
+ },
+ "RepairBench": {
+  "mesh": "SM_RepairTable",
+  "url": "/meshes/SM_RepairTable.glb"
+ },
+ "Rug01_Stone": {
+  "mesh": "SM_Carpet04",
+  "url": "/meshes/SM_Carpet04.glb"
+ },
+ "Rug02_Stone": {
+  "mesh": "SM_carpeSM_living_room",
+  "url": "/meshes/SM_carpeSM_living_room.glb"
+ },
+ "Rug03_Stone": {
+  "mesh": "SM_Carpet01",
+  "url": "/meshes/SM_Carpet01.glb"
+ },
+ "Rug04_Stone": {
+  "mesh": "SM_carpeSM_long",
+  "url": "/meshes/SM_carpeSM_long.glb"
+ },
+ "SF_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_SF",
+  "url": "/meshes/SM_WallDiagonal_SF.glb"
+ },
+ "SF_DoorWall": {
+  "mesh": "SM_Door_L_SF",
+  "url": "/meshes/SM_Door_L_SF.glb"
+ },
+ "SF_Fence": {
+  "mesh": "SM_Fence_SF",
+  "url": "/meshes/SM_Fence_SF.glb"
+ },
+ "SF_Pillars": {
+  "mesh": "SM_Pillar_SF",
+  "url": "/meshes/SM_Pillar_SF.glb"
+ },
+ "SF_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_SF",
+  "url": "/meshes/SM_PyramidRoof_SF.glb"
+ },
+ "SF_SlantedRoof": {
+  "mesh": "SM_RoofB_SF",
+  "url": "/meshes/SM_RoofB_SF.glb"
+ },
+ "SF_SlopedRoofCorner": {
+  "mesh": "SM_SlopeRoofCorner_SF",
+  "url": "/meshes/SM_SlopeRoofCorner_SF.glb"
+ },
+ "SF_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopeRoofCornerReverse_SF",
+  "url": "/meshes/SM_SlopeRoofCornerReverse_SF.glb"
+ },
+ "SF_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_SF",
+  "url": "/meshes/SM_FloorTryangle_SF.glb"
+ },
+ "SF_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_SF",
+  "url": "/meshes/SM_RoofTriangle_SF.glb"
+ },
+ "SF_TriangleStairsCorner": {
+  "mesh": "SM_TriangleStairsCorner_SF",
+  "url": "/meshes/SM_TriangleStairsCorner_SF.glb"
+ },
+ "SF_TriangleWall": {
+  "mesh": "SM_WallTryangle_SF",
+  "url": "/meshes/SM_WallTryangle_SF.glb"
+ },
+ "SF_TriangleWallReverse": {
+  "mesh": "SM_WallTryangleReverse_SF",
+  "url": "/meshes/SM_WallTryangleReverse_SF.glb"
+ },
+ "SF_WallGate": {
+  "mesh": "SM_WallGate_SF",
+  "url": "/meshes/SM_WallGate_SF.glb"
+ },
+ "SF_WindowWall": {
+  "mesh": "SM_WallWindow_SF",
+  "url": "/meshes/SM_WallWindow_SF.glb"
+ },
+ "SF_foundation": {
+  "mesh": "SM_Floor_SF",
+  "url": "/meshes/SM_Floor_SF.glb"
+ },
+ "SF_roof": {
+  "mesh": "SM_Roof_SF",
+  "url": "/meshes/SM_Roof_SF.glb"
+ },
+ "SF_stair": {
+  "mesh": "SM_Stair_SF",
+  "url": "/meshes/SM_Stair_SF.glb"
+ },
+ "SF_wall": {
+  "mesh": "SM_Wall_SF",
+  "url": "/meshes/SM_Wall_SF.glb"
+ },
+ "SanityDecrease1": {
+  "mesh": "SM_BrainwashingDevice",
+  "url": "/meshes/SM_BrainwashingDevice.glb"
+ },
+ "Scientist_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "Scientist_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "Seika": {
+  "mesh": "SM_FlowerArrangement",
+  "url": "/meshes/SM_FlowerArrangement.glb"
+ },
+ "Shelf01_Iron": {
+  "mesh": "SM_Cupboard_Kitchen",
+  "url": "/meshes/SM_Cupboard_Kitchen.glb"
+ },
+ "Shelf01_Stone": {
+  "mesh": "SM_bookcase_low",
+  "url": "/meshes/SM_bookcase_low.glb"
+ },
+ "Shelf01_Wall_Iron": {
+  "mesh": "SM_AVI_Shelf_04",
+  "url": "/meshes/SM_AVI_Shelf_04.glb"
+ },
+ "Shelf01_Wall_Stone": {
+  "mesh": "SM_hanging_cupboard",
+  "url": "/meshes/SM_hanging_cupboard.glb"
+ },
+ "Shelf02_Iron": {
+  "mesh": "SM_TV_Board",
+  "url": "/meshes/SM_TV_Board.glb"
+ },
+ "Shelf02_Stone": {
+  "mesh": "SM_wardrobe",
+  "url": "/meshes/SM_wardrobe.glb"
+ },
+ "Shelf03_Iron": {
+  "mesh": "SM_Metal_Wardrobe",
+  "url": "/meshes/SM_Metal_Wardrobe.glb"
+ },
+ "Shelf03_Stone": {
+  "mesh": "SM_commode",
+  "url": "/meshes/SM_commode.glb"
+ },
+ "Shelf04_Iron": {
+  "mesh": "SM_Office_Wardrobe",
+  "url": "/meshes/SM_Office_Wardrobe.glb"
+ },
+ "Shelf04_Stone": {
+  "mesh": "SM_bedside_table",
+  "url": "/meshes/SM_bedside_table.glb"
+ },
+ "Shelf05_Stone": {
+  "mesh": "SM_BookShelf04",
+  "url": "/meshes/SM_BookShelf04.glb"
+ },
+ "Shelf06_Stone": {
+  "mesh": "SM_doily",
+  "url": "/meshes/SM_doily.glb"
+ },
+ "Shelf07_Stone": {
+  "mesh": "SM_Clock_Small",
+  "url": "/meshes/SM_Clock_Small.glb"
+ },
+ "Shelf_Cask_Wood": {
+  "mesh": "SM_support_cask",
+  "url": "/meshes/SM_support_cask.glb"
+ },
+ "Shelf_Hang02_Wood": {
+  "mesh": "SM_wall_shelf_03",
+  "url": "/meshes/SM_wall_shelf_03.glb"
+ },
+ "Shelf_Wood": {
+  "mesh": "SM_cup_board_01",
+  "url": "/meshes/SM_cup_board_01.glb"
+ },
+ "Shishiodoshi": {
+  "mesh": "SK_Shishiodoshi",
+  "url": "/meshes/SK_Shishiodoshi.glb"
+ },
+ "Signboard": {
+  "mesh": "SM_Signboard",
+  "url": "/meshes/SM_Signboard.glb"
+ },
+ "SkinChange": {
+  "mesh": "SM_PinkCat_Skin001_Statue_Static",
+  "url": "/meshes/SM_PinkCat_Skin001_Statue_Static.glb"
+ },
+ "SkyIslandOrePit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "SkyIsland_Banner": {
+  "mesh": "SM_GroupBanner_00",
+  "url": "/meshes/SM_GroupBanner_00.glb"
+ },
+ "SkyIsland_Flag": {
+  "mesh": "SK_GroupFlag_00",
+  "url": "/meshes/SK_GroupFlag_00.glb"
+ },
+ "Snowman": {
+  "mesh": "SM_Snowman",
+  "url": "/meshes/SM_Snowman.glb"
+ },
+ "Sofa01_Iron": {
+  "mesh": "SM_Continental_Armchair_SP",
+  "url": "/meshes/SM_Continental_Armchair_SP.glb"
+ },
+ "Sofa01_Stone": {
+  "mesh": "SM_Armchair01",
+  "url": "/meshes/SM_Armchair01.glb"
+ },
+ "Sofa02_Iron": {
+  "mesh": "SM_Continental_Sofa",
+  "url": "/meshes/SM_Continental_Sofa.glb"
+ },
+ "Sofa02_Stone": {
+  "mesh": "SM_Sofa",
+  "url": "/meshes/SM_Sofa.glb"
+ },
+ "Sofa03_Stone": {
+  "mesh": "SM_Sofa02",
+  "url": "/meshes/SM_Sofa02.glb"
+ },
+ "Spa": {
+  "mesh": "SM_PalSpa",
+  "url": "/meshes/SM_PalSpa.glb"
+ },
+ "Spa2": {
+  "mesh": "SM_PalSpaLarge",
+  "url": "/meshes/SM_PalSpaLarge.glb"
+ },
+ "Spa3": {
+  "mesh": "SM_PalSpaCypressBath",
+  "url": "/meshes/SM_PalSpaCypressBath.glb"
+ },
+ "SphereFactory_Black_01": {
+  "mesh": "SM_PalSphereFactoryMedieval",
+  "url": "/meshes/SM_PalSphereFactoryMedieval.glb"
+ },
+ "SphereFactory_Black_02": {
+  "mesh": "SM_PalSphereFactoryModern",
+  "url": "/meshes/SM_PalSphereFactoryModern.glb"
+ },
+ "SphereFactory_Black_03": {
+  "mesh": "SM_WorkBenchElectric",
+  "url": "/meshes/SM_WorkBenchElectric.glb"
+ },
+ "SphereFactory_Black_04": {
+  "mesh": "SK_PalSphereFactoryFuturistic",
+  "url": "/meshes/SK_PalSphereFactoryFuturistic.glb"
+ },
+ "StationDeforest2": {
+  "mesh": "SM_Loggingcamp_Acce",
+  "url": "/meshes/SM_Loggingcamp_Acce.glb"
+ },
+ "StationDeforest3": {
+  "mesh": "SM_Loggingcamp_Tree",
+  "url": "/meshes/SM_Loggingcamp_Tree.glb"
+ },
+ "StonePit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "Stone_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_Stone",
+  "url": "/meshes/SM_WallDiagonal_Stone.glb"
+ },
+ "Stone_DoorWall": {
+  "mesh": "SM_Door_Stone",
+  "url": "/meshes/SM_Door_Stone.glb"
+ },
+ "Stone_Fence": {
+  "mesh": "SM_Fence_Stone",
+  "url": "/meshes/SM_Fence_Stone.glb"
+ },
+ "Stone_Foundation": {
+  "mesh": "SM_Floor_Stone",
+  "url": "/meshes/SM_Floor_Stone.glb"
+ },
+ "Stone_Gate": {
+  "mesh": "SM_GateBase_Stone",
+  "url": "/meshes/SM_GateBase_Stone.glb"
+ },
+ "Stone_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_Stone",
+  "url": "/meshes/SM_PyramidRoof_Stone.glb"
+ },
+ "Stone_Roof": {
+  "mesh": "SM_Roof_Stone",
+  "url": "/meshes/SM_Roof_Stone.glb"
+ },
+ "Stone_SlantedRoof": {
+  "mesh": "SM_RoofB_Stone",
+  "url": "/meshes/SM_RoofB_Stone.glb"
+ },
+ "Stone_SlopedRoofCorner": {
+  "mesh": "SM_SlopedRoofCorner_Stone",
+  "url": "/meshes/SM_SlopedRoofCorner_Stone.glb"
+ },
+ "Stone_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopedRoofCornerReverse_Stone",
+  "url": "/meshes/SM_SlopedRoofCornerReverse_Stone.glb"
+ },
+ "Stone_Stair": {
+  "mesh": "SM_Stair_Stone",
+  "url": "/meshes/SM_Stair_Stone.glb"
+ },
+ "Stone_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_Stone",
+  "url": "/meshes/SM_FloorTryangle_Stone.glb"
+ },
+ "Stone_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_Stone",
+  "url": "/meshes/SM_RoofTriangle_Stone.glb"
+ },
+ "Stone_TriangleStairsCorner": {
+  "mesh": "SM_RoofCorner_Stone",
+  "url": "/meshes/SM_RoofCorner_Stone.glb"
+ },
+ "Stone_TriangleWall": {
+  "mesh": "SM_WallTryangle_Stone",
+  "url": "/meshes/SM_WallTryangle_Stone.glb"
+ },
+ "Stone_TriangleWallReverse": {
+  "mesh": "SM_WallTryangle_Stone",
+  "url": "/meshes/SM_WallTryangle_Stone.glb"
+ },
+ "Stone_WallGate": {
+  "mesh": "SM_WallGate_Stone",
+  "url": "/meshes/SM_WallGate_Stone.glb"
+ },
+ "Stone_WindowWall": {
+  "mesh": "SM_WallWindow_Stone",
+  "url": "/meshes/SM_WallWindow_Stone.glb"
+ },
+ "Stone_pillar": {
+  "mesh": "SM_Pillar_Stone",
+  "url": "/meshes/SM_Pillar_Stone.glb"
+ },
+ "Stone_wall": {
+  "mesh": "SM_Wall_Stone",
+  "url": "/meshes/SM_Wall_Stone.glb"
+ },
+ "Stonepit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "Stool01_Iron": {
+  "mesh": "SM_AVI_Stool_02",
+  "url": "/meshes/SM_AVI_Stool_02.glb"
+ },
+ "Stool01_Stone": {
+  "mesh": "SM_Chair_1",
+  "url": "/meshes/SM_Chair_1.glb"
+ },
+ "Stool_High_Wood": {
+  "mesh": "SM_high_stool",
+  "url": "/meshes/SM_high_stool.glb"
+ },
+ "Stool_Wood": {
+  "mesh": "SM_stool",
+  "url": "/meshes/SM_stool.glb"
+ },
+ "Stove01_Stone": {
+  "mesh": "SM_Stove",
+  "url": "/meshes/SM_Stove.glb"
+ },
+ "Stump": {
+  "mesh": "SM_Stump",
+  "url": "/meshes/SM_Stump.glb"
+ },
+ "SulfurPit": {
+  "mesh": "SM_StonePit_SM_StonePit_Acce",
+  "url": "/meshes/SM_StonePit_SM_StonePit_Acce.glb"
+ },
+ "TableCircular01_Iron": {
+  "mesh": "SM_Conical_Bowl_White",
+  "url": "/meshes/SM_Conical_Bowl_White.glb"
+ },
+ "TableCircular01_Stone": {
+  "mesh": "SM_dining_table",
+  "url": "/meshes/SM_dining_table.glb"
+ },
+ "TableCircular_Wood": {
+  "mesh": "SM_FriedEggsSet",
+  "url": "/meshes/SM_FriedEggsSet.glb"
+ },
+ "TableCircular_Wood_None": {
+  "mesh": "SM_circular_table",
+  "url": "/meshes/SM_circular_table.glb"
+ },
+ "TableDresser01_Stone": {
+  "mesh": "SM_mirrortable",
+  "url": "/meshes/SM_mirrortable.glb"
+ },
+ "TableSide01_Iron": {
+  "mesh": "SM_SideTable",
+  "url": "/meshes/SM_SideTable.glb"
+ },
+ "TableSink01_Stone": {
+  "mesh": "SM_SinkSet",
+  "url": "/meshes/SM_SinkSet.glb"
+ },
+ "TableSquare01_Iron": {
+  "mesh": "SM_Fruit_Plate",
+  "url": "/meshes/SM_Fruit_Plate.glb"
+ },
+ "TableSquare02_Iron": {
+  "mesh": "SM_Rustic_CoffeeTable",
+  "url": "/meshes/SM_Rustic_CoffeeTable.glb"
+ },
+ "TableSquare_Wood": {
+  "mesh": "SM_BlackBreadSet",
+  "url": "/meshes/SM_BlackBreadSet.glb"
+ },
+ "TableSquare_Wood_None": {
+  "mesh": "SM_Rectangular_Table",
+  "url": "/meshes/SM_Rectangular_Table.glb"
+ },
+ "Tansu": {
+  "mesh": "SM_JapaneseChest",
+  "url": "/meshes/SM_JapaneseChest.glb"
+ },
+ "Television01_Iron": {
+  "mesh": "SM_Television_01",
+  "url": "/meshes/SM_Television_01.glb"
+ },
+ "Tire01_Iron": {
+  "mesh": "SM_tire1",
+  "url": "/meshes/SM_tire1.glb"
+ },
+ "Toilet01_Stone": {
+  "mesh": "SM_toilet_01",
+  "url": "/meshes/SM_toilet_01.glb"
+ },
+ "ToiletHolder01_Stone": {
+  "mesh": "SM_toilet_holder_02",
+  "url": "/meshes/SM_toilet_holder_02.glb"
+ },
+ "ToolBoxV1": {
+  "mesh": "SM_ToolBox",
+  "url": "/meshes/SM_ToolBox.glb"
+ },
+ "Torch": {
+  "mesh": "SM_TorchStand",
+  "url": "/meshes/SM_TorchStand.glb"
+ },
+ "Toro": {
+  "mesh": "SM_JapaneseStoneLantern",
+  "url": "/meshes/SM_JapaneseStoneLantern.glb"
+ },
+ "TowlRack01_Stone": {
+  "mesh": "SM_towel_rack_big_01",
+  "url": "/meshes/SM_towel_rack_big_01.glb"
+ },
+ "TrafficBarricade01_Iron": {
+  "mesh": "SM_Barricade_02",
+  "url": "/meshes/SM_Barricade_02.glb"
+ },
+ "TrafficBarricade02_Iron": {
+  "mesh": "SM_Plastic_barricade_09",
+  "url": "/meshes/SM_Plastic_barricade_09.glb"
+ },
+ "TrafficBarricade03_Iron": {
+  "mesh": "SM_RoadBlock2",
+  "url": "/meshes/SM_RoadBlock2.glb"
+ },
+ "TrafficBarricade04_Iron": {
+  "mesh": "SM_RoadBlock2",
+  "url": "/meshes/SM_RoadBlock2.glb"
+ },
+ "TrafficBarricade05_Iron": {
+  "mesh": "SM_RoadBlock1",
+  "url": "/meshes/SM_RoadBlock1.glb"
+ },
+ "TrafficCone01_Iron": {
+  "mesh": "SM_Traffic_Cone_03",
+  "url": "/meshes/SM_Traffic_Cone_03.glb"
+ },
+ "TrafficCone02_Iron": {
+  "mesh": "SM_Plastic_barrier_11",
+  "url": "/meshes/SM_Plastic_barrier_11.glb"
+ },
+ "TrafficCone03_Iron": {
+  "mesh": "SM_Traffic_cone_07",
+  "url": "/meshes/SM_Traffic_cone_07.glb"
+ },
+ "TrafficLight01_Iron": {
+  "mesh": "SM_TrafficLight",
+  "url": "/meshes/SM_TrafficLight.glb"
+ },
+ "TrafficSign01_Iron": {
+  "mesh": "SM_Sign_Round_merged",
+  "url": "/meshes/SM_Sign_Round_merged.glb"
+ },
+ "TrafficSign02_Iron": {
+  "mesh": "SM_Sign_Stop_merged",
+  "url": "/meshes/SM_Sign_Stop_merged.glb"
+ },
+ "TrafficSign03_Iron": {
+  "mesh": "SM_Sign_Priority_01_merged",
+  "url": "/meshes/SM_Sign_Priority_01_merged.glb"
+ },
+ "TrafficSign04_Iron": {
+  "mesh": "SM_Sign_Priority_02_merged",
+  "url": "/meshes/SM_Sign_Priority_02_merged.glb"
+ },
+ "TransmissionTower": {
+  "mesh": "SM_TransmissionTower",
+  "url": "/meshes/SM_TransmissionTower.glb"
+ },
+ "Trap_LegHold": {
+  "mesh": "SK_PalTrap",
+  "url": "/meshes/SK_PalTrap.glb"
+ },
+ "Trap_LegHold_Big": {
+  "mesh": "SK_PalTrap",
+  "url": "/meshes/SK_PalTrap.glb"
+ },
+ "Trap_MineAttack": {
+  "mesh": "SM_Mine01",
+  "url": "/meshes/SM_Mine01.glb"
+ },
+ "Trap_MineElecShock": {
+  "mesh": "SM_Mine01",
+  "url": "/meshes/SM_Mine01.glb"
+ },
+ "Trap_MineFreeze": {
+  "mesh": "SM_Mine01",
+  "url": "/meshes/SM_Mine01.glb"
+ },
+ "Trap_Noose": {
+  "mesh": "SM_NooseTrap_Base",
+  "url": "/meshes/SM_NooseTrap_Base.glb"
+ },
+ "WallSignboard": {
+  "mesh": "SM_HangingSignboard",
+  "url": "/meshes/SM_HangingSignboard.glb"
+ },
+ "WallTorch": {
+  "mesh": "SM_TorchHang",
+  "url": "/meshes/SM_TorchHang.glb"
+ },
+ "WeaponFactory_Dirty_01": {
+  "mesh": "SM_WeaponFactoryMedieval",
+  "url": "/meshes/SM_WeaponFactoryMedieval.glb"
+ },
+ "WeaponFactory_Dirty_02": {
+  "mesh": "SM_WeaponFactoryModern",
+  "url": "/meshes/SM_WeaponFactoryModern.glb"
+ },
+ "WeaponFactory_Dirty_03": {
+  "mesh": "SM_WorkBenchElectric",
+  "url": "/meshes/SM_WorkBenchElectric.glb"
+ },
+ "WeaponFactory_Dirty_04": {
+  "mesh": "SK_PalSphereFactoryFuturistic",
+  "url": "/meshes/SK_PalSphereFactoryFuturistic.glb"
+ },
+ "Wood_Fence": {
+  "mesh": "SM_Fence_Wood",
+  "url": "/meshes/SM_Fence_Wood.glb"
+ },
+ "Wood_Gate": {
+  "mesh": "SM_Gate_Base_Wood",
+  "url": "/meshes/SM_Gate_Base_Wood.glb"
+ },
+ "Wood_SlantedRoof": {
+  "mesh": "SM_RoofB_Wood",
+  "url": "/meshes/SM_RoofB_Wood.glb"
+ },
+ "Wood_TriangleWall": {
+  "mesh": "SM_WallTryangle_Wood",
+  "url": "/meshes/SM_WallTryangle_Wood.glb"
+ },
+ "Wood_TriangleWallReverse": {
+  "mesh": "SM_WallTryangle_Wood",
+  "url": "/meshes/SM_WallTryangle_Wood.glb"
+ },
+ "Wood_WindowWall": {
+  "mesh": "SM_WallWindow_Wood",
+  "url": "/meshes/SM_WallWindow_Wood.glb"
+ },
+ "Wooden_DiagonalWall": {
+  "mesh": "SM_WallDiagonal_Wood",
+  "url": "/meshes/SM_WallDiagonal_Wood.glb"
+ },
+ "Wooden_DoorWall": {
+  "mesh": "SM_Door_Wood",
+  "url": "/meshes/SM_Door_Wood.glb"
+ },
+ "Wooden_PyramidRoof": {
+  "mesh": "SM_PyramidRoof_Wood",
+  "url": "/meshes/SM_PyramidRoof_Wood.glb"
+ },
+ "Wooden_SlopedRoofCorner": {
+  "mesh": "SM_SlopedRoofCorner_Wood",
+  "url": "/meshes/SM_SlopedRoofCorner_Wood.glb"
+ },
+ "Wooden_SlopedRoofCornerReverse": {
+  "mesh": "SM_SlopedRoofCornerReverse_Wood",
+  "url": "/meshes/SM_SlopedRoofCornerReverse_Wood.glb"
+ },
+ "Wooden_TriangleFoundation": {
+  "mesh": "SM_FloorTryangle_Wood",
+  "url": "/meshes/SM_FloorTryangle_Wood.glb"
+ },
+ "Wooden_TriangleRoof": {
+  "mesh": "SM_RoofTriangle_Wood",
+  "url": "/meshes/SM_RoofTriangle_Wood.glb"
+ },
+ "Wooden_TriangleStairsCorner": {
+  "mesh": "SM_RoofCorner_Wood",
+  "url": "/meshes/SM_RoofCorner_Wood.glb"
+ },
+ "Wooden_WallGate": {
+  "mesh": "SM_WallGate_Wood",
+  "url": "/meshes/SM_WallGate_Wood.glb"
+ },
+ "Wooden_foundation": {
+  "mesh": "SM_Floor_Wood",
+  "url": "/meshes/SM_Floor_Wood.glb"
+ },
+ "Wooden_ladder": {
+  "mesh": "SM_Ladder_Wood",
+  "url": "/meshes/SM_Ladder_Wood.glb"
+ },
+ "Wooden_pillar": {
+  "mesh": "SM_Pillar_Wood",
+  "url": "/meshes/SM_Pillar_Wood.glb"
+ },
+ "Wooden_roof": {
+  "mesh": "SM_Roof_Wood",
+  "url": "/meshes/SM_Roof_Wood.glb"
+ },
+ "Wooden_stair": {
+  "mesh": "SM_Stair_Wood",
+  "url": "/meshes/SM_Stair_Wood.glb"
+ },
+ "Wooden_wall": {
+  "mesh": "SM_Wall_Wood",
+  "url": "/meshes/SM_Wall_Wood.glb"
+ },
+ "WorkBench_SkillUnlock": {
+  "mesh": "PalSkillUnlockWorkbench",
+  "url": "/meshes/PalSkillUnlockWorkbench.glb"
+ },
+ "WorkSpeedIncrease1": {
+  "mesh": "SM_BrainwashingDevice",
+  "url": "/meshes/SM_BrainwashingDevice.glb"
+ },
+ "Workbench": {
+  "mesh": "SM_WorkBenchPrimitive",
+  "url": "/meshes/SM_WorkBenchPrimitive.glb"
+ },
+ "Zabuton": {
+  "mesh": "SM_JapaneseCushion",
+  "url": "/meshes/SM_JapaneseCushion.glb"
+ },
+ "Zaisu": {
+  "mesh": "SM_FoldingChair",
+  "url": "/meshes/SM_FoldingChair.glb"
+ }
+}

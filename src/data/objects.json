@@ -48,11 +48,64 @@
       "name": "Palbox",
       "category": "structure",
       "size": [
-        null,
-        null,
-        null
+        180.12,
+        57.43,
+        185.46
       ],
-      "sizeSource": "not measured; its works entry lacks usable bounds in fixture"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_PalBoxV2's 1 mesh component(s) (SM_PalBox), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb); excluded as gameplay volumes/primitives: Cylinder, PalSphereLight, StopBox_StaticMesh. Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_PalBoxV2",
+        "viaBlueprintChain": [
+          "BP_BuildObject_PalBoxV2"
+        ],
+        "size": [
+          180.12,
+          57.43,
+          185.46
+        ],
+        "min_cm": [
+          -22.37,
+          -90.06,
+          -0.61
+        ],
+        "max_cm": [
+          35.07,
+          90.06,
+          184.85
+        ],
+        "componentsUsed": [
+          {
+            "export": "PCStaticMesh_GEN_VARIABLE",
+            "mesh": "SM_PalBox",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalBox/SM_PalBox.SM_PalBox",
+            "kind": "SM",
+            "verts": 1971,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [
+          "Cylinder",
+          "PalSphereLight",
+          "StopBox_StaticMesh"
+        ],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.61,
+      "measuredTopCm": 184.85
     },
     "ItemChest": {
       "name": "Wooden Chest",
@@ -98,11 +151,104 @@
       "name": "Rock (world object)",
       "category": "world",
       "size": [
-        null,
-        null,
-        null
+        301.28,
+        432.59,
+        224.33
       ],
-      "sizeSource": "not a buildable; preserve verbatim, render distinctly"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_MapObject_DamagableRock0012's 3 mesh component(s) (SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_MapObject_DamagableRock0012",
+        "viaBlueprintChain": [
+          "BP_MapObject_DamagableRock0012"
+        ],
+        "size": [
+          301.28,
+          432.59,
+          224.33
+        ],
+        "min_cm": [
+          -272.06,
+          -172.49,
+          -93.01
+        ],
+        "max_cm": [
+          160.52,
+          128.79,
+          131.32
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh1_GEN_VARIABLE",
+            "mesh": "SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "meshPath": "Pal/Content/Pal/Model/Stage/b00/MineableRocks/Mesh/SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1.SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "kind": "SM",
+            "verts": 1711,
+            "scale": [
+              0.9,
+              0.9,
+              0.9
+            ],
+            "loc_cm": [
+              -1.0773276e-14,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Mesh2_GEN_VARIABLE",
+            "mesh": "SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "meshPath": "Pal/Content/Pal/Model/Stage/b00/MineableRocks/Mesh/SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1.SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "kind": "SM",
+            "verts": 1711,
+            "scale": [
+              0.8,
+              0.8000001,
+              0.8000001
+            ],
+            "loc_cm": [
+              -1.2582528e-14,
+              0,
+              -20
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Mesh_GEN_VARIABLE",
+            "mesh": "SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "meshPath": "Pal/Content/Pal/Model/Stage/b00/MineableRocks/Mesh/SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1.SM_pal_b00_Rock_MineableRocks_GroundRevealRock_var1",
+            "kind": "SM",
+            "verts": 1711,
+            "scale": [
+              1,
+              1.0000001,
+              1.0000001
+            ],
+            "loc_cm": [
+              2.7138785e-15,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -93.01,
+      "measuredTopCm": 131.32
     },
     "JapaneseStyle_SlantedRoof": {
       "name": "Japanese Style Slanted Roof",
@@ -390,11 +536,66 @@
       "name": "Japanese Style Wall Gate",
       "category": "structure",
       "size": [
-        400,
-        30,
-        325
+        401.6,
+        23.04,
+        661.45
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_WallGate's 1 mesh component(s) (Architecture_JapaneseStyle_WallGate), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 30, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_WallGate",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_WallGate"
+        ],
+        "size": [
+          401.6,
+          23.04,
+          661.45
+        ],
+        "min_cm": [
+          -11.52,
+          -200.8,
+          -10.04
+        ],
+        "max_cm": [
+          11.52,
+          200.8,
+          651.4
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Wall_Wood_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_WallGate",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_WallGate.Architecture_JapaneseStyle_WallGate",
+            "kind": "SM",
+            "verts": 1260,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          30,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -10.04,
+      "measuredTopCm": 651.4
     },
     "Wood_Fence": {
       "name": "Wood Fence",
@@ -543,11 +744,66 @@
       "name": "Japanese Style wall 01",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        401.6,
+        23.04,
+        336.54
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_Wall_01's 1 mesh component(s) (Architecture_JapaneseStyle_WallA), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_Wall_01",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_Wall_01"
+        ],
+        "size": [
+          401.6,
+          23.04,
+          336.54
+        ],
+        "min_cm": [
+          -11.52,
+          -200.8,
+          -10.04
+        ],
+        "max_cm": [
+          11.52,
+          200.8,
+          326.5
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Wall_Wood_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_WallA",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_WallA.Architecture_JapaneseStyle_WallA",
+            "kind": "SM",
+            "verts": 388,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -10.04,
+      "measuredTopCm": 326.5
     },
     "SF_TriangleFoundation": {
       "name": "SF Triangle Foundation",
@@ -564,11 +820,66 @@
       "name": "Japanese Style Diagonal Wall",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        567.34,
+        23.04,
+        336.54
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_DiagonalWall's 1 mesh component(s) (Architecture_JapaneseStyle_WallDiagonal), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_DiagonalWall",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_DiagonalWall"
+        ],
+        "size": [
+          567.34,
+          23.04,
+          336.54
+        ],
+        "min_cm": [
+          -11.52,
+          -283.55,
+          -10.04
+        ],
+        "max_cm": [
+          11.52,
+          283.79,
+          326.5
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Wall_Wood_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_WallDiagonal",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_WallDiagonal.Architecture_JapaneseStyle_WallDiagonal",
+            "kind": "SM",
+            "verts": 428,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -10.04,
+      "measuredTopCm": 326.5
     },
     "Stone_pillar": {
       "name": "Stone pillar",
@@ -919,11 +1230,60 @@
       "name": "Ancient Material Synthesizer",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        428.42,
+        540.57,
+        488.55
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_AncientMultiProduct's 1 mesh component(s) (SK_AncientFabricator), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_AncientMultiProduct",
+        "viaBlueprintChain": [
+          "BP_BuildObject_AncientMultiProduct"
+        ],
+        "size": [
+          428.42,
+          540.57,
+          488.55
+        ],
+        "min_cm": [
+          -271.55,
+          -214.21,
+          -1.24
+        ],
+        "max_cm": [
+          269.02,
+          214.21,
+          487.32
+        ],
+        "componentsUsed": [
+          {
+            "export": "PalMapObjectSkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_AncientFabricator",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/AncientFabricator/SK_AncientFabricator.SK_AncientFabricator",
+            "kind": "SK",
+            "verts": 24515,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -1.24,
+      "measuredTopCm": 487.32
     },
     "WeaponFactory_Dirty_03": {
       "name": "Weapon Factory Dirty 03",
@@ -1049,11 +1409,66 @@
       "name": "Japanese Style Window Wall",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        401.6,
+        23.04,
+        336.54
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_WindowWall's 1 mesh component(s) (Architecture_JapaneseStyle_WallWindow), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_WindowWall",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_WindowWall"
+        ],
+        "size": [
+          401.6,
+          23.04,
+          336.54
+        ],
+        "min_cm": [
+          -11.52,
+          -200.8,
+          -10.04
+        ],
+        "max_cm": [
+          11.52,
+          200.8,
+          326.5
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Wall_Wood_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_WallWindow",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_WallWindow.Architecture_JapaneseStyle_WallWindow",
+            "kind": "SM",
+            "verts": 813,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -10.04,
+      "measuredTopCm": 326.5
     },
     "JapaneseStyle_roof_02": {
       "name": "Japanese Style roof 02",
@@ -1109,11 +1524,198 @@
       "name": "Crystal Pit",
       "category": "production",
       "size": [
-        640,
-        820,
-        200
+        467.47,
+        653.17,
+        330.7
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_CrystalPit's 7 mesh component(s) (SM_Crystal_Plume, SM_StonePit_SM_StonePit_Acce, SM_StonePit_SM_StonePit_Fence), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [640, 820, 200] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_BuildObject_CrystalPit",
+        "viaBlueprintChain": [
+          "BP_BuildObject_CrystalPit"
+        ],
+        "size": [
+          467.47,
+          653.17,
+          330.7
+        ],
+        "min_cm": [
+          -327.19,
+          -220.0,
+          -27.38
+        ],
+        "max_cm": [
+          325.99,
+          247.47,
+          303.32
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_StonePit_SM_StonePit_Acce_GEN_VARIABLE",
+            "mesh": "SM_StonePit_SM_StonePit_Acce",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/StonePit/SM_StonePit_SM_StonePit_Acce.SM_StonePit_SM_StonePit_Acce",
+            "kind": "SM",
+            "verts": 25469,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_Fence_GEN_VARIABLE",
+            "mesh": "SM_StonePit_SM_StonePit_Fence",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/StonePit/SM_StonePit_SM_StonePit_Fence.SM_StonePit_SM_StonePit_Fence",
+            "kind": "SM",
+            "verts": 1381,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_RockA_GEN_VARIABLE",
+            "mesh": "SM_Crystal_Plume",
+            "meshPath": "Pal/Content/Pal/Blueprint/MapObject/Object/CrystalTest/SM_Crystal_Plume.SM_Crystal_Plume",
+            "kind": "SM",
+            "verts": 147403,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              -47.13559,
+              -35.943573,
+              26.013227
+            ],
+            "rot_pyr": [
+              0,
+              90,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_RockB_GEN_VARIABLE",
+            "mesh": "SM_Crystal_Plume",
+            "meshPath": "Pal/Content/Pal/Blueprint/MapObject/Object/CrystalTest/SM_Crystal_Plume.SM_Crystal_Plume",
+            "kind": "SM",
+            "verts": 147403,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              -84.48612,
+              -86.66031,
+              28.957842
+            ],
+            "rot_pyr": [
+              0,
+              160,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_RockC1_GEN_VARIABLE",
+            "mesh": "SM_Crystal_Plume",
+            "meshPath": "Pal/Content/Pal/Blueprint/MapObject/Object/CrystalTest/SM_Crystal_Plume.SM_Crystal_Plume",
+            "kind": "SM",
+            "verts": 147403,
+            "scale": [
+              1.3,
+              1.3,
+              1.3
+            ],
+            "loc_cm": [
+              -21.178455,
+              -92.50381,
+              10.464848
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_RockC2_GEN_VARIABLE",
+            "mesh": "SM_Crystal_Plume",
+            "meshPath": "Pal/Content/Pal/Blueprint/MapObject/Object/CrystalTest/SM_Crystal_Plume.SM_Crystal_Plume",
+            "kind": "SM",
+            "verts": 147403,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              38.821545,
+              -42.503807,
+              10.464847
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          },
+          {
+            "export": "SM_StonePit_SM_StonePit_RockC_GEN_VARIABLE",
+            "mesh": "SM_Crystal_Plume",
+            "meshPath": "Pal/Content/Pal/Blueprint/MapObject/Object/CrystalTest/SM_Crystal_Plume.SM_Crystal_Plume",
+            "kind": "SM",
+            "verts": 147403,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              38.821545,
+              -92.50381,
+              10.464848
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          640,
+          820,
+          200
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -27.38,
+      "measuredTopCm": 303.32
     },
     "OilPump02": {
       "name": "Oil Pump02",
@@ -1259,11 +1861,60 @@
       "name": "Ancient Work Bench",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        440,
+        180,
+        195.05
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_AncientWorkBench's 1 mesh component(s) (SM_WorkBenchAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_AncientWorkBench",
+        "viaBlueprintChain": [
+          "BP_BuildObject_AncientWorkBench"
+        ],
+        "size": [
+          440,
+          180,
+          195.05
+        ],
+        "min_cm": [
+          -90,
+          -225,
+          -0.0
+        ],
+        "max_cm": [
+          90,
+          215,
+          195.05
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh_GEN_VARIABLE",
+            "mesh": "SM_WorkBenchAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/WorkBenchAncient/SM_WorkBenchAncient.SM_WorkBenchAncient",
+            "kind": "SM",
+            "verts": 35413,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              -5,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 195.05
     },
     "Stone_WindowWall": {
       "name": "Stone Window Wall",
@@ -1479,11 +2130,60 @@
       "name": "Ancient Blast Furnace",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        470,
+        198,
+        375.0
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_AncientBlastFurnace's 1 mesh component(s) (SM_BlastFurnaceAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_AncientBlastFurnace",
+        "viaBlueprintChain": [
+          "BP_BuildObject_AncientBlastFurnace"
+        ],
+        "size": [
+          470,
+          198,
+          375.0
+        ],
+        "min_cm": [
+          -100,
+          -235,
+          -0.0
+        ],
+        "max_cm": [
+          98,
+          235,
+          375.0
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh_GEN_VARIABLE",
+            "mesh": "SM_BlastFurnaceAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/BlastFurnaceAncient/SM_BlastFurnaceAncient.SM_BlastFurnaceAncient",
+            "kind": "SM",
+            "verts": 9266,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 375.0
     },
     "Stone_SlopedRoofCornerReverse": {
       "name": "Stone Sloped Roof Corner Reverse",
@@ -1549,11 +2249,67 @@
       "name": "Weapon Factory Dirty 01",
       "category": "production",
       "size": [
-        171.026106,
-        259.342584,
-        95
+        247.23,
+        127.27,
+        183.0
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_WeaponFactoryBase's 1 mesh component(s) (SM_WeaponFactoryMedieval), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [171.026106, 259.342584, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_BuildObject_WeaponFactoryBase",
+        "viaBlueprintChain": [
+          "BP_BuildObject_WeaponFactory_Dirty_01",
+          "BP_BuildObject_WeaponFactoryBase"
+        ],
+        "size": [
+          247.23,
+          127.27,
+          183.0
+        ],
+        "min_cm": [
+          -54.5,
+          -123.62,
+          -1.33
+        ],
+        "max_cm": [
+          72.77,
+          123.62,
+          181.67
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_WeaponFactoryMedieval_GEN_VARIABLE",
+            "mesh": "SM_WeaponFactoryMedieval",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/WeaponFactoryMedieval/SM_WeaponFactoryMedieval.SM_WeaponFactoryMedieval",
+            "kind": "SM",
+            "verts": 52808,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          171.026106,
+          259.342584,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -1.33,
+      "measuredTopCm": 181.67
     },
     "MedicalPalBed_03": {
       "name": "Fluffy Pal Bed",
@@ -1599,11 +2355,126 @@
       "name": "Fishing Pond1",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        693.96,
+        736.51,
+        336.91
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_FishingPond01's 4 mesh component(s) (SK_FishingFloat003, SK_FishingRod001_v01, SM_FishingPond, SM_FishingPond_Rodpillow), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_FishingPond01",
+        "viaBlueprintChain": [
+          "BP_BuildObject_FishingPond01"
+        ],
+        "size": [
+          693.96,
+          736.51,
+          336.91
+        ],
+        "min_cm": [
+          -366.12,
+          -347.21,
+          -33.11
+        ],
+        "max_cm": [
+          370.39,
+          346.75,
+          303.8
+        ],
+        "componentsUsed": [
+          {
+            "export": "SK_FishingFloat_GEN_VARIABLE",
+            "mesh": "SK_FishingFloat003",
+            "meshPath": "Pal/Content/Pal/Model/Weapon/FishingFloat/FishingFloat003/SK_FishingFloat003.SK_FishingFloat003",
+            "kind": "SK",
+            "verts": 2865,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -175.70508,
+              2.220446e-14,
+              95.669876
+            ],
+            "rot_pyr": [
+              2.5444438e-14,
+              -90,
+              30
+            ]
+          },
+          {
+            "export": "SkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_FishingRod001_v01",
+            "meshPath": "Pal/Content/Pal/Model/Weapon/FishingRod/FishingRod001/v01/SK_FishingRod001_v01.SK_FishingRod001_v01",
+            "kind": "SK",
+            "verts": 7473,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              80,
+              0,
+              98
+            ],
+            "rot_pyr": [
+              30,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_FishingPond_Rodpillow_GEN_VARIABLE",
+            "mesh": "SM_FishingPond_Rodpillow",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/FishingPond/SM_FishingPond_Rodpillow.SM_FishingPond_Rodpillow",
+            "kind": "SM",
+            "verts": 591,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              62.030426,
+              -7.3779936e-13,
+              84
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_FishinPond_GEN_VARIABLE",
+            "mesh": "SM_FishingPond",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/FishingPond/SM_FishingPond.SM_FishingPond",
+            "kind": "SM",
+            "verts": 23699,
+            "scale": [
+              1.12,
+              1.12,
+              1.12
+            ],
+            "loc_cm": [
+              -20.214886,
+              -6.82121e-13,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -180,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -33.11,
+      "measuredTopCm": 303.8
     },
     "CampFire": {
       "name": "Camp Fire",
@@ -1649,11 +2520,60 @@
       "name": "Repair Bench",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        150.74,
+        126.01,
+        139.47
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_RepairBench's 1 mesh component(s) (SM_RepairTable), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_RepairBench",
+        "viaBlueprintChain": [
+          "BP_BuildObject_RepairBench"
+        ],
+        "size": [
+          150.74,
+          126.01,
+          139.47
+        ],
+        "min_cm": [
+          -63.0,
+          -75.37,
+          -0.61
+        ],
+        "max_cm": [
+          63.0,
+          75.37,
+          138.85
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh_GEN_VARIABLE",
+            "mesh": "SM_RepairTable",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/RepairTable/SM_RepairTable.SM_RepairTable",
+            "kind": "SM",
+            "verts": 2105,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.61,
+      "measuredTopCm": 138.85
     },
     "Ancient_Fence": {
       "name": "Ancient Fence",
@@ -1669,11 +2589,66 @@
       "name": "Japanese Style Fence",
       "category": "defense",
       "size": [
-        400,
-        20,
-        110
+        404.61,
+        21.61,
+        109.46
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_Fence's 1 mesh component(s) (Architecture_JapaneseStyle_Fence), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 110] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_Fence",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_Fence"
+        ],
+        "size": [
+          404.61,
+          21.61,
+          109.46
+        ],
+        "min_cm": [
+          -10.8,
+          -202.31,
+          -10.12
+        ],
+        "max_cm": [
+          10.8,
+          202.31,
+          99.34
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_RoadBlock1_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_Fence",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_Fence.Architecture_JapaneseStyle_Fence",
+            "kind": "SM",
+            "verts": 4431,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          110
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -10.12,
+      "measuredTopCm": 99.34
     },
     "JapaneseStyle_TriangleFoundation": {
       "name": "Japanese Style Triangle Foundation",
@@ -1690,31 +2665,328 @@
       "name": "Japanese Style Door Wall 01",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        406.64,
+        106.84,
+        338.61
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_DoorWall_01's 3 mesh component(s) (Architecture_JapaneseStyle_DoorA, Architecture_JapaneseStyle_DoorA_L, Architecture_JapaneseStyle_DoorA_R), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_DoorWall_01",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_DoorWall_01"
+        ],
+        "size": [
+          406.64,
+          106.84,
+          338.61
+        ],
+        "min_cm": [
+          -19.43,
+          -203.09,
+          -9.34
+        ],
+        "max_cm": [
+          87.41,
+          203.55,
+          329.27
+        ],
+        "componentsUsed": [
+          {
+            "export": "Architecture_JapaneseStyle_DoorA_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorA",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorA.Architecture_JapaneseStyle_DoorA",
+            "kind": "SM",
+            "verts": 4942,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorA_L_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorA_L",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorA_L.Architecture_JapaneseStyle_DoorA_L",
+            "kind": "SM",
+            "verts": 873,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -1.4210855e-14,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorA_R_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorA_R",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorA_R.Architecture_JapaneseStyle_DoorA_R",
+            "kind": "SM",
+            "verts": 712,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -1.4210855e-14,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -9.34,
+      "measuredTopCm": 329.27
     },
     "JapaneseStyle_DoorWall_03": {
       "name": "Japanese Style Door Wall 03",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        402,
+        23.24,
+        335.55
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_DoorWall_03's 3 mesh component(s) (Architecture_JapaneseStyle_DoorC, Architecture_JapaneseStyle_DoorC_L, Architecture_JapaneseStyle_DoorC_R), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_DoorWall_03",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_DoorWall_03"
+        ],
+        "size": [
+          402,
+          23.24,
+          335.55
+        ],
+        "min_cm": [
+          -11.62,
+          -201,
+          -9.34
+        ],
+        "max_cm": [
+          11.62,
+          201,
+          326.21
+        ],
+        "componentsUsed": [
+          {
+            "export": "Architecture_JapaneseStyle_DoorC_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorC",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorC.Architecture_JapaneseStyle_DoorC",
+            "kind": "SM",
+            "verts": 1568,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorC_L_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorC_L",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorC_L.Architecture_JapaneseStyle_DoorC_L",
+            "kind": "SM",
+            "verts": 730,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorC_R_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorC_R",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorC_R.Architecture_JapaneseStyle_DoorC_R",
+            "kind": "SM",
+            "verts": 730,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -9.34,
+      "measuredTopCm": 326.21
     },
     "JapaneseStyle_DoorWall_02": {
       "name": "Japanese Style Door Wall 02",
       "category": "structure",
       "size": [
-        400,
-        20,
-        325
+        402,
+        23.24,
+        335.55
       ],
-      "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JapaneseStyle_DoorWall_02's 3 mesh component(s) (Architecture_JapaneseStyle_DoorA_L, Architecture_JapaneseStyle_DoorA_R, Architecture_JapaneseStyle_DoorB), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [400, 20, 325] (estimated from naming convention + measured grid (docs/CALIB).",
+      "measured": {
+        "blueprint": "BP_BuildObject_JapaneseStyle_DoorWall_02",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JapaneseStyle_DoorWall_02"
+        ],
+        "size": [
+          402,
+          23.24,
+          335.55
+        ],
+        "min_cm": [
+          -11.62,
+          -201,
+          -9.34
+        ],
+        "max_cm": [
+          11.62,
+          201,
+          326.21
+        ],
+        "componentsUsed": [
+          {
+            "export": "Architecture_JapaneseStyle_DoorB_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorB",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorB.Architecture_JapaneseStyle_DoorB",
+            "kind": "SM",
+            "verts": 5248,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorB_L_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorA_L",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorA_L.Architecture_JapaneseStyle_DoorA_L",
+            "kind": "SM",
+            "verts": 873,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "Architecture_JapaneseStyle_DoorB_R_GEN_VARIABLE",
+            "mesh": "Architecture_JapaneseStyle_DoorA_R",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Architecture_JapaneseStyle/Architecture_JapaneseStyle_DoorA_R.Architecture_JapaneseStyle_DoorA_R",
+            "kind": "SM",
+            "verts": 712,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              6
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          400,
+          20,
+          325
+        ],
+        "existingSizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
+      },
+      "measuredBottomCm": -9.34,
+      "measuredTopCm": 326.21
     },
     "SF_SlopedRoofCorner": {
       "name": "SF Sloped Roof Corner",
@@ -1931,11 +3203,126 @@
       "name": "Fishing Pond2",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        1059.19,
+        1417.38,
+        943.53
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_FishingPond02's 4 mesh component(s) (SK_FishingFloat004, SK_FishingRod001_v01, SM_FishingPond_Large, SM_FishingPond_Rodpillow), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_FishingPond02",
+        "viaBlueprintChain": [
+          "BP_BuildObject_FishingPond02"
+        ],
+        "size": [
+          1059.19,
+          1417.38,
+          943.53
+        ],
+        "min_cm": [
+          -709.41,
+          -543.48,
+          -168.24
+        ],
+        "max_cm": [
+          707.97,
+          515.71,
+          775.29
+        ],
+        "componentsUsed": [
+          {
+            "export": "SK_FishingFloat_GEN_VARIABLE",
+            "mesh": "SK_FishingFloat004",
+            "meshPath": "Pal/Content/Pal/Model/Weapon/FishingFloat/FishingFloat004/SK_FishingFloat004.SK_FishingFloat004",
+            "kind": "SK",
+            "verts": 2199,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -246.2259,
+              0,
+              42.854347
+            ],
+            "rot_pyr": [
+              2.5444438e-14,
+              -90,
+              30
+            ]
+          },
+          {
+            "export": "SkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_FishingRod001_v01",
+            "meshPath": "Pal/Content/Pal/Model/Weapon/FishingRod/FishingRod001/v01/SK_FishingRod001_v01.SK_FishingRod001_v01",
+            "kind": "SK",
+            "verts": 7473,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -43.967014,
+              -4.4369183,
+              213.9
+            ],
+            "rot_pyr": [
+              30,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_FishingPond_Rodpillow_GEN_VARIABLE",
+            "mesh": "SM_FishingPond_Rodpillow",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/FishingPond/SM_FishingPond_Rodpillow.SM_FishingPond_Rodpillow",
+            "kind": "SM",
+            "verts": 591,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -60.27266,
+              -4.4369183,
+              197.8
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_FishinPond_GEN_VARIABLE",
+            "mesh": "SM_FishingPond_Large",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/FishingPond_Large/SM_FishingPond_Large.SM_FishingPond_Large",
+            "kind": "SM",
+            "verts": 23352,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              29.785114,
+              -5.076641e-15,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -180,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -168.24,
+      "measuredTopCm": 775.29
     },
     "FarmBlockV2_tomato": {
       "name": "Farm Block V2 tomato",
@@ -1961,11 +3348,126 @@
       "name": "Pal Disassembly Conveyor",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        1624.5,
+        465.79,
+        341.0
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_DismantlingConveyor's 4 mesh component(s) (SM_DismantlingConveyor_SM_DismantlingConveyor, SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_DismantlingConveyor",
+        "viaBlueprintChain": [
+          "BP_BuildObject_DismantlingConveyor"
+        ],
+        "size": [
+          1624.5,
+          465.79,
+          341.0
+        ],
+        "min_cm": [
+          -325.79,
+          -796.88,
+          -0.0
+        ],
+        "max_cm": [
+          140,
+          827.62,
+          341
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh1_GEN_VARIABLE",
+            "mesh": "SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DismantlingConveyor/SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm.SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "kind": "SM",
+            "verts": 5312,
+            "scale": [
+              0.75,
+              0.75,
+              0.75
+            ],
+            "loc_cm": [
+              -187.93816,
+              -105.649445,
+              -1.5916157e-12
+            ],
+            "rot_pyr": [
+              0,
+              2.3625546e-13,
+              0
+            ]
+          },
+          {
+            "export": "StaticMesh2_GEN_VARIABLE",
+            "mesh": "SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DismantlingConveyor/SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm.SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "kind": "SM",
+            "verts": 5312,
+            "scale": [
+              0.75,
+              0.75,
+              0.75
+            ],
+            "loc_cm": [
+              -187.93816,
+              -394.6948,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              2.3625546e-13,
+              0
+            ]
+          },
+          {
+            "export": "StaticMesh3_GEN_VARIABLE",
+            "mesh": "SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DismantlingConveyor/SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm.SM_DismantlingConveyor_SM_DismantlingConveyorRobotArm",
+            "kind": "SM",
+            "verts": 5312,
+            "scale": [
+              0.75,
+              0.75,
+              0.75
+            ],
+            "loc_cm": [
+              -187.93817,
+              201.29126,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              2.3625546e-13,
+              0
+            ]
+          },
+          {
+            "export": "StaticMesh4_GEN_VARIABLE",
+            "mesh": "SM_DismantlingConveyor_SM_DismantlingConveyor",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DismantlingConveyor/SM_DismantlingConveyor_SM_DismantlingConveyor.SM_DismantlingConveyor_SM_DismantlingConveyor",
+            "kind": "SM",
+            "verts": 11550,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              9.734374e-07,
+              -637.3764,
+              -1.8230287e-07
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 341
     },
     "FarmBlockV2_Potato": {
       "name": "Farm Block V2 Potato",
@@ -2011,31 +3513,178 @@
       "name": "Ancient Kitchen",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        315,
+        100.0,
+        227.0
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_AncientCookingStove's 1 mesh component(s) (SM_KitchenAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_AncientCookingStove",
+        "viaBlueprintChain": [
+          "BP_BuildObject_AncientCookingStove"
+        ],
+        "size": [
+          315,
+          100.0,
+          227.0
+        ],
+        "min_cm": [
+          -50.0,
+          -205,
+          -0.0
+        ],
+        "max_cm": [
+          50.0,
+          110,
+          227
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh_GEN_VARIABLE",
+            "mesh": "SM_KitchenAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/KitchenAncient/SM_KitchenAncient.SM_KitchenAncient",
+            "kind": "SM",
+            "verts": 13366,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 227
     },
     "BaseCampWorkHard02": {
       "name": "Base Camp Work Hard02",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        200.47,
+        219.99,
+        219.78
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BaseCampWorkHard_02's 1 mesh component(s) (SM_SurveillanceTableAdvanced), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BaseCampWorkHard_02",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BaseCampWorkHard_02"
+        ],
+        "size": [
+          200.47,
+          219.99,
+          219.78
+        ],
+        "min_cm": [
+          -98.53,
+          -100.24,
+          4.63
+        ],
+        "max_cm": [
+          121.46,
+          100.24,
+          224.41
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_SurveillanceTableAdvanced_GEN_VARIABLE",
+            "mesh": "SM_SurveillanceTableAdvanced",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/SurveillanceTableAdvanced/SM_SurveillanceTableAdvanced.SM_SurveillanceTableAdvanced",
+            "kind": "SM",
+            "verts": 9504,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": 4.63,
+      "measuredTopCm": 224.41
     },
     "BaseCampWorkHard": {
       "name": "Monitoring Stand",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        202.18,
+        218.93,
+        156.01
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BaseCampWorkHard's 1 mesh component(s) (SM_SurveillanceTable), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BaseCampWorkHard",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BaseCampWorkHard"
+        ],
+        "size": [
+          202.18,
+          218.93,
+          156.01
+        ],
+        "min_cm": [
+          -99.39,
+          -101.09,
+          4.09
+        ],
+        "max_cm": [
+          119.54,
+          101.09,
+          160.1
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh_GEN_VARIABLE",
+            "mesh": "SM_SurveillanceTable",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/SurveillanceTable/SM_SurveillanceTable.SM_SurveillanceTable",
+            "kind": "SM",
+            "verts": 2163,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": 4.09,
+      "measuredTopCm": 160.1
     },
     "FarmBlockV2_wheet": {
       "name": "Farm Block V2 wheet",
@@ -2101,21 +3750,141 @@
       "name": "Pal Dressing Facility",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        100.17,
+        100.17,
+        195.75
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_CharacterSkinChange's 2 mesh component(s) (SM_JewelBase, SM_PinkCat_Skin001_Statue_Static), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_CharacterSkinChange",
+        "viaBlueprintChain": [
+          "BP_BuildObject_CharacterSkinChange"
+        ],
+        "size": [
+          100.17,
+          100.17,
+          195.75
+        ],
+        "min_cm": [
+          -50.09,
+          -50.09,
+          0.0
+        ],
+        "max_cm": [
+          50.09,
+          50.09,
+          195.76
+        ],
+        "componentsUsed": [
+          {
+            "export": "BP_PalStaticMeshComponent_AutoRotation_GEN_VARIABLE",
+            "mesh": "SM_PinkCat_Skin001_Statue_Static",
+            "meshPath": "Pal/Content/Pal/Model/Character/Monster/PinkCat/SM_PinkCat_Skin001_Statue_Static.SM_PinkCat_Skin001_Statue_Static",
+            "kind": "SM",
+            "verts": 4575,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              90
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          },
+          {
+            "export": "StaticMesh_Base_GEN_VARIABLE",
+            "mesh": "SM_JewelBase",
+            "meshPath": "Pal/Content/Pal/Model/Other/Relic/SM_JewelBase.SM_JewelBase",
+            "kind": "SM",
+            "verts": 8908,
+            "scale": [
+              2.5,
+              2.5,
+              2
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": 0.0,
+      "measuredTopCm": 195.76
     },
     "BaseCampWorkHard03": {
       "name": "Base Camp Work Hard03",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        200.47,
+        219.08,
+        215.07
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BaseCampWorkHard_03's 1 mesh component(s) (SM_SurveillanceTableAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BaseCampWorkHard_03",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BaseCampWorkHard_03"
+        ],
+        "size": [
+          200.47,
+          219.08,
+          215.07
+        ],
+        "min_cm": [
+          -98.53,
+          -100.24,
+          -0.0
+        ],
+        "max_cm": [
+          120.55,
+          100.24,
+          215.07
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_SurveillanceTableAncient_GEN_VARIABLE",
+            "mesh": "SM_SurveillanceTableAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/SurveillanceTableAncient/SM_SurveillanceTableAncient.SM_SurveillanceTableAncient",
+            "kind": "SM",
+            "verts": 5637,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 215.07
     },
     "DimensionPalStorage": {
       "name": "Dimension Pal Storage",
@@ -2131,41 +3900,239 @@
       "name": "Pal Pod Rack",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        78.4,
+        68,
+        187.36
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BaseCampWorkerExtraStation's 1 mesh component(s) (SM_RemotePalBox), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BaseCampWorkerExtraStation",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BaseCampWorkerExtraStation"
+        ],
+        "size": [
+          78.4,
+          68,
+          187.36
+        ],
+        "min_cm": [
+          -34,
+          -39.2,
+          -0.0
+        ],
+        "max_cm": [
+          34,
+          39.2,
+          187.36
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_PaｌBox_GEN_VARIABLE",
+            "mesh": "SM_RemotePalBox",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/RemotePalBox/SM_RemotePalBox.SM_RemotePalBox",
+            "kind": "SM",
+            "verts": 3174,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 187.36
     },
     "Lab": {
       "name": "Pal Labor Research Lab",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        224.53,
+        276.99,
+        172.04
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Lab's 1 mesh component(s) (SM_Laboratory), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Lab",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Lab"
+        ],
+        "size": [
+          224.53,
+          276.99,
+          172.04
+        ],
+        "min_cm": [
+          -138.5,
+          -112.27,
+          -0.0
+        ],
+        "max_cm": [
+          138.5,
+          112.27,
+          172.04
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh1_GEN_VARIABLE",
+            "mesh": "SM_Laboratory",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/Laboratory/SM_Laboratory.SM_Laboratory",
+            "kind": "SM",
+            "verts": 6920,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              -5.251664e-08
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 172.04
     },
     "MultiElectricHatchingPalEggWithBreed": {
       "name": "Breeding Farm",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        192.84,
+        266.79,
+        263.25
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_MultiElectricHatchingPalEggWithBreed's 1 mesh component(s) (SM_PalMatingStationAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb); excluded as gameplay volumes/primitives: PalSphereLight. Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_MultiElectricHatchingPalEggWithBreed",
+        "viaBlueprintChain": [
+          "BP_BuildObject_MultiElectricHatchingPalEggWithBreed"
+        ],
+        "size": [
+          192.84,
+          266.79,
+          263.25
+        ],
+        "min_cm": [
+          -96.42,
+          -96.42,
+          -0.0
+        ],
+        "max_cm": [
+          170.37,
+          96.42,
+          263.25
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_EggHatchingMachineFuture_GEN_VARIABLE",
+            "mesh": "SM_PalMatingStationAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/PalMatingStationAncient/SM_PalMatingStationAncient.SM_PalMatingStationAncient",
+            "kind": "SM",
+            "verts": 12146,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [
+          "PalSphereLight"
+        ],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 263.25
     },
     "OperatingTable": {
       "name": "Pal Surgery Table",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        280.82,
+        208.43,
+        255.83
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_OperatingTable's 1 mesh component(s) (SM_OperatingTable), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_OperatingTable",
+        "viaBlueprintChain": [
+          "BP_BuildObject_OperatingTable"
+        ],
+        "size": [
+          280.82,
+          208.43,
+          255.83
+        ],
+        "min_cm": [
+          -105.94,
+          -118.29,
+          -0.0
+        ],
+        "max_cm": [
+          102.49,
+          162.53,
+          255.83
+        ],
+        "componentsUsed": [
+          {
+            "export": "StaticMesh_GEN_VARIABLE",
+            "mesh": "SM_OperatingTable",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/OperatingTable/SM_OperatingTable.SM_OperatingTable",
+            "kind": "SM",
+            "verts": 25134,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              50,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 255.83
     },
     "Shelf05_Stone": {
       "name": "Shelf05 Stone",
@@ -2191,41 +4158,237 @@
       "name": "Base Camp Item Dispenser",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        870.0,
+        518.51,
+        436.0
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BaseCampItemDispenser's 1 mesh component(s) (SM_ItemTransporter), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BaseCampItemDispenser",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BaseCampItemDispenser"
+        ],
+        "size": [
+          870.0,
+          518.51,
+          436.0
+        ],
+        "min_cm": [
+          -248.51,
+          -435.0,
+          -2.5
+        ],
+        "max_cm": [
+          270,
+          435,
+          433.5
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh_GEN_VARIABLE",
+            "mesh": "SM_ItemTransporter",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/ItemTransporter/SM_ItemTransporter.SM_ItemTransporter",
+            "kind": "SM",
+            "verts": 33923,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              -130,
+              2.5
+            ],
+            "rot_pyr": [
+              0,
+              90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -2.5,
+      "measuredTopCm": 433.5
     },
     "BuildableGoddessStatue": {
       "name": "Statue of Power",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        171.74,
+        179.23,
+        325.17
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_BuildableGoddessStatue's 1 mesh component(s) (SM_GoddessStatue), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_BuildableGoddessStatue",
+        "viaBlueprintChain": [
+          "BP_BuildObject_BuildableGoddessStatue"
+        ],
+        "size": [
+          171.74,
+          179.23,
+          325.17
+        ],
+        "min_cm": [
+          -98.98,
+          -90.13,
+          -0.36
+        ],
+        "max_cm": [
+          80.25,
+          81.61,
+          324.81
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh_GEN_VARIABLE",
+            "mesh": "SM_GoddessStatue",
+            "meshPath": "Pal/Content/Pal/Model/Other/GoddessStatue/SM_GoddessStatue.SM_GoddessStatue",
+            "kind": "SM",
+            "verts": 4881,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.36,
+      "measuredTopCm": 324.81
     },
     "Expedition": {
       "name": "Expedition Cage",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        1645.87,
+        3079.51,
+        915.56
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Expedition's 1 mesh component(s) (SM_PalExpeditionFacilities), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Expedition",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Expedition"
+        ],
+        "size": [
+          1645.87,
+          3079.51,
+          915.56
+        ],
+        "min_cm": [
+          -1510.76,
+          -833.46,
+          -136.71
+        ],
+        "max_cm": [
+          1568.75,
+          812.41,
+          778.84
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_PalExpeditionFacilities_GEN_VARIABLE",
+            "mesh": "SM_PalExpeditionFacilities",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/PalExpeditionFacilities/SM_PalExpeditionFacilities.SM_PalExpeditionFacilities",
+            "kind": "SM",
+            "verts": 12705,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              599.17535,
+              -3.3072138e-07,
+              -61.3383
+            ],
+            "rot_pyr": [
+              1.5492729e-07,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -136.71,
+      "measuredTopCm": 778.84
     },
     "CharacterRankUp": {
       "name": "Essence Condenser",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        394.9,
+        524.66,
+        699.19
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_CharacterRankUp's 1 mesh component(s) (SM_PalSynthesizer), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_CharacterRankUp",
+        "viaBlueprintChain": [
+          "BP_BuildObject_CharacterRankUp"
+        ],
+        "size": [
+          394.9,
+          524.66,
+          699.19
+        ],
+        "min_cm": [
+          -262.33,
+          -197.45,
+          4.81
+        ],
+        "max_cm": [
+          262.33,
+          197.45,
+          703.99
+        ],
+        "componentsUsed": [
+          {
+            "export": "Mesh_GEN_VARIABLE",
+            "mesh": "SM_PalSynthesizer",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/PalSynthesizer/SM_PalSynthesizer.SM_PalSynthesizer",
+            "kind": "SM",
+            "verts": 7850,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": 4.81,
+      "measuredTopCm": 703.99
     },
     "MonsterFarm": {
       "name": "Ranch",
@@ -2241,11 +4404,214 @@
       "name": "Viewing Cage",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        970.26,
+        1070.26,
+        704.61
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_DisplayCharacter's 8 mesh component(s) (Cube_LowHeight, SM_PalBox_Pillar), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_DisplayCharacter",
+        "viaBlueprintChain": [
+          "BP_BuildObject_DisplayCharacter"
+        ],
+        "size": [
+          970.26,
+          1070.26,
+          704.61
+        ],
+        "min_cm": [
+          -535.13,
+          -485.13,
+          -0.25
+        ],
+        "max_cm": [
+          535.13,
+          485.13,
+          704.35
+        ],
+        "componentsUsed": [
+          {
+            "export": "CageWall1_GEN_VARIABLE",
+            "mesh": "Cube_LowHeight",
+            "meshPath": "Pal/Content/Pal/Model/Other/Common/Cube_LowHeight.Cube_LowHeight",
+            "kind": "SM",
+            "verts": 54,
+            "scale": [
+              9,
+              0.06,
+              7
+            ],
+            "loc_cm": [
+              0,
+              400,
+              352
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "CageWall2_GEN_VARIABLE",
+            "mesh": "Cube_LowHeight",
+            "meshPath": "Pal/Content/Pal/Model/Other/Common/Cube_LowHeight.Cube_LowHeight",
+            "kind": "SM",
+            "verts": 54,
+            "scale": [
+              8,
+              0.06,
+              7
+            ],
+            "loc_cm": [
+              -450,
+              1e-06,
+              352
+            ],
+            "rot_pyr": [
+              0,
+              89.999985,
+              0
+            ]
+          },
+          {
+            "export": "CageWall3_GEN_VARIABLE",
+            "mesh": "Cube_LowHeight",
+            "meshPath": "Pal/Content/Pal/Model/Other/Common/Cube_LowHeight.Cube_LowHeight",
+            "kind": "SM",
+            "verts": 54,
+            "scale": [
+              9,
+              0.06,
+              7
+            ],
+            "loc_cm": [
+              0,
+              -400,
+              352
+            ],
+            "rot_pyr": [
+              0,
+              -179.99997,
+              0
+            ]
+          },
+          {
+            "export": "CageWall4_GEN_VARIABLE",
+            "mesh": "Cube_LowHeight",
+            "meshPath": "Pal/Content/Pal/Model/Other/Common/Cube_LowHeight.Cube_LowHeight",
+            "kind": "SM",
+            "verts": 54,
+            "scale": [
+              8,
+              0.06,
+              7
+            ],
+            "loc_cm": [
+              450,
+              0,
+              352
+            ],
+            "rot_pyr": [
+              0,
+              -89.999985,
+              0
+            ]
+          },
+          {
+            "export": "SM_PalBox_Pillar1_GEN_VARIABLE",
+            "mesh": "SM_PalBox_Pillar",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalBox/old/SM_PalBox_Pillar.SM_PalBox_Pillar",
+            "kind": "SM",
+            "verts": 5429,
+            "scale": [
+              0.568,
+              0.568,
+              0.568
+            ],
+            "loc_cm": [
+              450,
+              -400,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -135,
+              0
+            ]
+          },
+          {
+            "export": "SM_PalBox_Pillar2_GEN_VARIABLE",
+            "mesh": "SM_PalBox_Pillar",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalBox/old/SM_PalBox_Pillar.SM_PalBox_Pillar",
+            "kind": "SM",
+            "verts": 5429,
+            "scale": [
+              0.568,
+              0.568,
+              0.568
+            ],
+            "loc_cm": [
+              -450,
+              -400,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              135,
+              0
+            ]
+          },
+          {
+            "export": "SM_PalBox_Pillar3_GEN_VARIABLE",
+            "mesh": "SM_PalBox_Pillar",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalBox/old/SM_PalBox_Pillar.SM_PalBox_Pillar",
+            "kind": "SM",
+            "verts": 5429,
+            "scale": [
+              0.568,
+              0.568,
+              0.568
+            ],
+            "loc_cm": [
+              450,
+              400,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -44.999992,
+              0
+            ]
+          },
+          {
+            "export": "SM_PalBox_Pillar4_GEN_VARIABLE",
+            "mesh": "SM_PalBox_Pillar",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalBox/old/SM_PalBox_Pillar.SM_PalBox_Pillar",
+            "kind": "SM",
+            "verts": 5429,
+            "scale": [
+              0.568,
+              0.568,
+              0.568
+            ],
+            "loc_cm": [
+              -450,
+              400,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              44.999992,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.25,
+      "measuredTopCm": 704.35
     },
     "Shelf_Wood": {
       "name": "Shelf Wood",
@@ -2261,11 +4627,60 @@
       "name": "Summoning Altar",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        1471.59,
+        1297.29,
+        643.96
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Altar's 1 mesh component(s) (SM_PalSummoningStand), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Altar",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Altar"
+        ],
+        "size": [
+          1471.59,
+          1297.29,
+          643.96
+        ],
+        "min_cm": [
+          -648.47,
+          -731.82,
+          -41.17
+        ],
+        "max_cm": [
+          648.83,
+          739.77,
+          602.79
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_PalHealingMachine_GEN_VARIABLE",
+            "mesh": "SM_PalSummoningStand",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/PalSummoningStand/SM_PalSummoningStand.SM_PalSummoningStand",
+            "kind": "SM",
+            "verts": 29425,
+            "scale": [
+              1,
+              1.0000001,
+              1.0000001
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -41.17,
+      "measuredTopCm": 602.79
     },
     "CoolerBox": {
       "name": "Cooler Box",
@@ -2461,11 +4876,60 @@
       "name": "Bench Wood",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        204.68,
+        53.81,
+        48.81
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Bench_Wood's 1 mesh component(s) (SM_Bench), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Bench_Wood",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Bench_Wood"
+        ],
+        "size": [
+          204.68,
+          53.81,
+          48.81
+        ],
+        "min_cm": [
+          -26.17,
+          -102.34,
+          -0.03
+        ],
+        "max_cm": [
+          27.65,
+          102.34,
+          48.78
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Bench_GEN_VARIABLE",
+            "mesh": "SM_Bench",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tavern_vol_01/Bench/SM_Bench.SM_Bench",
+            "kind": "SM",
+            "verts": 656,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.03,
+      "measuredTopCm": 48.78
     },
     "FurnitureTree02_Cherry": {
       "name": "Furniture Tree02 Cherry",
@@ -2561,11 +5025,412 @@
       "name": "Desk01 Iron",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        241.82,
+        94.79,
+        194.68
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Desk01_Iron's 17 mesh component(s) (SM_AVI_Deco_01, SM_AVI_Desk_01, SM_Docs_Case_01, SM_Hummer_2, SM_Monkwrench_1_closed, SM_Monkwrench_2_closed, SM_Pivot_Table_Lamp, SM_Radio_02, SM_Ratchet, SM_Screw_1, SM_Screw_3, SM_Screw_5, SM_Wrench_10, SM_Wrench_2, SM_Wrench_4, SM_Wrench_6, SM_Wrench_8), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Desk01_Iron",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Desk01_Iron"
+        ],
+        "size": [
+          241.82,
+          94.79,
+          194.68
+        ],
+        "min_cm": [
+          -47.22,
+          -120.49,
+          -0.59
+        ],
+        "max_cm": [
+          47.57,
+          121.33,
+          194.1
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_AVI_Deco_01_GEN_VARIABLE",
+            "mesh": "SM_AVI_Deco_01",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/ArchVisIndustrial/SM_AVI_Deco_01.SM_AVI_Deco_01",
+            "kind": "SM",
+            "verts": 4415,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              -33.126755,
+              0,
+              146.21724
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_AVI_Desk_01_GEN_VARIABLE",
+            "mesh": "SM_AVI_Desk_01",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/ArchVisIndustrial/SM_AVI_Desk_01.SM_AVI_Desk_01",
+            "kind": "SM",
+            "verts": 3167,
+            "scale": [
+              1.2,
+              1.2,
+              0.9
+            ],
+            "loc_cm": [
+              -3.4276915,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Docs_Case_01_GEN_VARIABLE",
+            "mesh": "SM_Docs_Case_01",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Furnitures_Of_The_70s/SM_Docs_Case_01.SM_Docs_Case_01",
+            "kind": "SM",
+            "verts": 390,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              3.6288986,
+              -30.463518,
+              103.044945
+            ],
+            "rot_pyr": [
+              90,
+              0,
+              141.76733
+            ]
+          },
+          {
+            "export": "SM_Hummer_2_GEN_VARIABLE",
+            "mesh": "SM_Hummer_2",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Hummer_2.SM_Hummer_2",
+            "kind": "SM",
+            "verts": 379,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              -18.603834,
+              68.178665,
+              152.31598
+            ],
+            "rot_pyr": [
+              3.4986103e-14,
+              90,
+              -73.81794
+            ]
+          },
+          {
+            "export": "SM_Monkwrench_1_closed_GEN_VARIABLE",
+            "mesh": "SM_Monkwrench_1_closed",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Monkwrench_1_closed.SM_Monkwrench_1_closed",
+            "kind": "SM",
+            "verts": 430,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -16.299595,
+              -12.277658,
+              -0.55454063
+            ],
+            "rot_pyr": [
+              -1.2722219e-14,
+              180,
+              1.41245e-30
+            ]
+          },
+          {
+            "export": "SM_Monkwrench_2_closed_GEN_VARIABLE",
+            "mesh": "SM_Monkwrench_2_closed",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Monkwrench_2_closed.SM_Monkwrench_2_closed",
+            "kind": "SM",
+            "verts": 426,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -6.8036146,
+              -12.004097,
+              -0.55454063
+            ],
+            "rot_pyr": [
+              -1.2722219e-14,
+              180,
+              1.41245e-30
+            ]
+          },
+          {
+            "export": "SM_Pivot_Table_Lamp_GEN_VARIABLE",
+            "mesh": "SM_Pivot_Table_Lamp",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Industrial_Loft/SM_Pivot_Table_Lamp.SM_Pivot_Table_Lamp",
+            "kind": "SM",
+            "verts": 2068,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              7.5944114,
+              -63.195942,
+              97.7086
+            ],
+            "rot_pyr": [
+              0,
+              -130.9888,
+              0
+            ]
+          },
+          {
+            "export": "SM_Radio_02_GEN_VARIABLE",
+            "mesh": "SM_Radio_02",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Furnitures_Of_The_70s/SM_Radio_02.SM_Radio_02",
+            "kind": "SM",
+            "verts": 687,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              19.479446,
+              60.98872,
+              98.728035
+            ],
+            "rot_pyr": [
+              0,
+              -108.10491,
+              0
+            ]
+          },
+          {
+            "export": "SM_Ratchet_GEN_VARIABLE",
+            "mesh": "SM_Ratchet",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Ratchet.SM_Ratchet",
+            "kind": "SM",
+            "verts": 524,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -12.310638,
+              -2.0505998,
+              -1.3338239e-08
+            ],
+            "rot_pyr": [
+              3.1805547e-15,
+              1.6316245e-12,
+              2.862499e-14
+            ]
+          },
+          {
+            "export": "SM_Screw_1_GEN_VARIABLE",
+            "mesh": "SM_Screw_1",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Screw_1.SM_Screw_1",
+            "kind": "SM",
+            "verts": 354,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -32.403538,
+              -0.51028186,
+              2.4757116e-09
+            ],
+            "rot_pyr": [
+              3.1805547e-15,
+              -1.6834595e-14,
+              -2.8218427e-14
+            ]
+          },
+          {
+            "export": "SM_Screw_3_GEN_VARIABLE",
+            "mesh": "SM_Screw_3",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Screw_3.SM_Screw_3",
+            "kind": "SM",
+            "verts": 282,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -22.99235,
+              -0.39479846,
+              -9.0012895e-09
+            ],
+            "rot_pyr": [
+              3.1805547e-15,
+              -1.6834595e-14,
+              -2.8218427e-14
+            ]
+          },
+          {
+            "export": "SM_Screw_5_GEN_VARIABLE",
+            "mesh": "SM_Screw_5",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Screw_5.SM_Screw_5",
+            "kind": "SM",
+            "verts": 311,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -41.114197,
+              3.0334122,
+              -9.001204e-09
+            ],
+            "rot_pyr": [
+              3.1805547e-15,
+              -1.6834595e-14,
+              -2.8218427e-14
+            ]
+          },
+          {
+            "export": "SM_Wrench_10_GEN_VARIABLE",
+            "mesh": "SM_Wrench_10",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Wrench_10.SM_Wrench_10",
+            "kind": "SM",
+            "verts": 459,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              28.649738,
+              -16.460323,
+              4.1040283e-13
+            ],
+            "rot_pyr": [
+              1.9083328e-13,
+              -6.179469e-30,
+              2.2263883e-14
+            ]
+          },
+          {
+            "export": "SM_Wrench_2_GEN_VARIABLE",
+            "mesh": "SM_Wrench_2",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Wrench_2.SM_Wrench_2",
+            "kind": "SM",
+            "verts": 459,
+            "scale": [
+              0.8333333,
+              0.8333333,
+              1.1111112
+            ],
+            "loc_cm": [
+              -18.365284,
+              -46.732197,
+              135.36723
+            ],
+            "rot_pyr": [
+              2.5444438e-14,
+              -90,
+              90
+            ]
+          },
+          {
+            "export": "SM_Wrench_4_GEN_VARIABLE",
+            "mesh": "SM_Wrench_4",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Wrench_4.SM_Wrench_4",
+            "kind": "SM",
+            "verts": 459,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              8.082552,
+              -4.747084,
+              -1.6196766e-13
+            ],
+            "rot_pyr": [
+              1.04958306e-13,
+              -6.179469e-30,
+              2.2263883e-14
+            ]
+          },
+          {
+            "export": "SM_Wrench_6_GEN_VARIABLE",
+            "mesh": "SM_Wrench_6",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Wrench_6.SM_Wrench_6",
+            "kind": "SM",
+            "verts": 459,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              15.372194,
+              -8.435363,
+              1.8767626e-13
+            ],
+            "rot_pyr": [
+              3.2441657e-13,
+              -6.179469e-30,
+              2.2263883e-14
+            ]
+          },
+          {
+            "export": "SM_Wrench_8_GEN_VARIABLE",
+            "mesh": "SM_Wrench_8",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Tools/SM_Wrench_8.SM_Wrench_8",
+            "kind": "SM",
+            "verts": 459,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              22.671898,
+              -12.559836,
+              2.5973668e-13
+            ],
+            "rot_pyr": [
+              1.6220829e-13,
+              -6.179469e-30,
+              2.2263883e-14
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.59,
+      "measuredTopCm": 194.1
     },
     "Seika": {
       "name": "Seika",
@@ -2621,11 +5486,112 @@
       "name": "Defense Bow Gun",
       "category": "decor",
       "size": [
-        440,
-        440,
-        95
+        219.61,
+        198.68,
+        96.1
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_StationaryLauncher_BowGun's 3 mesh component(s) (DefenseFacilityMedieval_Base, DefenseFacilityMedieval_Bolt, DefenseFacilityMedieval_Sand), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [440, 440, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_StationaryLauncher_BowGun",
+        "viaBlueprintChain": [
+          "BP_BuildObjectDefenseBulletLauncher_BowGun",
+          "BP_BuildObjectDefenseBulletLauncher_Base",
+          "BP_StationaryLauncher_BowGun"
+        ],
+        "size": [
+          219.61,
+          198.68,
+          96.1
+        ],
+        "min_cm": [
+          -65.84,
+          -111.06,
+          -2.25
+        ],
+        "max_cm": [
+          132.84,
+          108.55,
+          93.84
+        ],
+        "componentsUsed": [
+          {
+            "export": "DefenseFacilityMedieval_Base_GEN_VARIABLE",
+            "mesh": "DefenseFacilityMedieval_Base",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityMedieval/DefenseFacilityMedieval_Base.DefenseFacilityMedieval_Base",
+            "kind": "SK",
+            "verts": 2739,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "DefenseFacilityMedieval_Bolt_GEN_VARIABLE",
+            "mesh": "DefenseFacilityMedieval_Bolt",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityMedieval/DefenseFacilityMedieval_Bolt.DefenseFacilityMedieval_Bolt",
+            "kind": "SM",
+            "verts": 36,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              5,
+              0,
+              43
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "DefenseFacilityMedieval_Sand_GEN_VARIABLE",
+            "mesh": "DefenseFacilityMedieval_Sand",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityMedieval/DefenseFacilityMedieval_Sand.DefenseFacilityMedieval_Sand",
+            "kind": "SM",
+            "verts": 2278,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          440,
+          440,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -2.25,
+      "measuredTopCm": 93.84
     },
     "LargeLamp": {
       "name": "Large Lamp",
@@ -2671,11 +5637,66 @@
       "name": "Ancient Power Generator",
       "category": "decor",
       "size": [
-        300,
-        300,
-        95
+        260.0,
+        150.05,
+        366.0
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_AncientEnergyGenerator's 1 mesh component(s) (SK_GeneratorAncient), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [300, 300, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_BuildObject_AncientEnergyGenerator",
+        "viaBlueprintChain": [
+          "BP_BuildObject_AncientEnergyGenerator"
+        ],
+        "size": [
+          260.0,
+          150.05,
+          366.0
+        ],
+        "min_cm": [
+          -75.02,
+          -130.0,
+          -0.0
+        ],
+        "max_cm": [
+          75.02,
+          130.0,
+          366.0
+        ],
+        "componentsUsed": [
+          {
+            "export": "PalMapObjectSkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_GeneratorAncient",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/GeneratorAncient/SK_GeneratorAncient.SK_GeneratorAncient",
+            "kind": "SK",
+            "verts": 13726,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          300,
+          300,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 366.0
     },
     "OilPump": {
       "name": "Oil Pump",
@@ -2771,21 +5792,419 @@
       "name": "Defense Missile",
       "category": "decor",
       "size": [
-        440,
-        440,
-        95
+        219.61,
+        223.26,
+        176.22
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_StationaryLauncher_Missile's 14 mesh component(s) (DefenseFacilityMedieval_Sand, SK_DefenseFacilityElectric, SM_DefenseFacilityElectricMissile), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [440, 440, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_StationaryLauncher_Missile",
+        "viaBlueprintChain": [
+          "BP_BuildObjectDefenseBulletLauncher_Missile",
+          "BP_BuildObjectDefenseBulletLauncher_Base",
+          "BP_StationaryLauncher_Missile"
+        ],
+        "size": [
+          219.61,
+          223.26,
+          176.22
+        ],
+        "min_cm": [
+          -90.42,
+          -111.06,
+          -33.75
+        ],
+        "max_cm": [
+          132.84,
+          108.55,
+          142.47
+        ],
+        "componentsUsed": [
+          {
+            "export": "SkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_DefenseFacilityElectric",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SK_DefenseFacilityElectric.SK_DefenseFacilityElectric",
+            "kind": "SK",
+            "verts": 26803,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "DefenseFacilityMedieval_Sand_GEN_VARIABLE",
+            "mesh": "DefenseFacilityMedieval_Sand",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityMedieval/DefenseFacilityMedieval_Sand.DefenseFacilityMedieval_Sand",
+            "kind": "SM",
+            "verts": 2278,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile10_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -35,
+              15
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile11_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -35,
+              -24
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile12_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -35,
+              -5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile13_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -15,
+              -24
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile1_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              14,
+              15
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile2_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              15,
+              -5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile3_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              15,
+              -24
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile4_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              35,
+              15
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile5_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              35,
+              -5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile6_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              35,
+              -24
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile7_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -15,
+              -5
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "SM_Missile8_GEN_VARIABLE",
+            "mesh": "SM_DefenseFacilityElectricMissile",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityElectric/SM_DefenseFacilityElectricMissile.SM_DefenseFacilityElectricMissile",
+            "kind": "SM",
+            "verts": 1391,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              35,
+              -15,
+              15
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          440,
+          440,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -33.75,
+      "measuredTopCm": 142.47
     },
     "Light_FloorLamp02": {
       "name": "Light Floor Lamp02",
       "category": "decor",
       "size": [
-        60,
-        60,
-        220
+        39.66,
+        39.66,
+        171.23
       ],
-      "sizeSource": "rough furniture estimate — display only"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Light_FloorLamp02's 1 mesh component(s) (SM_Night_lamp_2), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [60, 60, 220] (rough furniture estimate — display only).",
+      "measured": {
+        "blueprint": "BP_BuildObject_Light_FloorLamp02",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Light_FloorLamp02"
+        ],
+        "size": [
+          39.66,
+          39.66,
+          171.23
+        ],
+        "min_cm": [
+          -19.82,
+          -19.83,
+          -0.11
+        ],
+        "max_cm": [
+          19.84,
+          19.83,
+          171.13
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Night_lamp_2_GEN_VARIABLE",
+            "mesh": "SM_Night_lamp_2",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Night_lamp_2.SM_Night_lamp_2",
+            "kind": "SM",
+            "verts": 1284,
+            "scale": [
+              1.2,
+              1.2,
+              1.2
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          60,
+          60,
+          220
+        ],
+        "existingSizeSource": "rough furniture estimate — display only"
+      },
+      "measuredBottomCm": -0.11,
+      "measuredTopCm": 171.13
     },
     "PalMedicineBox": {
       "name": "Medicine Rack",
@@ -2961,11 +6380,236 @@
       "name": "Desk01 Stone",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        216.04,
+        159.64,
+        144.96
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Desk01_Stone's 9 mesh component(s) (SM_Chair01, SM_Clock_Small, SM_Night_lamp_3, SM_Table_1_comb, SM_book_open, SM_box_desk, SM_papers_floor_01, SM_papers_floor_02, SM_pen), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Desk01_Stone",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Desk01_Stone"
+        ],
+        "size": [
+          216.04,
+          159.64,
+          144.96
+        ],
+        "min_cm": [
+          -52.83,
+          -107.99,
+          -0.25
+        ],
+        "max_cm": [
+          106.8,
+          108.05,
+          144.72
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_book_open_GEN_VARIABLE",
+            "mesh": "SM_book_open",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture02/SM_book_open.SM_book_open",
+            "kind": "SM",
+            "verts": 116,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              28.180912,
+              59.162544,
+              92.93603
+            ],
+            "rot_pyr": [
+              4.4527766e-14,
+              70.79167,
+              90
+            ]
+          },
+          {
+            "export": "SM_box_desk_GEN_VARIABLE",
+            "mesh": "SM_box_desk",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture02/SM_box_desk.SM_box_desk",
+            "kind": "SM",
+            "verts": 1428,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              2.8491907,
+              78.272865,
+              92.93603
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          },
+          {
+            "export": "SM_Chair01_GEN_VARIABLE",
+            "mesh": "SM_Chair01",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Mansion/SM_Chair01.SM_Chair01",
+            "kind": "SM",
+            "verts": 2447,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              72.55863,
+              1.1217747e-06,
+              1.4210855e-13
+            ],
+            "rot_pyr": [
+              0,
+              90,
+              0
+            ]
+          },
+          {
+            "export": "SM_Clock_Small_GEN_VARIABLE",
+            "mesh": "SM_Clock_Small",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Clock_Small.SM_Clock_Small",
+            "kind": "SM",
+            "verts": 1847,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -27.41506,
+              32.753872,
+              92.93603
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          },
+          {
+            "export": "SM_Night_lamp_3_GEN_VARIABLE",
+            "mesh": "SM_Night_lamp_3",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Night_lamp_3.SM_Night_lamp_3",
+            "kind": "SM",
+            "verts": 2982,
+            "scale": [
+              0.8,
+              0.8,
+              0.8
+            ],
+            "loc_cm": [
+              -30.749338,
+              -32.390312,
+              92.93603
+            ],
+            "rot_pyr": [
+              0,
+              -72.65544,
+              0
+            ]
+          },
+          {
+            "export": "SM_papers_floor_01_GEN_VARIABLE",
+            "mesh": "SM_papers_floor_01",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture02/SM_papers_floor_01.SM_papers_floor_01",
+            "kind": "SM",
+            "verts": 105,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              23.466782,
+              -53.02501,
+              92.93603
+            ],
+            "rot_pyr": [
+              0,
+              214.33665,
+              0
+            ]
+          },
+          {
+            "export": "SM_papers_floor_02_GEN_VARIABLE",
+            "mesh": "SM_papers_floor_02",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture02/SM_papers_floor_02.SM_papers_floor_02",
+            "kind": "SM",
+            "verts": 84,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              9.44312,
+              8.164879,
+              92.93603
+            ],
+            "rot_pyr": [
+              0,
+              -213.53409,
+              0
+            ]
+          },
+          {
+            "export": "SM_pen_GEN_VARIABLE",
+            "mesh": "SM_pen",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture02/SM_pen.SM_pen",
+            "kind": "SM",
+            "verts": 732,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              37.44021,
+              -72.381485,
+              94.19804
+            ],
+            "rot_pyr": [
+              0,
+              37.949265,
+              0
+            ]
+          },
+          {
+            "export": "SM_Table_1_comb_GEN_VARIABLE",
+            "mesh": "SM_Table_1_comb",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Table_1_comb.SM_Table_1_comb",
+            "kind": "SM",
+            "verts": 7013,
+            "scale": [
+              1.1999999,
+              1.2,
+              1.1999999
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.25,
+      "measuredTopCm": 144.72
     },
     "Stool01_Iron": {
       "name": "Stool01 Iron",
@@ -3061,11 +6705,66 @@
       "name": "Stool01 Stone",
       "category": "decor",
       "size": [
-        100,
-        100,
-        100
+        39.02,
+        39.02,
+        53.69
       ],
-      "sizeSource": "rough furniture estimate — display only"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Stool01_Stone's 1 mesh component(s) (SM_Chair_1), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [100, 100, 100] (rough furniture estimate — display only).",
+      "measured": {
+        "blueprint": "BP_BuildObject_Stool01_Stone",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Stool01_Stone"
+        ],
+        "size": [
+          39.02,
+          39.02,
+          53.69
+        ],
+        "min_cm": [
+          -19.51,
+          -19.51,
+          -0.73
+        ],
+        "max_cm": [
+          19.51,
+          19.51,
+          52.95
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Chair_1_GEN_VARIABLE",
+            "mesh": "SM_Chair_1",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Chair_1.SM_Chair_1",
+            "kind": "SM",
+            "verts": 754,
+            "scale": [
+              1.2,
+              1.2,
+              1.1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          100,
+          100,
+          100
+        ],
+        "existingSizeSource": "rough furniture estimate — display only"
+      },
+      "measuredBottomCm": -0.73,
+      "measuredTopCm": 52.95
     },
     "Bonsai": {
       "name": "Bonsai",
@@ -3201,11 +6900,67 @@
       "name": "Trap Leg Hold Big",
       "category": "defense",
       "size": [
-        150,
-        150,
-        40
+        145.44,
+        99.03,
+        16.96
       ],
-      "sizeSource": "rough furniture estimate — display only"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Trap_LegHold's 1 mesh component(s) (SK_PalTrap), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [150, 150, 40] (rough furniture estimate — display only).",
+      "measured": {
+        "blueprint": "BP_BuildObject_Trap_LegHold",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Trap_LegHold_Big",
+          "BP_BuildObject_Trap_LegHold"
+        ],
+        "size": [
+          145.44,
+          99.03,
+          16.96
+        ],
+        "min_cm": [
+          -49.7,
+          -70.61,
+          -0.1
+        ],
+        "max_cm": [
+          49.32,
+          74.83,
+          16.86
+        ],
+        "componentsUsed": [
+          {
+            "export": "SkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_PalTrap",
+            "meshPath": "Pal/Content/Pal/Model/Other/PalTrap/SK_PalTrap.SK_PalTrap",
+            "kind": "SK",
+            "verts": 4330,
+            "scale": [
+              0.3,
+              0.3,
+              0.3
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          150,
+          150,
+          40
+        ],
+        "existingSizeSource": "rough furniture estimate — display only"
+      },
+      "measuredBottomCm": -0.1,
+      "measuredTopCm": 16.86
     },
     "Trap_MineElecShock": {
       "name": "Trap Mine Elec Shock",
@@ -3231,11 +6986,90 @@
       "name": "Defense Machinegun",
       "category": "decor",
       "size": [
-        440,
-        440,
-        95
+        219.61,
+        330.26,
+        110.72
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_StationaryLauncher_Machinegun's 2 mesh component(s) (DefenseFacilityMedieval_Sand, SK_DefenseFacilityModern), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [440, 440, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_StationaryLauncher_Machinegun",
+        "viaBlueprintChain": [
+          "BP_BuildObjectDefenseBulletLauncher_Machinegun",
+          "BP_BuildObjectDefenseBulletLauncher_Base",
+          "BP_StationaryLauncher_Machinegun"
+        ],
+        "size": [
+          219.61,
+          330.26,
+          110.72
+        ],
+        "min_cm": [
+          -129.79,
+          -111.06,
+          -2.25
+        ],
+        "max_cm": [
+          200.46,
+          108.55,
+          108.46
+        ],
+        "componentsUsed": [
+          {
+            "export": "SkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_DefenseFacilityModern",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityModern/SK_DefenseFacilityModern.SK_DefenseFacilityModern",
+            "kind": "SK",
+            "verts": 32674,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "export": "DefenseFacilityMedieval_Sand_GEN_VARIABLE",
+            "mesh": "DefenseFacilityMedieval_Sand",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/DefenseFacilityMedieval/DefenseFacilityMedieval_Sand.DefenseFacilityMedieval_Sand",
+            "kind": "SM",
+            "verts": 2278,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          440,
+          440,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -2.25,
+      "measuredTopCm": 108.46
     },
     "DefenseWall_Wood": {
       "name": "Defense Wall Wood",
@@ -3601,11 +7435,67 @@
       "name": "Sphere Factory Black 01",
       "category": "production",
       "size": [
-        171.026106,
-        259.342584,
-        95
+        247.23,
+        117.32,
+        182.28
       ],
-      "sizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_SphereFactory_Black_Base's 1 mesh component(s) (SM_PalSphereFactoryMedieval), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [171.026106, 259.342584, 95] (works[].workable_bounds.box_extent doubled — interaction vol).",
+      "measured": {
+        "blueprint": "BP_BuildObject_SphereFactory_Black_Base",
+        "viaBlueprintChain": [
+          "BP_BuildObject_SphereFactory_Black_01",
+          "BP_BuildObject_SphereFactory_Black_Base"
+        ],
+        "size": [
+          247.23,
+          117.32,
+          182.28
+        ],
+        "min_cm": [
+          -54.5,
+          -123.62,
+          -0.61
+        ],
+        "max_cm": [
+          62.82,
+          123.62,
+          181.67
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_PalSphereFactoryMedieval_GEN_VARIABLE",
+            "mesh": "SM_PalSphereFactoryMedieval",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Architecture/PalSphereFactoryMedieval/SM_PalSphereFactoryMedieval.SM_PalSphereFactoryMedieval",
+            "kind": "SM",
+            "verts": 38817,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          171.026106,
+          259.342584,
+          95
+        ],
+        "existingSizeSource": "works[].workable_bounds.box_extent doubled — interaction volume, slightly padded"
+      },
+      "measuredBottomCm": -0.61,
+      "measuredTopCm": 181.67
     },
     "ElectricCooler": {
       "name": "Electric Cooler",
@@ -4141,11 +8031,60 @@
       "name": "Stove01 Stone",
       "category": "production",
       "size": [
-        null,
-        null,
-        null
+        157.96,
+        81.97,
+        271.03
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Stove01_Stone's 1 mesh component(s) (SM_Stove), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_Stove01_Stone",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Stove01_Stone"
+        ],
+        "size": [
+          157.96,
+          81.97,
+          271.03
+        ],
+        "min_cm": [
+          -40.99,
+          -78.98,
+          -0.9
+        ],
+        "max_cm": [
+          40.99,
+          78.98,
+          270.12
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Stove_GEN_VARIABLE",
+            "mesh": "SM_Stove",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Antique_Furniture/SM_Stove.SM_Stove",
+            "kind": "SM",
+            "verts": 1484,
+            "scale": [
+              1.6,
+              1.6,
+              1.6
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              180,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -0.9,
+      "measuredTopCm": 270.12
     },
     "Piano01_Stone": {
       "name": "Piano01 Stone",
@@ -4231,11 +8170,66 @@
       "name": "Traffic Cone02 Iron",
       "category": "decor",
       "size": [
-        150,
-        150,
-        150
+        105.31,
+        105.31,
+        129.2
       ],
-      "sizeSource": "generic decor estimate — display only"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_TrafficCone02_Iron's 1 mesh component(s) (SM_Plastic_barrier_11), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [150, 150, 150] (generic decor estimate — display only).",
+      "measured": {
+        "blueprint": "BP_BuildObject_TrafficCone02_Iron",
+        "viaBlueprintChain": [
+          "BP_BuildObject_TrafficCone02_Iron"
+        ],
+        "size": [
+          105.31,
+          105.31,
+          129.2
+        ],
+        "min_cm": [
+          -52.65,
+          -52.65,
+          -0.0
+        ],
+        "max_cm": [
+          52.65,
+          52.65,
+          129.2
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Plastic_barrier_11_GEN_VARIABLE",
+            "mesh": "SM_Plastic_barrier_11",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/VintProg_BarriersAndBarricades/SM_Plastic_barrier_11.SM_Plastic_barrier_11",
+            "kind": "SM",
+            "verts": 1287,
+            "scale": [
+              1.1999999,
+              1.1999999,
+              1.2
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          150,
+          150,
+          150
+        ],
+        "existingSizeSource": "generic decor estimate — display only"
+      },
+      "measuredBottomCm": -0.0,
+      "measuredTopCm": 129.2
     },
     "GoalSoccer_Iron": {
       "name": "Goal Soccer Iron",
@@ -4271,11 +8265,82 @@
       "name": "Ice Horse Statue",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        583.87,
+        475.37,
+        655.64
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_IceHorseStatue's 2 mesh component(s) (SM_IcePegasusStatue, SM_StatueBase), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_IceHorseStatue",
+        "viaBlueprintChain": [
+          "BP_BuildObject_IceHorseStatue"
+        ],
+        "size": [
+          583.87,
+          475.37,
+          655.64
+        ],
+        "min_cm": [
+          -295.64,
+          -312.12,
+          -1.81
+        ],
+        "max_cm": [
+          179.74,
+          271.75,
+          653.83
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Floor_Clock_comb_GEN_VARIABLE",
+            "mesh": "SM_IcePegasusStatue",
+            "meshPath": "Pal/Content/Pal/Model/Other/IcePegasusStatue/SM_IcePegasusStatue.SM_IcePegasusStatue",
+            "kind": "SM",
+            "verts": 6090,
+            "scale": [
+              0.175,
+              0.175,
+              0.175
+            ],
+            "loc_cm": [
+              0,
+              -26.510185,
+              54.59779
+            ],
+            "rot_pyr": [
+              0,
+              -1.2722219e-14,
+              0
+            ]
+          },
+          {
+            "export": "SM_StatueBase_GEN_VARIABLE",
+            "mesh": "SM_StatueBase",
+            "meshPath": "Pal/Content/Pal/Model/Other/StatueBase/SM_StatueBase.SM_StatueBase",
+            "kind": "SM",
+            "verts": 176,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -1.81,
+      "measuredTopCm": 653.83
     },
     "Toilet01_Stone": {
       "name": "Toilet01 Stone",
@@ -4331,11 +8396,82 @@
       "name": "Jet Dragon Statue",
       "category": "decor",
       "size": [
-        null,
-        null,
-        null
+        582.98,
+        499.04,
+        570.4
       ],
-      "sizeSource": "no rule matched and no works bounds — magenta until measured"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_JetDragonStatue's 2 mesh component(s) (SM_JetDragonStatue, SM_StatueBase), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts.",
+      "measured": {
+        "blueprint": "BP_BuildObject_JetDragonStatue",
+        "viaBlueprintChain": [
+          "BP_BuildObject_JetDragonStatue"
+        ],
+        "size": [
+          582.98,
+          499.04,
+          570.4
+        ],
+        "min_cm": [
+          -369.18,
+          -328.66,
+          -1.81
+        ],
+        "max_cm": [
+          129.87,
+          254.32,
+          568.58
+        ],
+        "componentsUsed": [
+          {
+            "export": "SM_Floor_Clock_comb_GEN_VARIABLE",
+            "mesh": "SM_JetDragonStatue",
+            "meshPath": "Pal/Content/Pal/Model/Other/JetDragonStatue/SM_JetDragonStatue.SM_JetDragonStatue",
+            "kind": "SM",
+            "verts": 3062,
+            "scale": [
+              0.175,
+              0.175,
+              0.175
+            ],
+            "loc_cm": [
+              -17.550785,
+              0,
+              40.809227
+            ],
+            "rot_pyr": [
+              0,
+              -1.2722219e-14,
+              0
+            ]
+          },
+          {
+            "export": "SM_StatueBase_GEN_VARIABLE",
+            "mesh": "SM_StatueBase",
+            "meshPath": "Pal/Content/Pal/Model/Other/StatueBase/SM_StatueBase.SM_StatueBase",
+            "kind": "SM",
+            "verts": 176,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              -1.1510938e-14,
+              -54.324566,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              -90,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0
+      },
+      "measuredBottomCm": -1.81,
+      "measuredTopCm": 568.58
     },
     "CableCoil01_Iron": {
       "name": "Cable Coil01 Iron",
@@ -4491,11 +8627,66 @@
       "name": "Bamboo Fountain (Shishiodoshi)",
       "category": "decor",
       "size": [
-        150,
-        150,
-        150
+        153.96,
+        124.39,
+        119.71
       ],
-      "sizeSource": "generic decor estimate — display only"
+      "sizeSource": "MEASURED from the pak: union AABB of BP_BuildObject_Shishiodoshi's 1 mesh component(s) (SK_Shishiodoshi), each component's LOD0 vertex extents pushed through its own RelativeScale3D/Rotation/Location (palxbb). Order is [local-Y, local-X, local-Z] per coords.ts. Replaces the previous estimate [150, 150, 150] (generic decor estimate — display only).",
+      "measured": {
+        "blueprint": "BP_BuildObject_Shishiodoshi",
+        "viaBlueprintChain": [
+          "BP_BuildObject_Shishiodoshi"
+        ],
+        "size": [
+          153.96,
+          124.39,
+          119.71
+        ],
+        "min_cm": [
+          -60.08,
+          -83.72,
+          -6.71
+        ],
+        "max_cm": [
+          64.31,
+          70.24,
+          113
+        ],
+        "componentsUsed": [
+          {
+            "export": "MapObjectSkeletalMesh_GEN_VARIABLE",
+            "mesh": "SK_Shishiodoshi",
+            "meshPath": "Pal/Content/Pal/Model/Prop/Furniture/Shishiodoshi/SK_Shishiodoshi.SK_Shishiodoshi",
+            "kind": "SK",
+            "verts": 8001,
+            "scale": [
+              1,
+              1,
+              1
+            ],
+            "loc_cm": [
+              0,
+              0,
+              0
+            ],
+            "rot_pyr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "componentsExcludedAsPrimitives": [],
+        "unmeasuredComponents": 0,
+        "existingSize": [
+          150,
+          150,
+          150
+        ],
+        "existingSizeSource": "generic decor estimate — display only"
+      },
+      "measuredBottomCm": -6.71,
+      "measuredTopCm": 113
     },
     "Koro": {
       "name": "Incense Burner (Koro)",
@@ -4547,5 +8738,6 @@
       ],
       "sizeSource": "estimated from naming convention + measured grid (docs/CALIBRATION.md) — display only, refine visually"
     }
-  }
+  },
+  "_measuredDims": "Types whose sizeSource starts with 'MEASURED from the pak' carry a `measured` block: the blueprint, the mesh components used, any components excluded as gameplay volumes, and the union AABB. size is [local-Y, local-X, local-Z] cm (coords.ts). measuredBottomCm / measuredTopCm are that AABB's Z range relative to the object's own origin - use measuredTopCm, not size[2], for a standing-height rule on a blueprint whose geometry does not start at Z=0."
 }

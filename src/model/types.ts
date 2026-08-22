@@ -17,6 +17,24 @@ export interface Quat {
   w: number;
 }
 
+/**
+ * Player-applied paint colour, decoded from `Model.value.Paint` (docs/SCHEMA.md).
+ *
+ * The game stores an FLinearColor, so these components are LINEAR (working-space)
+ * values in 0..1 — NOT sRGB. Anything handing them to three.js must therefore use
+ * `Color.setRGB(r, g, b, THREE.LinearSRGBColorSpace)`, never `setStyle`/a hex
+ * string (which would apply an sRGB->linear decode a second time).
+ *
+ * Only present when the blob's "painted" flag is 1: an object the player never
+ * painted leaves this undefined and keeps its category/material colour.
+ */
+export interface PaintColor {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+
 export type Category =
   | "structure"
   | "production"
@@ -40,6 +58,18 @@ export interface PlacedObject {
   scale: Vec3;
   hpCurrent?: number;
   hpMax?: number;
+  /**
+   * Text the player wrote on a signboard in game (ConcreteModel.RawData
+   * .signboard_text). Undefined for everything that is not a written-on sign.
+   * Read-only, like paint: the raw blob stays the source of truth on export.
+   */
+  signText?: string;
+  /**
+   * Player paint, decoded from the object's Paint blob — undefined unless the
+   * blob says this piece was actually painted. Read-only: the editor never
+   * writes it back, the raw blob remains the source of truth at export time.
+   */
+  paint?: PaintColor;
   /**
    * originals came from the loaded file (id exists in raw); duplicates are
    * cloned at export time from their sourceId's raw entry with fresh GUIDs;

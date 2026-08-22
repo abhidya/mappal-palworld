@@ -50,7 +50,19 @@ appear as `{"~b": "<base64>"}` (`trailing_bytes`, `CustomVersionData`,
         }}}
       },
       "EffectMap": { /* empty MapProperty in fixture — UNKNOWN, preserve */ },
-      "Paint":     { /* opaque blob — UNKNOWN, preserve */ },
+      "Paint": {   // PalMapObjectPaintSaveData. RawData.values is 0 or 24 bytes:
+                   //   0..15  4x LE float32 = FLinearColor R,G,B,A (LINEAR, not sRGB)
+                   //   16..19 uint32 painted flag: 0 = never painted, 1 = painted
+                   //   20..23 zero in every record observed
+                   // An EMPTY array means the piece predates the paint feature.
+                   // Decoded read-only by model/blueprintView.ts (extractPaint) and
+                   // rendered by scene/objectTypes.ts (paintToColor); the blob itself
+                   // is still re-emitted verbatim, so paint never round-trips back.
+                   // Calibrated 2026-08-21 over 1,228 snapshots of the live world:
+                   // 258 objects ever painted, 4 distinct colours.
+        "value": { "RawData": { "value": { "values": [/* bytes */] } },
+                   "CustomVersionData": { /* preserve */ } }
+      },
       "RawData": { "value": {      // ← the fields we understand
         "instance_id": "<guid>",
         "concrete_model_instance_id": "<guid>",

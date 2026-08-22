@@ -982,6 +982,43 @@ body,
   user-select: none;
 }
 
+/* Player-written signboard text (ObjectBox.tsx). Deliberately unlike
+   .object-label: that is a debug affordance in the selection accent colour,
+   this is the sign's own content, so it reads as a warm painted board rather
+   than as UI chrome. */
+/* Builder name tag over a player avatar (PlayerLayer.tsx). Unlike
+   .object-label (a debug affordance) and .sign-label (in-world painted board),
+   this identifies a PERSON, so it reads as a nameplate. The timelapse runs a
+   full day/night cycle and these frames go dark, so legibility is carried by
+   the tag's own opaque plate plus a text shadow rather than by contrast with
+   the scene behind it — a translucent chip vanishes against a night roof. */
+.player-label {
+  padding: 2px 8px;
+  background: rgba(12, 14, 18, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.sign-label {
+  padding: 2px 7px;
+  background: rgba(38, 27, 16, 0.88);
+  border: 1px solid #b98a4e;
+  border-radius: 2px;
+  color: #f4e3c8;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  user-select: none;
+}
+
 /* ------------------------------------------------------------- DropZone */
 
 .drop-zone {

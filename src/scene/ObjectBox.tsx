@@ -10,13 +10,16 @@ import { Html, Outlines } from "@react-three/drei";
 import type { PlacedObject } from "../model/types";
 import { useEditorStore } from "../model/store";
 import { ueVecToThree, ueQuatToThree, yawFromQuat } from "./coords";
-import { getTypeEntry, resolveType } from "./objectTypes";
+import { getTypeEntry, paintToColor, resolveType } from "./objectTypes";
+import { damagedColor } from "./damageTint";
 import { getProxyGeometry, getProxyEdges } from "./proxyGeometry";
 import { usePlaceModeStore } from "./placeModeStore";
 import { computeStampFill, stampModeFromModifiers } from "./arrayStamp";
 import { stampWithOverlapCheck } from "./overlapCheck";
 import { levelOf } from "./levels";
 import { isLevelVisible, useVisibilityStore } from "./visibilityStore";
+import { GlbObject } from "./GlbObject";
+import meshRegistry from "../data/meshRegistry.json";
 
 export interface ObjectBoxProps {
   object: PlacedObject;
@@ -101,6 +104,19 @@ export function ObjectBox({ object, centroidThree, selected, showLabel, onSelect
     return (geometry.boundingBox?.max.y ?? 0) + 0.2;
   }, [geometry]);
 
+  // Player paint (Model.value.Paint — see blueprintView.ts's extractPaint)
+  // wins over the type's category/material colour, because it is what the
+  // piece ACTUALLY looks like in game. Undefined for every unpainted object,
+  // which is the overwhelming majority, so nothing else changes. In the
+  // timelapse this field is re-resolved per frame from paint_index.json, so a
+  // piece stays its material colour until the moment it was really painted.
+  const paintColor = object.paint ? paintToColor(object.paint) : null;
+  // Structure damage MODULATES whatever colour we just decided on — paint,
+  // or the type's material colour — rather than replacing it, so a damaged
+  // painted piece still reads as that paint, just charred. Identity for the
+  // intact majority (damageTint.ts), so this changes nothing for them.
+  const surfaceColor = damagedColor(paintColor ?? resolved.color, object.hpCurrent, object.hpMax);
+
   const glassOpacity = resolved.materialOpacity;
   const transparent = isWorldObject || glassOpacity !== undefined;
   const opacity = glassOpacity ?? (isWorldObject ? 0.55 : 1);
@@ -111,6 +127,38 @@ export function ObjectBox({ object, centroidThree, selected, showLabel, onSelect
   // works — that's fine and useful"), it just has no mesh in the scene graph
   // until shown again.
   if (!visible) return null;
+
+  // Real extracted game mesh for this type, when we have one. Types without
+  // an entry keep the hand-measured box proxy — this is purely additive.
+  // What the player actually wrote on this sign, drawn on the sign itself.
+  // Unlike `showLabel` (a debugging aid, capped at 20 and off by default) this
+  // is content, not metadata — the Wooden Camp's signs are a storage-labelling
+  // system, and a base full of unreadable blank boards loses that entirely.
+  // Undefined for every non-sign and every blank sign, so nothing else gains a
+  // label. See blueprintView.ts's extractSignText.
+  const signLabel = object.signText ? (
+    <Html center pointerEvents="none" position={[0, labelY, 0]} style={{ zIndex: 1 }}>
+      <div className="sign-label">{object.signText}</div>
+    </Html>
+  ) : null;
+
+  const glb = (meshRegistry as Record<string, { url: string }>)[object.typeId];
+  if (glb) {
+    return (
+      <>
+        <GlbObject
+          url={glb.url}
+          position={position}
+          quaternion={quaternion}
+          color={surfaceColor}
+          opacity={opacity}
+          transparent={transparent}
+          object={object}
+        />
+        {signLabel && <group position={position}>{signLabel}</group>}
+      </>
+    );
+  }
 
   return (
     <mesh
@@ -170,7 +218,7 @@ export function ObjectBox({ object, centroidThree, selected, showLabel, onSelect
       }}
     >
       <meshStandardMaterial
-        color={resolved.color}
+        color={surfaceColor}
         transparent={transparent}
         opacity={opacity}
         side={THREE.DoubleSide}
@@ -207,6 +255,8 @@ export function ObjectBox({ object, centroidThree, selected, showLabel, onSelect
           <div className="object-label">{displayName}</div>
         </Html>
       )}
+
+      {signLabel}
     </mesh>
   );
 }

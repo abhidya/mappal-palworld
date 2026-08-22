@@ -16,10 +16,11 @@
 //   disconnected clusters in the same base. Nothing here snaps to this
 //   cosmetic grid; movement snapping (arrow keys) uses each selection's own
 //   local axes instead — see useKeyboardControls.ts.
-import { useCallback, useMemo, useRef } from "react";
+import { Suspense, useCallback, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Grid, OrbitControls } from "@react-three/drei";
+import { useSceneChromeStore } from "./sceneChromeStore";
 import { useEditorStore } from "../model/store";
 import { ueVecToThree, yawFromQuat } from "./coords";
 import { ObjectBox } from "./ObjectBox";
@@ -34,6 +35,11 @@ import { computeStampFill, stampModeFromModifiers } from "./arrayStamp";
 import { stampWithOverlapCheck } from "./overlapCheck";
 import { useSelectionAnchorStore } from "./selectionAnchorStore";
 import { computeRangeSelection } from "./selectionRange";
+import { useDaylightStore } from "./daylightStore";
+import { DayNightLights } from "./DayNightLights";
+import { PalLayer } from "./PalLayer";
+import { PlayerLayer } from "./PlayerLayer";
+import { TerrainLayer } from "./TerrainLayer";
 
 /** Labels get gnarly with a huge selection — cap concurrent 3D labels silently (sidebar still lists full selection info). */
 const MAX_LABELS = 20;
@@ -49,6 +55,11 @@ export function Scene() {
   const placeObject = useEditorStore((s) => s.placeObject);
   const anchorId = useSelectionAnchorStore((s) => s.anchorId);
   const setAnchor = useSelectionAnchorStore((s) => s.setAnchor);
+  // Opt-in day/night rig for the timelapse pipeline. null (the default, and
+  // the only value the app's own UI can ever produce) keeps the static
+  // lighting below exactly as it was — see daylightStore.ts.
+  const daylightHour = useDaylightStore((s) => s.hour);
+  const showGrid = useSceneChromeStore((s) => s.grid);
 
   // Recentre the whole base on the three.js origin (task brief: "compute the
   // centroid of all object positions and subtract it"). Deliberately keyed
@@ -235,10 +246,18 @@ export function Scene() {
           cheap complement to the edge-overlay above, not a substitute for
           it (edges still carry the "where does this piece end" legibility
           on facets that face the light dead-on). */}
-      <ambientLight intensity={0.65} />
-      <directionalLight position={[18, 22, -9]} intensity={0.85} />
+      {daylightHour === null ? (
+        <>
+          <ambientLight intensity={0.65} />
+          <directionalLight position={[18, 22, -9]} intensity={0.85} />
+        </>
+      ) : (
+        <DayNightLights hour={daylightHour} />
+      )}
 
-      <Grid
+      {/* Editor aid only. The timelapse hides it via CameraDevHook's setChrome()
+          — see sceneChromeStore.ts for why real terrain makes it wrong. */}
+      {showGrid && <Grid
         args={[100, 100]}
         cellSize={1}
         cellThickness={0.5}
@@ -246,9 +265,29 @@ export function Scene() {
         sectionThickness={1}
         fadeDistance={200}
         infiniteGrid
-      />
+      />}
 
       <RadiusRing objects={objects} camp={camp} centroidThree={centroidThree} />
+
+      {/* Timelapse-only Pal and player layers (palStore.ts / playerStore.ts).
+          Both render nothing unless the offline renderer opts in via
+          CameraDevHook's setPals()/setPlayers(), exactly like the day/night
+          rig above — the editor's behaviour is unchanged. */}
+      {/* Each timelapse layer gets its OWN Suspense boundary. These layers swap
+          GLBs as the render walks through time (a new Pal species enters the
+          base, the builder avatar changes to a different player), and an
+          un-cached useGLTF suspends. Without a boundary here the suspension
+          bubbles to the Canvas and unmounts the ENTIRE scene for that frame,
+          which the offline renderer writes out as a flat background-coloured
+          PNG — that was ten blank frames in a 168-frame Wooden Camp render.
+          Separate boundaries keep one layer's loading from blanking another. */}
+      <Suspense fallback={null}>
+        <TerrainLayer centroidThree={centroidThree} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <PalLayer centroidThree={centroidThree} />
+      </Suspense>
+      <PlayerLayer centroidThree={centroidThree} />
 
       {objects.map((o) => (
         <ObjectBox

@@ -2,8 +2,9 @@
 // registry (CLAUDE.md §5). Used by both src/scene (to build box geometry)
 // and src/ui (counts-by-category, unknown-type warnings), which is why it
 // lives in its own small module instead of inside Scene.tsx.
+import * as THREE from "three";
 import objectsJson from "../data/objects.json";
-import type { Category, PlacedObject } from "../model/types";
+import type { Category, PaintColor, PlacedObject } from "../model/types";
 
 export interface TypeEntry {
   name: string;
@@ -58,6 +59,33 @@ function materialTint(typeId: string): { color: string; opacity?: number } | nul
     if (rule.test(t)) return { color: rule.color, opacity: rule.opacity };
   }
   return null;
+}
+
+/**
+ * Player paint -> three.js colour.
+ *
+ * The save stores an Unreal FLinearColor, i.e. components already in the LINEAR
+ * working space. three's ColorManagement is on by default (r155+) and treats a
+ * hex/CSS string as sRGB, decoding it to linear on the way in — so feeding these
+ * floats through `setStyle`/`setHex` would apply that decode a SECOND time and
+ * render every paint far too dark. `setRGB(..., LinearSRGBColorSpace)` states the
+ * source space explicitly and is the only correct path. (Pure black and pure
+ * white are fixed points of the transfer function, so only the coloured paints —
+ * e.g. the blue foundations in base 16fca097 — visibly disagree between the two.)
+ *
+ * Cached by value: only a handful of distinct paints exist in a whole world, and
+ * the timelapse harness re-resolves colours every frame.
+ */
+const paintColorCache = new Map<string, THREE.Color>();
+
+export function paintToColor(paint: PaintColor): THREE.Color {
+  const key = `${paint.r},${paint.g},${paint.b}`;
+  let color = paintColorCache.get(key);
+  if (!color) {
+    color = new THREE.Color().setRGB(paint.r, paint.g, paint.b, THREE.LinearSRGBColorSpace);
+    paintColorCache.set(key, color);
+  }
+  return color;
 }
 
 export const CATEGORY_LABEL: Record<Category, string> = {
