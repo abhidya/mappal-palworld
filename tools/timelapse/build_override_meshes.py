@@ -16,7 +16,7 @@ despite having PlasticHelmet equipped. Nothing is ever substituted.
 """
 import json, os, glob
 
-SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+SP = os.path.dirname(os.path.abspath(__file__))
 E = json.load(open(f"{SP}/eq_dt_item.json"))["DT_CharacterCreationMeshPresetTable_Equipments"][0]["Rows"]
 PUB = f"{SP}/mappal/public"
 POSED = "/equipment_meshes_posed"

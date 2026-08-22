@@ -15,7 +15,7 @@ and how wide the gap between them is.
 import json, os, math, datetime
 from collections import Counter
 
-SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+SP = os.path.dirname(os.path.abspath(__file__))
 OUT = f"{SP}/mappal/public/union"
 NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
          "de44d9f4": "Stone Works", "5fed0024": "Lost Camp"}
@@ -139,7 +139,7 @@ def main():
             "name": NAMES[base],
             "kind": "end-of-life",
             "source": ("every Level.sav in the git-LFS history of "
-                       "the save-history git repo (PALTL_REPO) plus the NAS backup sets, "
+                       "/Users/mannybhidya/Palworld plus the NAS backup sets, "
                        "decoded snapshot by snapshot (eol_scan.py); per-piece "
                        "first/last from build_index.json"),
             "snapshotsScanned": len(scan),

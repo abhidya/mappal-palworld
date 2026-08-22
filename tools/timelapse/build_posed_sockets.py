@@ -22,7 +22,7 @@ are evaluated from the same animation frame, so they cannot disagree.
 """
 import json, math, os
 
-SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+SP = os.path.dirname(os.path.abspath(__file__))
 
 
 def qmul(a, b):

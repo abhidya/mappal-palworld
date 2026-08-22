@@ -45,10 +45,17 @@ applies its own UE->three transform.
 """
 import json, math, os, re, struct, sys
 
-SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+SP = os.path.dirname(os.path.abspath(__file__))
 BASES = {"5fed0024": (-216463, 2028, 12482), "07f13218": (-338615, 341498, 6995),
          "16fca097": (-352470, 270982, 7784), "de44d9f4": (-71, -138355, 3538)}
 OUT_MESH = f"{SP}/mappal/public/terrain_meshes"
+# The clipped landscape tiles and the merged ocean/river meshes are written into
+# public/terrain_meshes, which every concurrent render streams from. A re-run
+# that only changes the JSON (see the footprint section at the bottom) has no
+# reason to rewrite a byte of them, and overwriting a file another render is
+# mid-fetch on would corrupt that render. KEEP_MESHES=1 reuses whatever is
+# already on disk and rebuilds only what is missing.
+KEEP_MESHES = os.environ.get("KEEP_MESHES") == "1"
 
 # THE CELL DUMP. cellactors_wide.json is a re-sweep of every MainGrid_L0 and
 # Foliage_L0 cell the pak dump actually contains (659 cells, 21,504 rows). The
@@ -133,6 +140,17 @@ MEGA_GRASS = ("grass_lowpoly_sm", "grass_small_sm")
 # material attached. See water_index.json / build_water_index.py.
 WATER_MESHES = ("s_watermesh", "sm_waterfall04", "sm_waterfall05",
                 "sm_bendwatermesh_001", "sm_river_plane")
+
+
+def is_plant(name):
+    """Vegetation, by the level's own naming (PLANT_KEYS above).
+
+    This is the ONLY class the built-footprint cull touches. Painted rocks and
+    cliff chunks arrive through the same foliage path but they are terrain — the
+    surface the base stands on — so removing one under a deck would punch a hole
+    in the ground rather than tidy the shot.
+    """
+    return any(k in (name or "").lower() for k in PLANT_KEYS)
 
 
 def is_ground(name, path=None):
@@ -235,6 +253,92 @@ def capped_foliage(fol):
     return out
 
 
+# ==================================================== THE BUILT FOOTPRINT
+# In game, placing a piece CLEARS the foliage it stands on. The renderer draws
+# the pak's foliage and the save's buildings from two independent sources, so
+# nothing removed the trees the player removed: at Wooden Camp — an elevated
+# wooden deck — oaks stood ON the deck and grew up through the floor.
+#
+# The footprint is the ACTUAL PLACED PIECES, not a radius. Every map object in
+# union_<base>.json carries its own initital_transform_cache (translation,
+# rotation, scale3d) — the same record the renderer's blueprintView.extractObjects
+# reads — and mappal/src/data/objects.json carries a per-type box for it. Those
+# two give one oriented XY rectangle per piece, and their union is the footprint.
+#
+# AXIS ORDER is not a guess and it is not symmetric: coords.ts's header records
+# the numeric check (3 calibration walls, 3 yaws) that establishes objects.json
+# `size` = [length, thickness, height] with LENGTH along the piece's local Y and
+# THICKNESS along its local X. Reading size[0] as the local-X extent would lay
+# every wall's rectangle across the deck instead of along its edge.
+#
+# Z IS DELIBERATELY IGNORED. A tree's instance origin is its trunk base, so an XY
+# test asks exactly "is this trunk standing on built ground", which is the
+# question the game answers when it clears foliage — and it is what keeps the
+# surrounding treeline, whose trunks are outside the footprint however far their
+# canopies lean in. The alternative (a Z band per piece) would spare a trunk
+# under an elevated deck and leave it growing through the floor, which is the
+# defect.
+FOOTPRINT_MARGIN = float(os.environ.get("FOOTPRINT_MARGIN", 100))
+_REG = json.load(open(f"{SP}/mappal/src/data/objects.json"))["types"]
+# A type with no measured box still occupies ground. objects.json's own renderer
+# fallback for an unregistered type is a 100 cm cube (objectTypes.ts), so the
+# footprint uses the same number rather than inventing a size or ignoring the
+# piece. It is the smallest box in the registry, so it can only under-cull.
+_UNSIZED_BOX = 100.0
+
+
+def built_footprint(base):
+    """One oriented XY rectangle per placed piece: (x, y, cos, sin, hx, hy, id)."""
+    u = json.load(open(f"{SP}/mappal/public/union/union_{base}.json"))
+    out, unsized = [], 0
+    for e in u["map_objects"]:
+        tid = e["MapObjectId"]["value"]
+        rd = e["Model"]["value"]["RawData"]["value"]
+        t = rd["initital_transform_cache"]
+        p, q, s = t["translation"], t["rotation"], t["scale3d"]
+        ent = _REG.get(tid)
+        sz = ent["size"] if ent else None
+        if not sz or sz[0] is None or sz[1] is None:
+            sz = [_UNSIZED_BOX, _UNSIZED_BOX, _UNSIZED_BOX]
+            unsized += 1
+        # yaw = 2*atan2(z, w) — coords.ts's yawFromQuat, and every piece in these
+        # saves is a pure yaw (docs/CALIBRATION.md).
+        yaw = 2 * math.atan2(q["z"], q["w"])
+        out.append((p["x"], p["y"], math.cos(yaw), math.sin(yaw),
+                    abs(sz[1]) * 0.5 * abs(s["x"]) + FOOTPRINT_MARGIN,
+                    abs(sz[0]) * 0.5 * abs(s["y"]) + FOOTPRINT_MARGIN,
+                    rd["instance_id"]))
+    return out, unsized
+
+
+_FP_CELL = 800.0
+
+
+def footprint_index(fp):
+    g = {}
+    for o in fp:
+        r = math.hypot(o[4], o[5])
+        for gx in range(int((o[0] - r) // _FP_CELL), int((o[0] + r) // _FP_CELL) + 1):
+            for gy in range(int((o[1] - r) // _FP_CELL), int((o[1] + r) // _FP_CELL) + 1):
+                g.setdefault((gx, gy), []).append(o)
+    return g
+
+
+def footprint_cullers(gidx, x, y):
+    """instance_ids of every placed piece whose rectangle covers (x, y).
+
+    ALL of them, not the first: the renderer hides the plant while ANY of these
+    pieces is alive, so a partial list would grow the tree back the moment one
+    of several overlapping pieces came down.
+    """
+    ids = []
+    for ox, oy, c, s, hx, hy, iid in gidx.get((int(x // _FP_CELL), int(y // _FP_CELL)), ()):
+        dx, dy = x - ox, y - oy
+        if abs(dx * c + dy * s) <= hx and abs(-dx * s + dy * c) <= hy:
+            ids.append(iid)
+    return ids
+
+
 if sys.argv[1] == "--manifest":
     # One extraction manifest covering every mesh all four bases can ask for.
     acts = json.load(open(CELLACTORS))
@@ -327,6 +431,75 @@ def read_glb_prim(path):
     idx = struct.unpack("<%d%s" % (ia["count"], "I" if w == 4 else "H"),
                         bin_[ioff:ioff + ia["count"] * w])
     return [(f[i * 3], f[i * 3 + 1], f[i * 3 + 2]) for i in range(n)], list(idx)
+
+
+def write_glb_tex(path, verts, uvs, idx, name, tex_uri):
+    """Landscape tile GLB: POSITION + NORMAL + TEXCOORD_0 + one material whose
+    base-colour map is the tile's baked landscape texture.
+
+    Same accessor layout palxtex emits for the placed props (0=POSITION,
+    1=NORMAL, 2=TEXCOORD_0, 3=indices), so the renderer's buildGlb() reads it
+    through exactly the path it already uses for every other textured mesh --
+    no TerrainLayer change, and the tiles stop falling through to the flat
+    fallback colour.
+
+    tex_uri is relative to the GLB, so it resolves to public/terrain_meshes/tex/
+    the same way the props' textures do.
+    """
+    nrm = [[0.0, 0.0, 0.0] for _ in verts]
+    for t in range(0, len(idx), 3):
+        a, bb, c = idx[t], idx[t + 1], idx[t + 2]
+        pa, pb, pc = verts[a], verts[bb], verts[c]
+        ux, uy, uz = pb[0] - pa[0], pb[1] - pa[1], pb[2] - pa[2]
+        vx, vy, vz = pc[0] - pa[0], pc[1] - pa[1], pc[2] - pa[2]
+        nx, ny, nz = uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx
+        for i in (a, bb, c):
+            nrm[i][0] += nx; nrm[i][1] += ny; nrm[i][2] += nz
+    for n in nrm:
+        l = math.sqrt(n[0] ** 2 + n[1] ** 2 + n[2] ** 2)
+        if l <= 0: n[0], n[1], n[2] = 0.0, 0.0, 1.0
+        else: n[0] /= l; n[1] /= l; n[2] /= l
+
+    pos = b"".join(struct.pack("<3f", *v) for v in verts)
+    nb = b"".join(struct.pack("<3f", *n) for n in nrm)
+    tb = b"".join(struct.pack("<2f", *t) for t in uvs)
+    use32 = len(verts) > 65535
+    ib = b"".join(struct.pack("<I" if use32 else "<H", i) for i in idx)
+    while len(ib) % 4: ib += b"\0"
+    blob = pos + nb + tb + ib
+    xs = [v[0] for v in verts]; ys = [v[1] for v in verts]; zs = [v[2] for v in verts]
+    o_n, o_t, o_i = len(pos), len(pos) + len(nb), len(pos) + len(nb) + len(tb)
+    g = {"asset": {"version": "2.0", "generator": "mappal-terrain-clip"},
+         "scenes": [{"nodes": [0]}], "scene": 0,
+         "nodes": [{"mesh": 0, "name": name}],
+         "meshes": [{"name": name, "primitives": [
+             {"attributes": {"POSITION": 0, "NORMAL": 1, "TEXCOORD_0": 2},
+              "indices": 3, "material": 0}]}],
+         "images": [{"uri": tex_uri}],
+         "samplers": [{"wrapS": 33071, "wrapT": 33071, "magFilter": 9729, "minFilter": 9987}],
+         "textures": [{"source": 0, "sampler": 0}],
+         "materials": [{"name": "landscape", "doubleSided": True,
+                        "pbrMetallicRoughness": {"baseColorTexture": {"index": 0},
+                                                 "metallicFactor": 0, "roughnessFactor": 1}}],
+         "buffers": [{"byteLength": len(blob)}],
+         "bufferViews": [
+             {"buffer": 0, "byteOffset": 0, "byteLength": len(pos), "target": 34962},
+             {"buffer": 0, "byteOffset": o_n, "byteLength": len(nb), "target": 34962},
+             {"buffer": 0, "byteOffset": o_t, "byteLength": len(tb), "target": 34962},
+             {"buffer": 0, "byteOffset": o_i, "byteLength": len(ib), "target": 34963}],
+         "accessors": [
+             {"bufferView": 0, "componentType": 5126, "count": len(verts), "type": "VEC3",
+              "min": [min(xs), min(ys), min(zs)], "max": [max(xs), max(ys), max(zs)]},
+             {"bufferView": 1, "componentType": 5126, "count": len(verts), "type": "VEC3"},
+             {"bufferView": 2, "componentType": 5126, "count": len(verts), "type": "VEC2"},
+             {"bufferView": 3, "componentType": 5125 if use32 else 5123,
+              "count": len(idx), "type": "SCALAR"}]}
+    js = json.dumps(g).encode()
+    while len(js) % 4: js += b" "
+    out = struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(js) + 8 + len(blob))
+    out += struct.pack("<II", len(js), 0x4E4F534A) + js
+    out += struct.pack("<II", len(blob), 0x004E4942) + blob
+    open(path, "wb").write(out)
 
 
 def write_glb(path, verts, idx, name):
@@ -463,7 +636,32 @@ print(f"  foliage: {nfol} instances emitted of {fol_total} within {FOLIAGE_R/100
 # where fm_cells.txt is the 24 FarMountain cells within 1.5 km of a base. That
 # cache is ~800 MB of unclipped LOD0 tiles; only the clipped per-base results
 # are served.
-nland = ntris = 0
+#
+# TEXTURE. The tiles used to go out as POSITION+NORMAL only - no material, no
+# image, no UVs - so TerrainLayer had nothing to draw them with and they fell
+# through to its flat rock-green fallback. Under three of the four bases that
+# fallback WAS the ground, and it read as a flat untextured green plane.
+#
+# A UE landscape has no single base-colour map to extract: the surface is
+# layer-blended in the shader from per-component weightmaps and ~16 layer
+# diffuses. palxground's --landbake evaluates that blend once, offline, into one
+# base-colour image per proxy (see palxground/LandBake.cs, and the numbers it
+# was checked against - the game's own cooked HLOD BaseColor bakes - in the
+# header there). landtex_index.json maps proxy actor -> that image plus the
+# tile's quad-space extent.
+#
+# The UV needs no new geometry data. LandscapeMeshDto's vertices are in QUAD
+# units and a vertex's XY is exactly the index the weightmap grid is addressed
+# by, so for a tile spanning vmin..vmax quads:
+#     u = (x - vminX) / (gridW - 1),   gridW = vmaxX - vminX + 1
+# and the bake was written on that same convention. Clipping only removes
+# vertices, so the UV of every surviving vertex is unchanged.
+LANDTEX = {}
+_landtex_path = f"{OUT_MESH}/landtex_index.json"
+if os.path.exists(_landtex_path):
+    LANDTEX = json.load(open(_landtex_path))
+
+nland = ntris = nland_tex = 0
 LANDSCAPE_R = float(os.environ.get("LANDSCAPE_R", RADIUS))
 land_recs = []
 for idxfile, meshroot in ((f"{SP}/terrain_index.json", f"{SP}/terrain_meshes"),
@@ -512,7 +710,19 @@ if land_recs:
         ni = [remap[i] for t in tris for i in t]
         nm = f"land_{b}__{r['actor']}"
         os.makedirs(OUT_MESH, exist_ok=True)
-        write_glb(f"{OUT_MESH}/{nm}.glb", nv, ni, nm)
+        lt = LANDTEX.get(r["actor"])
+        fresh = not (KEEP_MESHES and os.path.exists(f"{OUT_MESH}/{nm}.glb"))
+        if lt:
+            if fresh:
+                gx0, gy0 = lt["vmin"]
+                gw, gh = lt["grid"]
+                uvs = [((x - gx0) / (gw - 1), (y - gy0) / (gh - 1)) for x, y, z in nv]
+                write_glb_tex(f"{OUT_MESH}/{nm}.glb", nv, uvs, ni, nm, lt["tex"])
+            nland_tex += 1
+        elif fresh:
+            # No bake for this proxy: emit it as before rather than silently
+            # dropping ground, and let the count below report it.
+            write_glb(f"{OUT_MESH}/{nm}.glb", nv, ni, nm)
         q = rotator_to_quat(*r.get("rot", [0, 0, 0]))
         out.append({"mesh": nm, "url": f"/terrain_meshes/{nm}.glb",
                     "x": round(lx, 1), "y": round(ly, 1), "z": round(lz, 1),
@@ -522,7 +732,8 @@ if land_recs:
         nland += 1
         ntris += len(ni) // 3
         print(f"  landscape {r['actor'][-12:]}  {len(nv):6d} v  {len(ni)//3:6d} t  "
-              f"{os.path.getsize(f'{OUT_MESH}/{nm}.glb')//1024:5d} KB")
+              f"{os.path.getsize(f'{OUT_MESH}/{nm}.glb')//1024:5d} KB  "
+              f"{('tex ' + lt['tex'].split('/')[-1][:34]) if lt else 'NO BAKE - flat fallback'}")
 
 
 # ============================================================ 3. WATER
@@ -602,7 +813,8 @@ if os.path.exists(widx_path):
             oi.extend(base_i + i for i in sidx)
         nm = f"ocean_{b}"
         os.makedirs(OUT_MESH, exist_ok=True)
-        write_glb(f"{OUT_MESH}/{nm}.glb", ov, oi, nm)
+        if not (KEEP_MESHES and os.path.exists(f"{OUT_MESH}/{nm}.glb")):
+            write_glb(f"{OUT_MESH}/{nm}.glb", ov, oi, nm)
         p = {"mesh": nm, "url": f"/terrain_meshes/{nm}.glb",
              "x": 0.0, "y": 0.0, "z": 0.0, "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
              "sx": 1.0, "sy": 1.0, "sz": 1.0}
@@ -681,7 +893,8 @@ if os.path.exists(widx_path):
             ri.extend(base + i for i in sidx)
         nm = f"river_{b}"
         os.makedirs(OUT_MESH, exist_ok=True)
-        write_glb(f"{OUT_MESH}/{nm}.glb", rv, ri, nm)
+        if not (KEEP_MESHES and os.path.exists(f"{OUT_MESH}/{nm}.glb")):
+            write_glb(f"{OUT_MESH}/{nm}.glb", rv, ri, nm)
         p = {"mesh": nm, "url": f"/terrain_meshes/{nm}.glb",
              "x": 0.0, "y": 0.0, "z": 0.0, "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
              "sx": 1.0, "sy": 1.0, "sz": 1.0}
@@ -697,8 +910,45 @@ if os.path.exists(widx_path):
 else:
     print("  water: water_index.json missing - no water emitted")
 
+# ================================= 4. CULL VEGETATION INSIDE THE FOOTPRINT
+# TIME-AWARE, not a static erase. At frame 0 only the Palbox exists, so deleting
+# the FINAL footprint's trees from the start would clear the forest before
+# anything was built there — the reverse of the defect, and just as wrong.
+#
+# Each plant that stands inside the footprint is tagged with the instance_ids of
+# the pieces standing on it, and TerrainLayer hides it only while one of those
+# pieces is actually in the frame's live object set. So a tree disappears on the
+# frame the foundation under it is placed, and no earlier. It also cannot outlive
+# the base: at Lost Camp (5fed0024), whose base was deleted from the save
+# outright, the live object set empties and every tagged plant comes back.
+#
+# The renderer needs no per-frame footprint maths and the timelapse harness needs
+# no new call: the ids are matched against the object list setObjects() already
+# pushes every frame. A prop with no `cullBy` behaves exactly as before, so an
+# older terrain_*.json still renders unchanged.
+_fp, _unsized = built_footprint(b)
+_fpidx = footprint_index(_fp)
+ncull = ncull_fol = 0
+cull_kinds = {}
+for p in out:
+    if not is_plant(p["mesh"]):
+        continue
+    ids = footprint_cullers(_fpidx, p["x"], p["y"])
+    if not ids:
+        continue
+    p["cullBy"] = ids
+    ncull += 1
+    cull_kinds[p["mesh"]] = cull_kinds.get(p["mesh"], 0) + 1
+print(f"  footprint: {len(_fp)} placed pieces ({_unsized} with no registry box, "
+      f"{_UNSIZED_BOX:.0f} cm fallback), margin {FOOTPRINT_MARGIN:.0f} cm -> "
+      f"{ncull} vegetation instances tagged cullBy ({len(cull_kinds)} meshes; "
+      f"top " + ", ".join(f"{k}x{v}" for k, v in
+                          sorted(cull_kinds.items(), key=lambda kv: -kv[1])[:5]) + ")")
+
+SUFFIX = os.environ.get("TERRAIN_SUFFIX", "")
 json.dump({"base": b, "cellSize": 25600, "props": out},
-          open(f"{SP}/mappal/public/union/terrain_{b}.json", "w"))
-print(f"  -> terrain_{b}.json  {nprops} props + {nland} landscape tiles "
-      f"({ntris} landscape tris), {skipped} props skipped for missing GLB "
-      f"({os.path.getsize(f'{SP}/mappal/public/union/terrain_{b}.json')//1024} KB)")
+          open(f"{SP}/mappal/public/union/terrain_{b}{SUFFIX}.json", "w"))
+print(f"  -> terrain_{b}{SUFFIX}.json  {nprops} props + {nland} landscape tiles "
+      f"({nland_tex} textured, {nland - nland_tex} without a bake; {ntris} landscape tris), "
+      f"{skipped} props skipped for missing GLB "
+      f"({os.path.getsize(f'{SP}/mappal/public/union/terrain_{b}{SUFFIX}.json')//1024} KB)")

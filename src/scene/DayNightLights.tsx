@@ -40,6 +40,30 @@ const SUNSET = 19;
 export const EXPOSURE_MIN = 1.55;
 export const EXPOSURE_MAX = 2.35;
 
+// WATER IS THE ONE SURFACE THE EXPOSURE POLICY MUST NOT PROTECT.
+//
+// The policy above exists so a viewer can always read the BASE: as the sun
+// falls, ambient and hemisphere rise to compensate and total irradiance barely
+// moves. Every built piece and every rock has a real base-colour texture, so
+// they still shade and the constant exposure reads as "a legible night".
+//
+// Water has no base-colour map at all — Palworld ships it as MSM_SingleLayerWater
+// and, for the waterfalls, MSM_Unlit — so the renderer shades its shipped
+// FLinearColor directly, and the sea's is (0, 1, 0.6): a channel already at 1.0.
+// Multiplied by a night irradiance the policy holds near its daytime value, the
+// green channel saturates and the sea comes out the SAME bright teal at midnight
+// as at noon, under a night-dark sky. That is the "lit from nowhere" defect.
+//
+// So water, and only water, is scaled by the day factor on top of the lights it
+// already receives. This is a lighting response, not a recolour: it is one
+// scalar on luminance, the material's own colour ratios are untouched, and at
+// full day the factor is exactly 1.0, so every daylight frame is unchanged.
+// WATER_NIGHT is the floor at full night — set by eye against rendered night
+// frames at Glass Tower, the base with the most ocean on screen, as the point
+// where the sea stops out-glowing the sky it sits under while its shape, horizon
+// and the shoreline foam are all still readable.
+export const WATER_NIGHT = 0.3;
+
 function mix(a: THREE.ColorRepresentation, b: THREE.ColorRepresentation, t: number): THREE.Color {
   return new THREE.Color(a).lerp(new THREE.Color(b), THREE.MathUtils.clamp(t, 0, 1));
 }
@@ -68,6 +92,13 @@ export interface DayNightState {
   skyColor: THREE.Color;
   /** Sum of all light intensities — the exposure the band above constrains. */
   total: number;
+  /**
+   * Scalar a WATER surface's own shipped colour is multiplied by, on top of the
+   * lights above. 1.0 at full day, WATER_NIGHT at full night, continuous through
+   * the same twilight as everything else. See the WATER_NIGHT note above for why
+   * water needs this and nothing else does.
+   */
+  waterLight: number;
 }
 
 export function daylightState(hour: number): DayNightState {
@@ -118,10 +149,14 @@ export function daylightState(hour: number): DayNightState {
   const nightSky = mix("#101a2e", "#0a1120", Math.max(0, -elevation));
   const skyColor = mix(nightSky, daySky, dayness);
 
+  // Water rides the SAME twilight curve as everything else, so the sea darkens
+  // over the same dusk the sky does rather than on a schedule of its own.
+  const waterLight = lerp(WATER_NIGHT, 1, dayness);
+
   const total = keyIntensity + fillIntensity + ambientIntensity + hemiIntensity;
   return { elevation, dayness, keyDir, fillDir, keyColor, keyIntensity,
            fillColor, fillIntensity, ambientColor, ambientIntensity,
-           hemiSky, hemiGround, hemiIntensity, skyColor, total };
+           hemiSky, hemiGround, hemiIntensity, skyColor, total, waterLight };
 }
 
 export function DayNightLights({ hour }: { hour: number }) {

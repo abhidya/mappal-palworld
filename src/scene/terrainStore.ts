@@ -49,6 +49,27 @@ export interface TerrainProp {
   rough?: number;
   /** Provenance: which asset/parameter every number above was read from. */
   water?: { kind: string; material: string; source: string };
+
+  // --- VEGETATION INSIDE THE BUILT FOOTPRINT ---------------------------------
+  /**
+   * `Model.RawData.instance_id` of every placed piece standing on this plant.
+   *
+   * In game, building CLEARS the foliage under the piece. The pak's foliage and
+   * the save's buildings are two independent sources here, so nothing removed
+   * the trees the player removed — at Wooden Camp, oaks grew up through an
+   * elevated wooden deck. build_terrain.py tags each plant whose trunk falls
+   * inside a placed piece's own oriented box (see its BUILT FOOTPRINT section
+   * for the box, the axis order and why the test is XY-only), and TerrainLayer
+   * hides the plant only while one of these pieces is in the frame's live
+   * object set.
+   *
+   * That is what makes it TIME-AWARE rather than a static erase: at frame 0 the
+   * forest is intact, a tree goes as the foundation over it is placed, and a
+   * base that is later deleted from the save (Lost Camp) gives its trees back.
+   * Undefined on everything that is not vegetation inside the footprint, and on
+   * every prop of an older terrain_*.json — which therefore renders unchanged.
+   */
+  cullBy?: string[];
 }
 
 export interface TerrainState {

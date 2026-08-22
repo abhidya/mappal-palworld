@@ -4,7 +4,7 @@
 // key light never switches off, and the cycle is continuous (no cut at dawn or
 // dusk). Tuning the look is fine; dropping the night floor is a regression.
 import { describe, it, expect } from "vitest";
-import { daylightState, EXPOSURE_MIN, EXPOSURE_MAX } from "./DayNightLights";
+import { daylightState, EXPOSURE_MIN, EXPOSURE_MAX, WATER_NIGHT } from "./DayNightLights";
 
 const HOURS = Array.from({ length: 24 * 12 }, (_, i) => i / 12); // every 5 in-game minutes
 
@@ -25,6 +25,23 @@ describe("day/night rig", () => {
     for (const h of HOURS) {
       const s = daylightState(h);
       expect(s.ambientIntensity + s.hemiIntensity, `hour ${h}`).toBeGreaterThan(0.75);
+    }
+  });
+
+  // Water is the one surface exempted from the exposure policy above: it ships
+  // no base-colour map and a colour channel already at 1.0, so a night held at
+  // daytime irradiance saturated it and the sea read the same bright teal at
+  // midnight as at noon. Pinning both ends matters — a daytime factor that
+  // drifts off 1.0 would silently restage every daylight frame.
+  it("darkens water at night and leaves full day untouched", () => {
+    expect(daylightState(12).waterLight).toBe(1);
+    expect(daylightState(2).waterLight).toBeCloseTo(WATER_NIGHT, 6);
+    expect(WATER_NIGHT).toBeLessThan(1);
+    expect(WATER_NIGHT).toBeGreaterThan(0);
+    for (const h of HOURS) {
+      const w = daylightState(h).waterLight;
+      expect(w, `hour ${h}`).toBeGreaterThanOrEqual(WATER_NIGHT);
+      expect(w, `hour ${h}`).toBeLessThanOrEqual(1);
     }
   });
 
