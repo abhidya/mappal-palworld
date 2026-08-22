@@ -87,6 +87,19 @@ export interface EditorState {
   selection: string[];
   undoStack: Command[];
   redoStack: Command[];
+  /**
+   * Set only by the DEV-ONLY object-set swap in src/scene/CameraDevHook.tsx,
+   * which replaces `objects` wholesale outside the command stack.
+   *
+   * That array is the export input — reconcileExport() treats any raw
+   * map_object absent from it as DELETED, and strips its works, containers and
+   * inbound connector links to match. So a swapped-in subset would export as a
+   * file with everything else removed. Rather than rely on a comment nobody
+   * reads at 2am, exportBlueprint() hard-refuses while this is set; reloading a
+   * file clears it. Always false in production, where the dev hook is
+   * tree-shaken out entirely.
+   */
+  devObjectsSwapped: boolean;
 
   loadFile(name: string, text: string): void;
   /**
@@ -128,6 +141,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
     selection: [],
     undoStack: [],
     redoStack: [],
+    devObjectsSwapped: false,
 
     loadFile(name, text) {
       try {
@@ -148,6 +162,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
           selection: [],
           undoStack: [],
           redoStack: [],
+          devObjectsSwapped: false,
         });
         track("blueprint_loaded", {
           object_count: objects.length,
@@ -164,6 +179,7 @@ export const useEditorStore = create<EditorState>((set, get) => {
           selection: [],
           undoStack: [],
           redoStack: [],
+          devObjectsSwapped: false,
         });
         track("blueprint_load_failed", {});
       }
@@ -293,8 +309,21 @@ export const useEditorStore = create<EditorState>((set, get) => {
     },
 
     exportBlueprint() {
-      const { blueprint, objects, fileName } = get();
+      const { blueprint, objects, fileName, devObjectsSwapped } = get();
       if (!blueprint) return null;
+      // The dev object-set swap replaced `objects` wholesale, so it no longer
+      // describes an edit of the loaded file — it describes a render. Exporting
+      // it would silently delete every map_object it left out (plus their works
+      // and containers). Refuse rather than write that file. Throwing is the
+      // established failure path here: Header.tsx catches it and shows "EXPORT
+      // FAILED — nothing was downloaded", and autosave skips the cycle.
+      if (devObjectsSwapped) {
+        throw new Error(
+          "exportBlueprint: refusing to export after __mappalCam.setObjects() replaced the " +
+            "object set. That array is the export input, so exporting now would delete every " +
+            "object not in it. Reload the blueprint to clear this."
+        );
+      }
       const { raw, notes } = reconcileExport(blueprint.raw, objects, DONORS);
       const lintWarnings = validateLinkage(raw);
       if (lintWarnings.length > 0) {

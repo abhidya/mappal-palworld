@@ -152,6 +152,37 @@ describe.skipIf(!fixtureExists)("useEditorStore (fixtures/calibration_01.json)",
     expect(result!.filename).toBe("calibration_01_edited.json");
   });
 
+  test("exportBlueprint refuses after a dev object-set swap, and a reload clears it", () => {
+    // The DEV-ONLY swap in CameraDevHook replaces `objects` wholesale. That
+    // array is the export input, so exporting a swapped-in SUBSET would delete
+    // every object left out of it (plus their works/containers/connector
+    // links). The guard has to hold precisely in that case, so swap in a
+    // subset rather than an empty array.
+    const subset = useEditorStore.getState().objects.slice(0, 3);
+    expect(subset.length).toBe(3);
+
+    // Exactly what the dev hook does.
+    useEditorStore.setState({
+      objects: subset,
+      selection: [],
+      undoStack: [],
+      redoStack: [],
+      devObjectsSwapped: true,
+    });
+
+    expect(() => useEditorStore.getState().exportBlueprint()).toThrow(/refusing to export/i);
+
+    // Reloading is the documented way out, and must fully clear the flag.
+    useEditorStore.getState().loadFile("calibration_01.json", fixtureText);
+    expect(useEditorStore.getState().devObjectsSwapped).toBe(false);
+    expect(useEditorStore.getState().objects.length).toBe(22);
+    expect(useEditorStore.getState().exportBlueprint()).not.toBeNull();
+  });
+
+  test("a normal load leaves the dev swap flag clear", () => {
+    expect(useEditorStore.getState().devObjectsSwapped).toBe(false);
+  });
+
   test("exportBlueprint returns null when nothing is loaded", () => {
     // loadFile with invalid text sets blueprint to null via the catch path.
     useEditorStore.getState().loadFile("bad.json", "not json");
