@@ -1,0 +1,4 @@
+# Third-party: clone CUE4Parse here (see docs/TIMELAPSE.md)
+cue4parse/
+bin/
+obj/
