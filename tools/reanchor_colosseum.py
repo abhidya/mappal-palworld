@@ -63,7 +63,9 @@ def main():
     print(f"max change in any piece's offset from the PalBox: {worst:.3e} cm "
           f"({'RIGID - geometry preserved' if worst < 1e-6 else 'NOT RIGID'})")
 
-    json.dump(doc, open(dst, 'w'), indent=1)
+    # Match the source file's compact encoding exactly - this is a PST blueprint,
+    # not a document to read, and pretty-printing inflates it by ~65%.
+    json.dump(doc, open(dst, 'w'), separators=(',', ':'))
     print(f"-> {dst}")
 
 

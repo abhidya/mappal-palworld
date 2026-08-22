@@ -10,7 +10,13 @@ print(f"PalBox count           : {len(pb)} (index {pb})")
 ids=[m['Model']['value']['RawData']['value']['instance_id'] for m in mo]
 cids=[m['Model']['value']['RawData']['value']['concrete_model_instance_id'] for m in mo]
 print(f"unique instance_id     : {len(set(ids))} / {len(ids)}  {'OK' if len(set(ids))==len(ids) else 'DUPLICATES'}")
-print(f"unique concrete_id     : {len(set(cids))} / {len(cids)}  {'OK' if len(set(cids))==len(cids) else 'DUPLICATES'}")
+# The null GUID is a legitimate, repeatable value: it means "this object has no
+# separate concrete-model instance". Only the REAL concrete ids must be unique.
+NUL = '00000000-0000-0000-0000-000000000000'
+real = [c for c in cids if c != NUL]
+print(f"concrete ids          : {len(real)} real + {len(cids)-len(real)} null-GUID "
+      f"(null is legitimate); real unique: {len(set(real))}/{len(real)} "
+      f"{'OK' if len(set(real))==len(real) else 'DUPLICATES'}")
 o=T(mo[pb[0]])
 print(f"PalBox translation     : ({o['x']:.3f}, {o['y']:.3f}, {o['z']:.3f})")
 r=[math.hypot(T(m)['x']-o['x'],T(m)['y']-o['y']) for m in mo]
