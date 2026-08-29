@@ -1048,7 +1048,13 @@ if os.path.exists(widx_path):
     # so the merge is a pure translate+scale of the tile's own vertices.
     oc = widx["ocean"]
     half = 0.5 * abs(oc["gridX"][2])
-    OCEAN_R = float(os.environ.get("OCEAN_R", max(GROUND_R, HORIZON_R)))
+    # The surveyed Colosseum sits on a northern snowfield 2.1 km from the
+    # nearest authored water and about 69 m above the global sea plane. Drawing
+    # that plane through a terrain notch is an extraction-boundary artefact, so
+    # this proposed site alone defaults to no ocean. An explicit OCEAN_R still
+    # overrides the policy for diagnostics.
+    ocean_default = 0.0 if b == "c0105eum" else max(GROUND_R, HORIZON_R)
+    OCEAN_R = float(os.environ.get("OCEAN_R", ocean_default))
     tiles = [] if OCEAN_R <= 0 else [
         t for t in oc["instances"]
         if abs(t[0] - bx) <= OCEAN_R + half and abs(t[1] - by) <= OCEAN_R + half]
