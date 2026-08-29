@@ -113,6 +113,27 @@ export function CameraDevHook() {
       // terrainStore.ts / TerrainLayer.tsx.
       setTerrain(props: TerrainProp[] | null) {
         useTerrainStore.getState().setProps(props);
+        // THE HORIZON NEEDS THE FAR PLANE OPENED. Scene.tsx sets far = 5000 m,
+        // which was ample while the terrain stopped at 600 m but silently
+        // clips the far-field mesh (TerrainProp.horizon), and a far-plane cut
+        // through the land reads as exactly the "world ends here" edge this
+        // layer exists to remove. `reach` is that mesh's own furthest vertex
+        // from the base centre, in Unreal cm.
+        //
+        // Only ever widens, only when a horizon prop is present, and only in
+        // this dev-only hook — the editor, which never calls setTerrain, keeps
+        // Scene.tsx's 5000 exactly. Depth precision is unaffected in any
+        // practical sense: with near << far the resolution goes as
+        // z^2/(near * 2^bits), so it depends on `near`, not on `far`.
+        let reach = 0;
+        for (const p of props ?? []) if (p.horizon && p.reach) reach = Math.max(reach, p.reach);
+        if (reach > 0 && (camera as THREE.PerspectiveCamera).isPerspectiveCamera) {
+          const want = reach * 0.01 * 1.25 + 200; // cm -> m (UNIT_SCALE), + headroom
+          if (camera.far < want) {
+            camera.far = want;
+            camera.updateProjectionMatrix();
+          }
+        }
       },
     };
     (window as unknown as { __mappalCam?: typeof api }).__mappalCam = api;

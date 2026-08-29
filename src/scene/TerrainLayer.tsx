@@ -44,9 +44,9 @@
 //
 // Everything else is genuinely static, so it is rendered through a memoized
 // child that never re-renders however often the two above change.
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import * as THREE from "three";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import { ueVecToThree, ueQuatToThree } from "./coords";
 import { buildGlb, glbMaterials, WHITE } from "./glbMaterial";
 import { UNIT_SCALE } from "./coords";
@@ -54,6 +54,8 @@ import { useTerrainStore, type TerrainProp } from "./terrainStore";
 import { useDaylightStore } from "./daylightStore";
 import { daylightState } from "./DayNightLights";
 import { useEditorStore } from "../model/store";
+import { createOceanMaterial, WAVE_TEXTURE_URLS } from "./waterMaterial";
+import { WaterPass, WATER_SURFACE_FLAG } from "./WaterPass";
 
 const S = UNIT_SCALE;
 const UE_TO_THREE = new THREE.Matrix4().set(S, 0, 0, 0, 0, 0, S, 0, 0, S, 0, 0, 0, 0, 0, 1);
@@ -136,7 +138,10 @@ function Prop({
       scale={[prop.sx, prop.sz, prop.sy]}
       geometry={built.geometry}
       material={materials}
-      receiveShadow
+      // The far-field mesh spans kilometres; the directional light's shadow
+      // camera is sized for the base, so all but a sliver of it would sample
+      // outside the shadow map. See TerrainProp.horizon.
+      receiveShadow={!prop.horizon}
       // `visible` rather than unmounting: the props array is what keys this
       // whole layer, so dropping an entry would renumber its neighbours and make
       // React tear down and re-load GLBs mid-render. Hiding costs one skipped
@@ -147,6 +152,60 @@ function Prop({
       renderOrder={prop.transparent ? 1 : 0}
     />
   );
+}
+
+/**
+ * THE SEA. One ocean prop, drawn through the depth-aware single-layer-water
+ * reconstruction in waterMaterial.ts rather than the flat-colour path above.
+ *
+ * It is flagged in userData so WaterPass can leave it out of the pre-pass it
+ * renders for the water to composite against — the water must not appear in
+ * its own backdrop.
+ */
+function OceanProp({
+  prop,
+  centroidThree,
+  material,
+}: {
+  prop: TerrainProp;
+  centroidThree: THREE.Vector3;
+  material: THREE.ShaderMaterial;
+}) {
+  const { scene } = useGLTF(prop.url);
+  const built = useMemo(() => buildGlb(scene, prop.url, UE_TO_THREE), [prop.url, scene]);
+  const position = useMemo(
+    () => ueVecToThree({ x: prop.x, y: prop.y, z: prop.z }).sub(centroidThree),
+    [prop.x, prop.y, prop.z, centroidThree],
+  );
+  const quaternion = useMemo(
+    () => ueQuatToThree({ x: prop.qx, y: prop.qy, z: prop.qz, w: prop.qw }),
+    [prop.qx, prop.qy, prop.qz, prop.qw],
+  );
+  if (!built) return null;
+  return (
+    <mesh
+      position={position}
+      quaternion={quaternion}
+      scale={[prop.sx, prop.sz, prop.sy]}
+      geometry={built.geometry}
+      material={material}
+      userData={{ [WATER_SURFACE_FLAG]: true }}
+      // Drawn LAST of the opaque geometry: it composites against a colour
+      // buffer of the finished world, so everything else must already be in it.
+      renderOrder={2}
+    />
+  );
+}
+
+/** Loads the shipped wave normal maps and builds the one shared sea material. */
+function useOceanMaterial(enabled: boolean): THREE.ShaderMaterial | null {
+  const textures = useTexture(WAVE_TEXTURE_URLS) as unknown as THREE.Texture[];
+  const material = useMemo(
+    () => (enabled ? createOceanMaterial(textures) : null),
+    [enabled, textures],
+  );
+  useEffect(() => () => material?.dispose(), [material]);
+  return material;
 }
 
 /** The props that never change for the whole render — the overwhelming majority. */
@@ -179,12 +238,19 @@ export function TerrainLayer({ centroidThree }: { centroidThree: THREE.Vector3 }
   // than baking the final footprint in at build time.
   const objects = useEditorStore((s) => s.objects);
 
-  // Split once per terrain load, not per frame.
-  const { statics, live } = useMemo(() => {
+  // Split once per terrain load, not per frame. The OCEAN comes out separately:
+  // it is the one surface whose appearance is a depth composite rather than a
+  // colour, so it does not go through the flat/tint path at all.
+  const { statics, live, oceans } = useMemo(() => {
     const statics: TerrainProp[] = [];
     const live: TerrainProp[] = [];
-    for (const p of props ?? []) (p.cullBy?.length || p.water ? live : statics).push(p);
-    return { statics, live };
+    const oceans: TerrainProp[] = [];
+    for (const p of props ?? []) {
+      if (p.water?.kind === "ocean") oceans.push(p);
+      else if (p.cullBy?.length || p.water) live.push(p);
+      else statics.push(p);
+    }
+    return { statics, live, oceans };
   }, [props]);
 
   const liveIds = useMemo(() => {
@@ -196,9 +262,42 @@ export function TerrainLayer({ centroidThree }: { centroidThree: THREE.Vector3 }
   // shipped colour exactly as it always has.
   const waterLight = useMemo(() => (hour === null ? 1 : daylightState(hour).waterLight), [hour]);
 
+  const oceanMaterial = useOceanMaterial(oceans.length > 0);
+
+  // The sea reads the SAME rig the rest of the scene is lit by, so dusk reaches
+  // the water at the moment it reaches the land. `waterLight` still rides on
+  // top, exactly as it did before — it is the day/night scalar, not the colour.
+  useEffect(() => {
+    if (!oceanMaterial) return;
+    const u = oceanMaterial.uniforms;
+    u.uWaterLight.value = waterLight;
+    if (hour === null) {
+      u.uSunDir.value.set(18, 22, -9).normalize();
+      u.uSunColor.value.setRGB(0.85, 0.85, 0.85);
+      u.uSkyColor.value.setRGB(0.35, 0.5, 0.65);
+      u.uAmbient.value.setRGB(0.65, 0.65, 0.65);
+      return;
+    }
+    const s = daylightState(hour);
+    u.uSunDir.value.set(s.keyDir[0], s.keyDir[1], s.keyDir[2]).normalize();
+    u.uSunColor.value.copy(s.keyColor).multiplyScalar(s.keyIntensity);
+    u.uSkyColor.value.copy(s.skyColor);
+    u.uAmbient.value.copy(s.ambientColor).multiplyScalar(s.ambientIntensity);
+  }, [oceanMaterial, waterLight, hour]);
+
   if (!props) return null;
   return (
     <>
+      {oceanMaterial && <WaterPass material={oceanMaterial} />}
+      {oceanMaterial &&
+        oceans.map((p, i) => (
+          <OceanProp
+            key={`o-${p.mesh}-${i}`}
+            prop={p}
+            centroidThree={centroidThree}
+            material={oceanMaterial}
+          />
+        ))}
       <StaticProps props={statics} centroidThree={centroidThree} />
       {live.map((p, i) => (
         <LiveProp

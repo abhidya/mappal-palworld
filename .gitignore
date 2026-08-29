@@ -26,6 +26,10 @@ yarn-error.log*
 # vitest / coverage
 coverage/
 
+# local .NET extractor builds
+**/bin/
+**/obj/
+
 # generated round-trip artifacts
 calibration_01_roundtrip.json
 

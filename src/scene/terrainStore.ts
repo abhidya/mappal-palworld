@@ -70,6 +70,27 @@ export interface TerrainProp {
    * every prop of an older terrain_*.json — which therefore renders unchanged.
    */
   cullBy?: string[];
+
+  // --- THE FAR-FIELD HORIZON -------------------------------------------------
+  /**
+   * True on the single merged far-field mesh (`horizon_<base>.glb`).
+   *
+   * Everything else in this list is near-field: placed meshes inside PROP_R
+   * (300 m) and the 1-quad-per-metre landscape inside LANDSCAPE_R. This one
+   * prop is the game's own cooked HLOD landscape proxies for everything from
+   * there out to HORIZON_R, welded into one mesh against one texture atlas —
+   * see build_terrain.py's section 2b for what it is and the measurement that
+   * it is the same surface as the near-field heightfield.
+   *
+   * It changes two things here, both because it is kilometres across rather
+   * than metres: `receiveShadow` is dropped (the directional light's shadow
+   * camera is sized for the base, so every distant fragment would sample
+   * outside the map) and the camera's far plane is opened up to `reach` by
+   * CameraDevHook's setTerrain().
+   */
+  horizon?: boolean;
+  /** Distance in Unreal cm from the base centre to this mesh's furthest vertex. */
+  reach?: number;
 }
 
 export interface TerrainState {
