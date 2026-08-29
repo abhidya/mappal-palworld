@@ -4,7 +4,7 @@ Renders the recorded history of a Palworld base as a video: every piece
 appearing over time, on real extracted terrain, under the save's own in-game
 clock, with the players and Pals the save actually recorded.
 
-It works by driving the normal MapPal scene headlessly. `tools/timelapse/timelapse.mjs`
+It works by driving the normal MapPal scene in Chrome. `tools/timelapse/timelapse.mjs`
 launches Chrome against a running vite dev server, calls dev-only hooks on
 `window.__mappalCam` to set the scene's contents once per frame, screenshots,
 and hands the PNGs to ffmpeg. Nothing in the editor UI changes: every layer this
@@ -259,7 +259,8 @@ which is what `build_posed_sockets.py` consumes.
    PALTL_WORK=/path/to/work bash final_render_all.sh
    ```
    Sets `PPF=1` (every piece its own frame), `BUILDOUT_HOUR=8`, unsets
-   `MAXFRAMES`, renders all four bases smallest-first, then encodes.
+   `MAXFRAMES`, opens headed Chrome for acceptance, renders the four recorded
+   bases plus the proposed no-Palbox Colosseum smallest-first, then encodes.
 
 4. **Encode only:** `bash encode.sh` → `$PALTL_WORK/video/<base>.mp4`
    (1600x1000, 30 fps, libx264 crf 20, faststart).
@@ -308,6 +309,8 @@ Radii are in centimetres.
 | `PROP_R` | `30000` (300 m) | Radius for everything else placed: rocks, ruins, waterfalls, shoreline. Also gates lights and rivers |
 | `FOLIAGE_R` | `30000` | Radius for per-instance trees and bushes |
 | `LANDSCAPE_R` | `RADIUS` arg (`30000`) | Landscape-quad clip box |
+| `HORIZON_R` | `800000` (8 km) | Far-field HLOD terrain and ocean reach |
+| `HORIZON_INNER` | `LANDSCAPE_R` | Inner edge of the far-field ring, avoiding overlap with detailed terrain |
 | `OCEAN_R` | `GROUND_R` | Ocean-tile radius. **Tied to `GROUND_R` on purpose** — the sea must not out-reach the land |
 | `WATER_R` | `GROUND_R` | Water-body radius |
 | `FOLIAGE_CAP` | `3000` | Max decorative foliage instances, nearest-first |
@@ -316,6 +319,8 @@ Radii are in centimetres.
 
 Usage: `python3 build_terrain.py --manifest` writes the extraction manifest;
 `python3 build_terrain.py <base8> [radius_cm]` writes the per-base terrain.
+`python3 build_colosseum.py` regenerates the checked-in design's synthetic
+2,775-piece inputs, deliberately omitting both its Palbox and base-camp record.
 
 ### Pipeline-wide
 

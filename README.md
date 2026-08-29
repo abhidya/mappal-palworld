@@ -4,7 +4,7 @@
 
 **How it was built: [docs/BUILDLOG.md](docs/BUILDLOG.md)** — calibration-first reverse engineering of an undocumented save format, the donor pattern, and how round-trip fidelity is enforced.
 
-**Base timelapse: [docs/TIMELAPSE.md](docs/TIMELAPSE.md)** — rendering a base's recorded history to video by driving MapPal headlessly, plus the macOS CUE4Parse toolchain that extracts the meshes and terrain it draws.
+**Base timelapse: [docs/TIMELAPSE.md](docs/TIMELAPSE.md)** — rendering recorded base history and the proposed no-Palbox Colosseum to video in Chrome, plus the macOS CUE4Parse toolchain that extracts the meshes and terrain it draws.
 
 ![A 7,700-piece skyscraper built in MapPal](docs/media/tower-hero.png)
 *A ~7,700-piece skyscraper designed in MapPal and imported into a live world — the glass-and-cladding facade was generated from the original build guide's plan graphic.*
