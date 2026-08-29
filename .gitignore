@@ -35,6 +35,13 @@ calibration_01_roundtrip.json
 
 # locally extracted game assets � never committed
 assets-local/
+public/equipment_meshes*/
+public/meshes*/
+public/pal_meshes*/
+public/player_meshes*/
+public/terrain_meshes/
+public/water_tex/
+public/union/
 
 # editor work-in-progress checkpoints
 wip/
