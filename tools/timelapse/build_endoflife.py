@@ -101,7 +101,8 @@ def pals_doc(scan, base, last_seen, final_ts, extra=None):
 
 
 def main():
-    scan = [r for r in json.load(open(f"{SP}/eol_scan.json")) if r.get("ok")]
+    scan_path = os.environ.get("EOL_SCAN") or f"{SP}/eol_scan.json"
+    scan = [r for r in json.load(open(scan_path)) if r.get("ok")]
     scan.sort(key=lambda r: r["ts"])
     bi = json.load(open(f"{SP}/build_index.json"))
     snaps = [r["ts"] for r in scan]

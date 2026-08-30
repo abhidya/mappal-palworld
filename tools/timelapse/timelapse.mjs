@@ -102,7 +102,10 @@ page.on('pageerror',e=>console.log('PAGEERR',e.message));
 // renders as the flat #cbd5e1 fallback colour — i.e. an unidentifiable grey
 // blob. If Pals come out grey, restart the dev server before suspecting the
 // material code.
-await page.goto(`http://127.0.0.1:${process.env.PORT||5174}/`,{waitUntil:'networkidle2'});
+await page.goto(`http://127.0.0.1:${process.env.PORT||5174}/`,{
+  waitUntil:'networkidle2',
+  timeout:120000,
+});
 const inp=await page.waitForSelector('input[type=file]',{timeout:20000});
 await inp.uploadFile(`${UNION_DIR}/union_${BASE}.json`);
 await page.waitForFunction(()=>!!window.__mappalCam&&!!window.__mappalCam.setObjects,{timeout:40000});
@@ -2038,7 +2041,7 @@ for(let i=0;i<N;i++){
   // frame 0 (that is exactly how this was caught: an A/B sheet whose first
   // sampled column came out black in both rows).
   await new Promise(r=>setTimeout(r,done===0?800:55));
-  await page.screenshot({path:f});
+  await page.screenshot({path:f,optimizeForSpeed:true});
   // CLOSEUP=<metres> writes a SECOND screenshot per frame, taken from that
   // distance off the builder avatar, then restores the framing on the next
   // frame. Diagnostic only and off by default, but keep it: "is the avatar
@@ -2129,8 +2132,15 @@ if(EOL&&EOL.endOfLife&&!process.env.NOENDING){
     el.innerHTML='<div style="font:600 22px/1.35 inherit;letter-spacing:.08em;text-transform:uppercase">'+t+
       '</div>'+ls.map(x=>'<div style="margin-top:8px;opacity:.88">'+x+'</div>').join('');
   },title,lines);
-  const shot=async(k)=>{ await new Promise(r=>setTimeout(r,140));
-    await page.screenshot({path:`${OUT}/f_${String(N+k).padStart(4,'0')}.png`}); };
+  const shot=async(k)=>{
+    const path=`${OUT}/f_${String(N+k).padStart(4,'0')}.png`;
+    // The render signature above deletes stale frames whenever the plan or
+    // ending settings change.  If the signature still matches, a completed
+    // coda frame is safe to resume just like an ordinary replay frame.
+    if(fs.existsSync(path)) return;
+    await new Promise(r=>setTimeout(r,140));
+    await page.screenshot({path,optimizeForSpeed:true});
+  };
   // The world clock at each of the two real snapshots, so the light is that
   // snapshot's own in-game hour rather than wherever the replay left the sun.
   const eolHour=(ts)=>{ const g=GSEC_RAW(ts); return g===null?null:((g%DAY)/3600); };

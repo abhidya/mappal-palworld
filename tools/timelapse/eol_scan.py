@@ -51,7 +51,7 @@ def sources():
     # files share an mtime keep the LARGEST, because the small ones are the
     # 35-38 KB empty-world saves and would look like "everything vanished".
     byts = {}
-    for pat in ("nasbk", "nasbk2", "nas", "nasbk3"):
+    for pat in ("nasbk", "nasbk2", "nas", "nasbk3", "historical"):
         for p in glob.glob(f"{SP}/{pat}/**/Level.sav", recursive=True):
             t = int(os.path.getmtime(p))
             sz = os.path.getsize(p)

@@ -7,8 +7,13 @@ SP="${PALTL_WORK:-$(pwd)}"
 APP="${MAPPAL_ROOT:-$SP/mappal}"
 export PALTL_WORK="$SP"
 cd "$SP"
+export BASES="${BASES:-5fed0024 c0105eum 16fca097 de44d9f4 07f13218}"
 export BUILDOUT_HOUR=8      # declared stylistic choice: show the reconstruction in daylight
-export HEADLESS=0            # final acceptance runs stay visible for review
+# Isolate unattended acceptance renders from the user's long-running Chrome
+# session.  Visible Chrome can finish every screenshot and then hang forever in
+# browser.close() when macOS reuses the existing app process; headless produces
+# the same canvas pixels and exits cleanly between bases.
+export HEADLESS=1
 unset MAXFRAMES             # MAXFRAMES silently raises PPF and re-chunks the order
 export PPF=1
 
@@ -27,7 +32,7 @@ for tex in T_Water_01_N T_Water_N_2 T_Water_WaveIntense_N; do
     exit 1
   }
 done
-for b in 5fed0024 c0105eum 16fca097 de44d9f4 07f13218; do
+for b in $BASES; do
   for input in "union_$b.json" "times_$b.json" "terrain_$b.json"; do
     [[ -s "$APP/public/union/$input" ]] || {
       echo "missing render input: $APP/public/union/$input" >&2
@@ -40,7 +45,7 @@ curl -fsS "http://127.0.0.1:${PORT:-5174}/" >/dev/null || {
   exit 1
 }
 
-for b in 5fed0024 c0105eum 16fca097 de44d9f4 07f13218; do
+for b in $BASES; do
   echo "=== $(date +%H:%M:%S) render $b ==="
   node "$HERE/timelapse.mjs" "$b" 240 2.0
   n="$(find "$SP/frames/$b" -maxdepth 1 -type f -name 'f_*.png' | wc -l | tr -d ' ')"
