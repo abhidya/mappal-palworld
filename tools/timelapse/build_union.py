@@ -14,8 +14,10 @@ def load_level(raw):
     gvas,_=decompress_sav_to_gvas(raw)
     return GvasFile.read(gvas,PALWORLD_TYPE_HINTS,PALWORLD_CUSTOM_PROPERTIES).dump()
 sources=[]
-for p in sorted(glob.glob(f"{SP}/nas/*/backup/world/*/Level.sav")+glob.glob(f"{SP}/nas/*/Level.sav"),
-                key=os.path.getmtime):
+historical=[]
+for tree in ("nas", "nasbk", "nasbk2", "nasbk3", "historical"):
+    historical += glob.glob(f"{SP}/{tree}/**/Level.sav", recursive=True)
+for p in sorted(set(historical), key=os.path.getmtime):
     sources.append(('file',p,int(os.path.getmtime(p))))
 commits=[l.split() for l in open(f"{SP}/commits.txt")][::-1]
 step=max(1,len(commits)//40)

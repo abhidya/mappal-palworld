@@ -28,7 +28,9 @@ import json, os, glob
 from collections import defaultdict
 
 SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
-OUT = f"{SP}/mappal/public/union"
+MAPPAL = os.environ.get("MAPPAL_ROOT") or os.path.abspath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+OUT = os.path.join(MAPPAL, "public", "union")
 NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
          "de44d9f4": "Stone Works", "5fed0024": "Lost Camp"}
 ZERO = "00000000-0000-0000-0000-000000000000"
@@ -52,7 +54,7 @@ def _bases_from_union():
     """Base centre + area_range straight out of each union file's own
     BaseCampSaveData record."""
     out = {}
-    for f in sorted(glob.glob(f"{SP}/mappal/public/union/union_*.json")):
+    for f in sorted(glob.glob(os.path.join(OUT, "union_*.json"))):
         b = os.path.basename(f)[6:14]
         d = json.load(open(f))
         bc = (d.get("base_camp") or {}).get("value", {}).get("RawData", {}).get("value")
@@ -65,10 +67,13 @@ def _bases_from_union():
 
 
 def _full(pal):
-    manifest = json.load(open(f"{SP}/pal_manifest.json"))
+    actual_manifest = f"{SP}/pal_actual_manifest.json"
+    manifest = json.load(open(actual_manifest if os.path.exists(actual_manifest)
+                              else f"{SP}/pal_manifest.json"))
     bases = pal["bases"]
 
-    have_mesh = {os.path.basename(p)[:-4] for p in glob.glob(f"{SP}/pal_meshes/*.glb")}
+    have_mesh = {os.path.basename(p)[:-4]
+                 for p in glob.glob(os.path.join(MAPPAL, "public", "pal_meshes", "*.glb"))}
 
     def mesh_for(cid):
         """Recorded CharacterID -> extracted SK_*.glb, via pal_manifest.json."""

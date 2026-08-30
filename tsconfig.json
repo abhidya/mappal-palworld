@@ -21,5 +21,6 @@
 
     "types": ["node"]
   },
-  "include": ["src", "tools", "vite.config.ts"]
+  "include": ["src", "tools", "vite.config.ts"],
+  "exclude": ["tools/palworld-extract/cue4parse"]
 }

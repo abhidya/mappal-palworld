@@ -15,8 +15,10 @@ and how wide the gap between them is.
 import json, os, math, datetime
 from collections import Counter
 
-SP = os.path.dirname(os.path.abspath(__file__))
-OUT = f"{SP}/mappal/public/union"
+SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+MAPPAL = os.environ.get("MAPPAL_ROOT") or os.path.abspath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+OUT = os.path.join(MAPPAL, "public", "union")
 NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
          "de44d9f4": "Stone Works", "5fed0024": "Lost Camp"}
 # Ground clutter, not construction: CommonDropItem3D is a dropped-item pickup

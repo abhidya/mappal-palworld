@@ -108,7 +108,15 @@ public static class Extract
     static void One(CUE4Parse.FileProvider.DefaultFileProvider provider, Rec r, string outDir, string texDir)
     {
         var leaf = "/" + r.meshPath[(r.meshPath.LastIndexOf('/') + 1)..] + ".uasset";
-        var vpath = "Pal/Content/" + r.meshPath.Substring("/Game/".Length) + ".uasset";
+        // Manifests sourced from save tables use /Game/... while World
+        // Partition component references already use Pal/Content/.... Both are
+        // authoritative cooked paths, so normalize either spelling instead of
+        // forcing terrain manifests through a lossy leaf-name lookup.
+        var vpath = r.meshPath.StartsWith("/Game/", StringComparison.OrdinalIgnoreCase)
+            ? "Pal/Content/" + r.meshPath.Substring("/Game/".Length) + ".uasset"
+            : r.meshPath.StartsWith("Pal/Content/", StringComparison.OrdinalIgnoreCase)
+                ? r.meshPath + ".uasset"
+                : null;
         if (!provider.Files.ContainsKey(vpath))
             vpath = provider.Files.Keys.FirstOrDefault(k => k.EndsWith(leaf, StringComparison.OrdinalIgnoreCase));
         if (vpath == null) { r.err = "asset not found"; return; }

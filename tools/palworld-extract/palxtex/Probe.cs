@@ -31,7 +31,7 @@ public static class P
     public static string Usmap()
     {
         var p = Environment.GetEnvironmentVariable("PALX_USMAP")
-                ?? Usmap();
+                ?? Path.Combine(Base, "Mappings.usmap");
         if (!File.Exists(p))
             throw new FileNotFoundException(
                 "Mappings.usmap missing - every property read would come back empty", p);
@@ -57,6 +57,7 @@ public static class P
         if (args.Length > 0 && args[0] == "--extract") return Extract.Run(args);
         if (args.Length > 0 && args[0] == "--dt") return Resolve.RunDt(args);
         if (args.Length > 0 && args[0] == "--bpmesh") return Resolve.RunBpMesh(args);
+        if (args.Length > 0 && args[0] == "--sockets") return Resolve.RunSockets(args);
         if (args.Length > 0 && args[0] == "--find") return Resolve.RunFind(args);
         if (args.Length > 0 && args[0] == "--animprobe") return Pose.Probe(args);
         if (args.Length > 0 && args[0] == "--posescan") return Pose.Scan(args);

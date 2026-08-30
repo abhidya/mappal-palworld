@@ -31,7 +31,7 @@ public static class Program
     static string Usmap()
     {
         var p = Environment.GetEnvironmentVariable("PALX_USMAP")
-                ?? Usmap();
+                ?? Path.Combine(Base, "Mappings.usmap");
         if (!File.Exists(p))
             throw new FileNotFoundException(
                 "Mappings.usmap missing - every property read would come back empty", p);

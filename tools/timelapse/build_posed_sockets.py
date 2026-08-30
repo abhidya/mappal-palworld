@@ -22,7 +22,7 @@ are evaluated from the same animation frame, so they cannot disagree.
 """
 import json, math, os
 
-SP = os.path.dirname(os.path.abspath(__file__))
+SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
 
 
 def qmul(a, b):
@@ -50,7 +50,7 @@ def compose(parent, local):
     return ([pt[0] + r[0], pt[1] + r[1], pt[2] + r[2]], list(qmul(pq, lq)))
 
 
-SOCKETS = json.load(open(f"{SP}/mappal/public/union/equipment_16fca097.json"))["sockets"]
+SOCKETS = json.load(open(f"{SP}/equipment_sockets.json"))
 STANCES = {"kneel": "posebones_kneel.json", "standing": "posebones_stand.json"}
 
 out = {"note": __doc__.strip(), "anim": {}, "sockets": {}}
@@ -82,6 +82,6 @@ for n in ("Socket_HairAttach_HeadEquip_front03", "Socket_Weapon_R", "Socket_Back
     r = out["sockets"].get(n)
     if not r:
         continue
-    bind = SOCKETS[n]["bindPose"]["TypeA"]["t"]
-    print(f"  {n:42s} bone={r['bone']:10s} bind={[round(v,1) for v in bind]} "
-          f"kneel={[round(v,1) for v in r['kneel']['t']]} stand={[round(v,1) for v in r['standing']['t']]}")
+    print(f"  {n:42s} bone={r['bone']:10s} "
+          f"kneel={[round(v,1) for v in r['kneel']['t']]} "
+          f"stand={[round(v,1) for v in r['standing']['t']]}")

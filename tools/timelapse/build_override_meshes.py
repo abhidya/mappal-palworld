@@ -7,7 +7,8 @@ override names an item the player need not be carrying at all — Kat's override
 is CopperArmorCold while she is wearing SFArmor — so those ids have no entry
 there. This resolves them through the SAME shipped table the equipment pass
 used, DT_CharacterCreationMeshPresetTable_Equipments[id].SkeletalMeshMap[bodyType],
-with Mappings.usmap applied (eq_dt_item.json is that table, dumped verbatim).
+with Mappings.usmap applied (equipment_tables.json is that table, dumped with
+its nested map values intact).
 
 An id with NO row in the table resolves to NOTHING and is recorded as such —
 `Naked_Head` is exactly that case, and it is not a failure: it is the game's own
@@ -16,9 +17,10 @@ despite having PlasticHelmet equipped. Nothing is ever substituted.
 """
 import json, os, glob
 
-SP = os.path.dirname(os.path.abspath(__file__))
-E = json.load(open(f"{SP}/eq_dt_item.json"))["DT_CharacterCreationMeshPresetTable_Equipments"][0]["Rows"]
-PUB = f"{SP}/mappal/public"
+SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+MAPPAL = os.environ.get("MAPPAL_ROOT") or os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+E = next(iter(json.load(open(f"{SP}/equipment_tables.json")).values()))
+PUB = f"{MAPPAL}/public"
 POSED = "/equipment_meshes_posed"
 
 wanted = {}
@@ -44,11 +46,14 @@ for item, bts in sorted(wanted.items()):
         out[item] = rec
         continue
     for kv in row.get("SkeletalMeshMap") or []:
-        ap = (kv.get("Value") or {}).get("AssetPathName")
+        ap = kv.get("v", kv.get("Value"))
+        if isinstance(ap, dict):
+            ap = ap.get("AssetPathName")
         if not ap or ap == "None":
             continue
         mesh = ap.split(".")[0].rsplit("/", 1)[-1]
-        rec["meshes"][kv["Key"]] = {
+        body_type = kv.get("k", kv.get("Key"))
+        rec["meshes"][body_type] = {
             "mesh": mesh,
             "url": f"{POSED}/{mesh}.glb",
             "haveGlb": os.path.exists(f"{PUB}{POSED}/{mesh}.glb"),
@@ -59,7 +64,7 @@ for item, bts in sorted(wanted.items()):
     out[item] = rec
 
 doc = {"note": __doc__.strip(),
-       "source": "DT_CharacterCreationMeshPresetTable_Equipments (eq_dt_item.json), Mappings.usmap applied",
+       "source": "DT_CharacterCreationMeshPresetTable_Equipments (equipment_tables.json), Mappings.usmap applied",
        "items": out}
 json.dump(doc, open(f"{PUB}/union/equipment_override_meshes.json", "w"), indent=1)
 print(f"wrote equipment_override_meshes.json: {len(out)} override ids")

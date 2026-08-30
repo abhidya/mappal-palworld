@@ -36,6 +36,10 @@ BASES = {"07f13218", "16fca097", "de44d9f4", "5fed0024"}
 # just the ones standing inside a camp - needed to tell "the camp's Pals moved"
 # from "the camp's Pals are gone" once the camp record itself no longer exists.
 FULLPALS = os.environ.get("FULLPALS") == "1"
+try:
+    GAMETIME = json.load(open(f"{SP}/gametime_index.json"))
+except FileNotFoundError:
+    GAMETIME = {}
 
 
 def sources():
@@ -227,7 +231,7 @@ def work(job):
             import ooz  # noqa: F401
         except ImportError:
             pass
-        import basecamp_attrib, paint_scan, oozshim
+        import basecamp_attrib, oozshim
         from palworld_save_tools.gvas import GvasFile
         from palworld_save_tools.paltypes import PALWORLD_TYPE_HINTS, PALWORLD_CUSTOM_PROPERTIES
         raw = read_raw(kind, ref)
@@ -235,11 +239,24 @@ def work(job):
             return {"ts": ts, "ok": False, "why": "too small", "bytes": len(raw),
                     "src": ref if kind == "file" else "git:" + ref}
         tails = _patch_reader()
+        # extract_gametime.py already read the world's own clock from these
+        # exact timestamped snapshots. Reuse that audited index instead of
+        # depending on the optional, out-of-tree paint_scan extension merely
+        # to recover one value.
+        clock_row = GAMETIME.get(str(ts))
+        real_clock = clock_row[0] if clock_row else None
+        clock = clock_row[1] if clock_row else None
         gvas = oozshim.decompress_sav(raw)
-        clock = paint_scan.game_clock(gvas)
         w = GvasFile.read(gvas, PALWORLD_TYPE_HINTS, PALWORLD_CUSTOM_PROPERTIES) \
             .dump()["properties"]["worldSaveData"]["value"]
         stopped = w.pop("__stopped_at__", None)
+        if clock is None:
+            try:
+                gt = w["GameTimeSaveData"]["value"]
+                real_clock = gt["RealDateTimeTicks"]["value"]
+                clock = gt["GameDateTimeTicks"]["value"]
+            except (KeyError, TypeError):
+                pass
         need = ("BaseCampSaveData", "MapObjectSaveData")
         missing = [k for k in need if k not in w]
         if missing:
@@ -315,7 +332,8 @@ def work(job):
             # version-matched decoder) is the fallback source.
             pal_error = f"{type(exc).__name__}: {exc}"[:160]
         return {"ts": ts, "ok": True, "src": ref if kind == "file" else "git:" + ref,
-                "game_clock": clock, "camps": camps, "pieces": pieces,
+                "real_clock": real_clock, "game_clock": clock,
+                "camps": camps, "pieces": pieces,
                 "lost_camp_types": types, "pals": pals, "pal_pos": pal_pos,
                 "pal_total": total_pals, "bytes": len(raw), "rawdata_tail_bytes": tails,
                 "parse_stopped_at": stopped, "pal_error": pal_error,

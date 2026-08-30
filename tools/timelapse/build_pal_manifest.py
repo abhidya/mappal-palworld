@@ -1,5 +1,79 @@
 import sys,os,json,struct
 os.chdir(os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0,'.')
+
+
+def build_from_cue4parse():
+    """Build from the mapping-aware palxtex dumps when a client PAK is local.
+
+    ``dt_dump.json`` supplies CharacterID -> BPClass and ``bpmesh_all.json``
+    supplies the cooked blueprint component meshes.  This avoids the legacy
+    name-table heuristic below and, importantly, reads unversioned properties
+    with Mappings.usmap applied.
+    """
+    if not (os.path.exists("dt_dump.json") and os.path.exists("bpmesh_all.json")):
+        return False
+
+    tables = json.load(open("dt_dump.json"))
+    comps = json.load(open("bpmesh_all.json"))
+    master = {}
+    for rows in tables.values():
+        for cid, row in rows.items():
+            master.setdefault(cid, row.get("BPClass"))
+
+    def bp_leaf(path):
+        if not path:
+            return None
+        return path.rsplit("/", 1)[-1].split(".", 1)[0]
+
+    def normalise(path):
+        if not path:
+            return None
+        path = path.split(".", 1)[0]
+        if path.startswith("Pal/Content/"):
+            path = "/Game/" + path[len("Pal/Content/"):]
+        return path
+
+    manifest = {}
+    stats = {"resolved": 0, "no_mesh": 0, "no_bp": 0}
+    for cid, bp in sorted(master.items()):
+        entry = {"blueprint": bp, "meshPath": None, "meshName": None,
+                 "resolved": False, "note": ""}
+        leaf = bp_leaf(bp)
+        if not leaf:
+            entry["note"] = "empty BPClass"
+            stats["no_bp"] += 1
+            manifest[cid] = entry
+            continue
+        choices = [c for c in comps.get(leaf, [])
+                   if c.get("visible", True)
+                   and "SkeletalMeshComponent" in (c.get("exportClass") or "")
+                   and c.get("meshPath")]
+        # Character body components are authoritative over any accessory mesh
+        # also baked into the actor blueprint.
+        choices.sort(key=lambda c: (
+            "/Model/Character/Monster/" not in c["meshPath"],
+            not (c.get("mesh") or "").startswith("SK_"),
+            c.get("export") or ""))
+        if not choices:
+            entry["note"] = "no visible skeletal mesh component in cooked blueprint"
+            stats["no_mesh"] += 1
+            manifest[cid] = entry
+            continue
+        path = normalise(choices[0]["meshPath"])
+        entry.update(meshPath=path, meshName=path.rsplit("/", 1)[-1], resolved=True)
+        if len(choices) > 1:
+            entry["note"] = f"selected character body from {len(choices)} skeletal components"
+        stats["resolved"] += 1
+        manifest[cid] = entry
+
+    json.dump(manifest, open("pal_manifest.json", "w"), indent=2, sort_keys=True)
+    print(json.dumps(stats))
+    return True
+
+
+if build_from_cue4parse():
+    raise SystemExit(0)
+
 from pkg import parse_names
 from dtparse import R, skip_props
 import pakx

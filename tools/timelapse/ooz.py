@@ -1,11 +1,15 @@
-"""Drop-in `ooz.decompress(src, out_len)` backed by libooz_dec.dylib.
+"""Drop-in ``ooz.decompress(src, out_len)`` backed by a local decoder.
 
 The palooz python extension does not build on this machine (its compressor half
-fails to compile against the current libc++), so only the ooz DECOMPRESSOR
-translation units were built into libooz_dec.dylib and are called via ctypes.
-Output length is asserted exactly, same check palooz makes.
+fails to compile against the current libc++).  Prefer the small ``eqsav``
+binding when it is installed; otherwise use the decompressor-only
+``libooz.dylib`` beside this module through :mod:`oozshim`.  Both paths assert
+the exact output length.
 """
-from eqsav import ooz_decompress as _d
+try:
+    from eqsav import ooz_decompress as _d
+except ModuleNotFoundError:
+    from oozshim import kraken as _d
 
 
 def decompress(src, out_len):

@@ -99,9 +99,12 @@ public static class Resolve
                 via = depth == 0 ? null : vpath,
             });
         }
-        if (outl.Count > 0 || depth >= 1) return outl;
+        if (outl.Count > 0 || depth >= 4) return outl;
 
-        // no mesh of its own -> follow imported blueprint packages one level
+        // No mesh of its own: follow the cooked blueprint parent/import chain.
+        // Many Pal variants (boss/predator/elemental forms) inherit through two
+        // or three intermediate BPs before reaching the actor that owns the
+        // SkeletalMeshComponent, so a one-level walk silently lost them.
         if (pkg is CUE4Parse.UE4.Assets.IoPackage io)
         {
             foreach (var dep in io.ImportedPackages.Value)
@@ -141,6 +144,47 @@ public static class Resolve
             JsonSerializer.Serialize(res, new JsonSerializerOptions { WriteIndented = true }));
         Console.Error.WriteLine("-> bpmesh_dump.json");
         return 0;
+    }
+
+    /// Dump the real socket declarations from SK_PalHuman_Skeleton.  Rigid
+    /// equipment is authored in socket-local space, so these transforms are
+    /// required before composing it onto an animated player pose.
+    public static int RunSockets(string[] args)
+    {
+        var provider = P.Mount();
+        Console.Error.WriteLine($"mounted files={provider.Files.Count}");
+        var vpath = provider.Files.Keys.FirstOrDefault(k =>
+            k.EndsWith("/SK_PalHuman_Skeleton.uasset", StringComparison.OrdinalIgnoreCase));
+        if (vpath == null) throw new FileNotFoundException("SK_PalHuman_Skeleton not found in PAK");
+        var pkg = provider.LoadPackage(vpath);
+        var sockets = new Dictionary<string, object>();
+        foreach (var ex in pkg.GetExports())
+        {
+            if (!(ex.ExportType ?? "").Contains("SkeletalMeshSocket", StringComparison.OrdinalIgnoreCase))
+                continue;
+            var socket = ex.GetOrDefault("SocketName", new FName("None")).Text;
+            var bone = ex.GetOrDefault("BoneName", new FName("None")).Text;
+            if (string.IsNullOrEmpty(socket) || socket == "None") continue;
+            var t = ex.GetOrDefault("RelativeLocation", FVector.ZeroVector);
+            var r = ex.GetOrDefault("RelativeRotation", FRotator.ZeroRotator);
+            var s = ex.GetOrDefault("RelativeScale", FVector.OneVector);
+            var q = r.Quaternion();
+            sockets[socket] = new Dictionary<string, object>
+            {
+                ["bone"] = bone,
+                ["relative"] = new Dictionary<string, object>
+                {
+                    ["t"] = new[] { t.X, t.Y, t.Z },
+                    ["q"] = new[] { q.X, q.Y, q.Z, q.W },
+                    ["s"] = new[] { s.X, s.Y, s.Z },
+                },
+            };
+        }
+        var outPath = args.Length > 1 ? args[1] : Path.Combine(P.Base, "equipment_sockets.json");
+        File.WriteAllText(outPath, JsonSerializer.Serialize(sockets,
+            new JsonSerializerOptions { WriteIndented = true }));
+        Console.WriteLine($"{vpath}: {sockets.Count} sockets -> {outPath}");
+        return sockets.Count > 0 ? 0 : 1;
     }
 
     /// list every package path whose leaf name matches a substring

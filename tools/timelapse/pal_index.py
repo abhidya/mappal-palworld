@@ -26,13 +26,17 @@ Output: pal_index.json
   `track` is de-duplicated: a sample is emitted only when the recorded position
   actually changed, so a Pal that never jumped again carries one sample.
 """
-import json, os, sys, glob, time, subprocess
+import json, os, sys, glob, time, subprocess, hashlib, gzip
 from collections import defaultdict
 from multiprocessing import Pool
 
 SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
 REPO = os.environ.get("PALTL_REPO") or os.path.expanduser("~/Palworld")
 LINEAGE_GUILD = "017a45a0"   # same lineage filter merge_all.py uses
+try:
+    EQUIP_CONTAINERS = json.load(open(f"{SP}/equipment_containers.json"))
+except FileNotFoundError:
+    EQUIP_CONTAINERS = {}
 
 
 def read_raw(kind, ref):
@@ -45,7 +49,7 @@ def read_raw(kind, ref):
 
 
 def work(job):
-    ts, kind, ref = job
+    content_id, kind, ref = job
     try:
         import ooz  # noqa: F401
         from palworld_save_tools.gvas import GvasFile
@@ -53,7 +57,7 @@ def work(job):
         from palworld_save_tools.palsav import decompress_sav_to_gvas
         raw = read_raw(kind, ref)
         if len(raw) < 100000:
-            return (ts, None, None)
+            return (content_id, None, None, None)
         gvas, _ = decompress_sav_to_gvas(raw)
         w = GvasFile.read(gvas, PALWORLD_TYPE_HINTS, PALWORLD_CUSTOM_PROPERTIES) \
             .dump()["properties"]["worldSaveData"]["value"]
@@ -62,7 +66,7 @@ def work(job):
                   for g in w["GroupSaveDataMap"]["value"]
                   if g["value"]["RawData"]["value"].get("group_type") == "EPalGroupType::Guild"}
         if LINEAGE_GUILD not in guilds:
-            return (ts, None, None)          # a different playthrough in the backup set
+            return (content_id, None, None, None)  # a different playthrough in the backup set
 
         bases = {}
         for b in w["BaseCampSaveData"]["value"]:
@@ -88,51 +92,144 @@ def work(job):
                 (sp.get("Gender") or {}).get("value", {}).get("value", ""),
                 (sp.get("NickName") or {}).get("value", ""),
             ))
-        return (ts, bases, pals)
+        equipment = {}
+        if EQUIP_CONTAINERS:
+            containers = {str(e["key"]["ID"]["value"]): e["value"]
+                          for e in w["ItemContainerSaveData"]["value"]}
+            for uid8, ids in EQUIP_CONTAINERS.items():
+                rec = {}
+                for slotname in ("armor", "weapon", "food"):
+                    container = containers.get(ids[slotname])
+                    if container is None:
+                        continue
+                    items = []
+                    for slot in container["Slots"]["value"]["values"]:
+                        rd = slot["RawData"]["value"]
+                        static_id = rd["item"]["static_id"]
+                        if not static_id or static_id == "None":
+                            continue
+                        items.append([
+                            rd["slot_index"], static_id, rd["count"],
+                            str(rd["item"]["dynamic_id"]["local_id_in_created_world"]),
+                        ])
+                    rec[slotname] = sorted(items)
+                if rec:
+                    equipment[uid8] = rec
+        return (content_id, bases, pals, equipment)
     except Exception as e:
-        return (ts, None, str(e)[:120])
+        return (content_id, None, str(e)[:120], None)
+
+
+def git_content_ids(commits):
+    """Return commit -> Level.sav content id in one cheap cat-file pass.
+
+    Git-LFS commits usually contain a ~130-byte pointer, so the pointer oid is
+    the identity of the actual save.  Identical oids are decoded only once.
+    """
+    specs = [f"{c}:world/current/Level.sav" for c in commits]
+    proc = subprocess.Popen(["git", "-C", REPO, "cat-file", "--batch"],
+                            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    out, _ = proc.communicate(("\n".join(specs) + "\n").encode())
+    ids, pos = {}, 0
+    for commit in commits:
+        nl = out.find(b"\n", pos)
+        if nl < 0:
+            break
+        header = out[pos:nl].decode(errors="replace")
+        pos = nl + 1
+        if header.endswith("missing") or " " not in header:
+            continue
+        size = int(header.split()[-1])
+        body = out[pos:pos + size]
+        pos += size + 1
+        oid = next((line.split(b":", 1)[1].decode()
+                    for line in body.splitlines() if line.startswith(b"oid sha256:")), None)
+        ids[commit] = "lfs:" + oid if oid else "git:" + header.split()[0]
+    return ids
+
+
+def file_content_id(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return "file:" + h.hexdigest()
 
 
 def main():
     src = {}
-    for line in open(f"{SP}/commits.txt"):
-        c, t = line.split()
+    commit_rows = [line.split() for line in open(f"{SP}/commits.txt")]
+    commit_ids = git_content_ids([c for c, _ in commit_rows])
+    for c, t in commit_rows:
         src.setdefault(int(t), ("git", c))
     for pat in ("nas", "nasbk", "nasbk2", "nasbk3"):
         for p in glob.glob(f"{SP}/{pat}/**/Level.sav", recursive=True):
             src.setdefault(int(os.path.getmtime(p)), ("file", p))
-    jobs = [(ts, k, r) for ts, (k, r) in sorted(src.items())]
-    print(f"snapshots to read: {len(jobs)}", flush=True)
+    timeline = []
+    unique = {}
+    for ts, (kind, ref) in sorted(src.items()):
+        content_id = commit_ids.get(ref) if kind == "git" else file_content_id(ref)
+        if not content_id:
+            content_id = f"missing:{kind}:{ref}"
+        timeline.append((ts, content_id))
+        unique.setdefault(content_id, (kind, ref))
+    all_jobs = [(content_id, kind, ref) for content_id, (kind, ref) in unique.items()]
+    cache_dir = f"{SP}/cache/pal_index"
+    os.makedirs(cache_dir, exist_ok=True)
+
+    def cache_path(content_id):
+        return f"{cache_dir}/{hashlib.sha256(content_id.encode()).hexdigest()}.json.gz"
+
+    cache = {}
+    jobs = []
+    for content_id, kind, ref in all_jobs:
+        path = cache_path(content_id)
+        try:
+            with gzip.open(path, "rt") as f:
+                cache[content_id] = json.load(f)
+        except (FileNotFoundError, OSError, json.JSONDecodeError):
+            jobs.append((content_id, kind, ref))
+    print(f"snapshots: {len(timeline)}; distinct saves: {len(all_jobs)}; "
+          f"cached: {len(cache)}; to decode: {len(jobs)}", flush=True)
+
+    t0 = time.time()
+    with Pool(int(os.environ.get("JOBS", "3"))) as pool:
+        for done, (content_id, bases, pals, equipment) in enumerate(
+                pool.imap(work, jobs, chunksize=2), 1):
+            value = [bases, pals, equipment]
+            cache[content_id] = value
+            with gzip.open(cache_path(content_id), "wt") as f:
+                json.dump(value, f, separators=(",", ":"))
+            if done % 25 == 0:
+                print(f"  decoded {done}/{len(jobs)} distinct saves {time.time()-t0:.0f}s", flush=True)
 
     base_meta = {}
     first, last, meta = {}, {}, {}
     track = defaultdict(list)          # iid -> [(ts,x,y,z)] deduped
     lastpos = {}
     snapshots = []
-    done = t0 = 0
-    t0 = time.time()
+    equipment_samples = []
+    done = 0
     skipped = 0
-    with Pool(int(os.environ.get("JOBS", "3"))) as pool:
-        for ts, bases, pals in pool.imap(work, jobs, chunksize=2):
-            done += 1
-            if done % 50 == 0:
-                print(f"  {done}/{len(jobs)}  pals={len(first)} used={len(snapshots)} "
-                      f"{time.time()-t0:.0f}s", flush=True)
-            if bases is None:
-                skipped += 1
-                continue
-            snapshots.append(ts)
-            for b, v in bases.items():
-                base_meta[b] = v
-            for iid, cid, x, y, z, lvl, gen, nick in pals:
-                if iid not in first:
-                    first[iid] = ts
-                last[iid] = ts
-                meta[iid] = (cid, lvl, gen, nick)
-                p = (round(x, 1), round(y, 1), round(z, 1))
-                if lastpos.get(iid) != p:
-                    lastpos[iid] = p
-                    track[iid].append([ts, p[0], p[1], p[2]])
+    for ts, content_id in timeline:
+        done += 1
+        bases, pals, equipment = cache.get(content_id, (None, None, None))
+        if bases is None:
+            skipped += 1
+            continue
+        snapshots.append(ts)
+        equipment_samples.append([ts, equipment or {}])
+        for b, v in bases.items():
+            base_meta[b] = v
+        for iid, cid, x, y, z, lvl, gen, nick in pals:
+            if iid not in first:
+                first[iid] = ts
+            last[iid] = ts
+            meta[iid] = (cid, lvl, gen, nick)
+            p = (round(x, 1), round(y, 1), round(z, 1))
+            if lastpos.get(iid) != p:
+                lastpos[iid] = p
+                track[iid].append([ts, p[0], p[1], p[2]])
 
     snapshots.sort()
     NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
@@ -172,6 +269,9 @@ def main():
                          "name": NAMES.get(b, b)} for b, v in base_meta.items()},
            "snapshots": snapshots, "pals": out_pals}
     json.dump(out, open(f"{SP}/pal_index.json", "w"))
+    json.dump({"samples": equipment_samples, "skipped": skipped,
+               "source": "same decoded Level.sav snapshots as pal_index.json"},
+              open(f"{SP}/equipment_scan.json", "w"))
 
     print(f"\nsnapshots used={len(snapshots)} skipped={skipped}")
     print(f"pals with a recorded position at some point: {len(out_pals)}")
@@ -183,6 +283,7 @@ def main():
     print(f"bases seen: {[(b, NAMES.get(b,b)) for b in base_meta]}")
     print(f"-> {SP}/pal_index.json  ({os.path.getsize(SP+'/pal_index.json')//1024} KB) "
           f"in {time.time()-t0:.0f}s")
+    print(f"-> {SP}/equipment_scan.json  {len(equipment_samples)} snapshots")
 
 
 if __name__ == "__main__":

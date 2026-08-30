@@ -1,4 +1,4 @@
-"""Resolve every player look that ever appears in player_index.json to the real
+"""Resolve every player look that appears in git or historical NAS saves to the real
 SK_Player_* assets, using the GAME'S OWN character-creation data tables
 (datatables.json, dumped from the pak by `palx --datatable CharacteCreation`).
 Nothing here guesses a name-to-mesh mapping:
@@ -28,7 +28,11 @@ DT = json.load(open(f"{SP}/datatables.json"))
 BODY = DT["DT_CharacterCreationMeshPresetTable_Body.uasset"]
 HEAD = DT["DT_CharacterCreationMeshPresetTable_Head.uasset"]
 HAIR = DT["DT_CharacterCreationMeshPresetTable_Hair.uasset"]
-EQUIP = DT["DT_CharacterCreationMeshPresetTable_Equipments.uasset"]
+try:
+    _equip_doc = json.load(open(f"{SP}/equipment_tables.json"))
+    EQUIP = next(iter(_equip_doc.values()))
+except FileNotFoundError:
+    EQUIP = DT["DT_CharacterCreationMeshPresetTable_Equipments.uasset"]
 
 
 def objpath(v):
@@ -53,6 +57,11 @@ def mesh_map(row, bodyType):
     if not row:
         return None
     raw = row.get("SkeletalMeshMap") or ""
+    if isinstance(raw, list):
+        for pair in raw:
+            if str(pair.get("k", "")).lower() == str(bodyType).lower():
+                return objpath(pair.get("v"))
+        return None
     for part in raw.split(" | "):
         if "=" not in part:
             continue
@@ -130,6 +139,16 @@ def main():
     for uid8, d in idx["players"].items():
         for a in d["appearance"]:
             key = json.dumps({k: a[k] for k in
+                              ("body", "head", "hair", "eqBody", "eqHead", "ovHead", "ovBody")},
+                             sort_keys=True)
+            looks[key] = a
+    try:
+        nas = json.load(open(f"{SP}/equipment_nas_appearance.json"))["players"]
+    except FileNotFoundError:
+        nas = {}
+    for observations in nas.values():
+        for a in observations:
+            key = json.dumps({k: a.get(k) for k in
                               ("body", "head", "hair", "eqBody", "eqHead", "ovHead", "ovBody")},
                              sort_keys=True)
             looks[key] = a

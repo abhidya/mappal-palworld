@@ -19,7 +19,8 @@ Writes mappal/public/union/wildpals_<base>.json per base.
 import json, glob, os, re, math, collections
 
 SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
-OUT = f"{SP}/mappal/public/union"
+MAPPAL = os.environ.get("MAPPAL_ROOT") or os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+OUT = f"{MAPPAL}/public/union"
 NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
          "de44d9f4": "Stone Works", "5fed0024": "Lost Camp"}
 GROUND_R = 60000.0          # 600 m, same as the terrain layer's GROUND_R
@@ -47,7 +48,7 @@ def bases_from_union():
 
 def mesh_lookup():
     man = json.load(open(f"{SP}/pal_manifest.json"))
-    have = {os.path.basename(p)[:-4] for p in glob.glob(f"{SP}/pal_meshes/*.glb")}
+    have = {os.path.basename(p)[:-4] for p in glob.glob(f"{MAPPAL}/public/pal_meshes/*.glb")}
 
     def mesh_for(cid):
         for key in (cid, cid.replace("BOSS_", ""), cid.replace("PREDATOR_", "")):
@@ -57,6 +58,22 @@ def mesh_lookup():
         for k, e in man.items():
             if k.lower() == cid.lower() and e.get("meshName") in have:
                 return e["meshName"]
+        # Variant blueprints often inherit their body mesh instead of repeating
+        # it on the child CDO, so the mapping-aware component dump legitimately
+        # has no local CharacterMesh0 row. These aliases name the visible cooked
+        # body used by that variant; only accept one when its extracted GLB is
+        # actually present.
+        aliases = {
+            "PlantSlime_Flower": "SK_PlantSlime",
+            "PREDATOR_WhiteShieldDragon_Quest": "SK_WhiteShieldDragon",
+            "Male_NinjaElite01": "SK_NPC_Male_NinjaElite01",
+        }
+        candidates = [aliases.get(cid), f"SK_{cid}"]
+        stripped = re.sub(r"^(?:BOSS_|PREDATOR_)", "", cid)
+        candidates += [f"SK_{stripped}", f"SK_{re.sub(r'_Quest$', '', stripped)}"]
+        for name in candidates:
+            if name and name in have:
+                return name
         return None
     return mesh_for
 
@@ -72,10 +89,17 @@ def main():
     cdo = {k[len("Default__"):]: v for k, v in bp.items()}
     mesh_for = mesh_lookup()
 
-    # only actors whose class actually ships a spawn table are Pal spawners;
+    # The actor export's ExportType is frequently a generic parent class (for
+    # example BP_PalSpawner_Sheets_yellow_H_C), while the concrete cooked class
+    # that owns SpawnGroupList is preserved at the front of the actor name,
+    # before Unreal's _UAID_ suffix. Match that concrete class to its CDO.
+    def concrete_class(a):
+        return a["name"].split("_UAID_", 1)[0]
+
+    # only actors whose concrete class actually ships a spawn table are Pal spawners;
     # BP_PalMapObjectSpawner_* (ore/logs/berries), NPC camp and city spawners
     # carry none and are not wild Pals.
-    pal_actors = [a for a in acts if a["cls"] in cdo]
+    pal_actors = [a for a in acts if concrete_class(a) in cdo]
     print(f"spawner actors world-wide with a SpawnGroupList: {len(pal_actors)}")
 
     for b, meta in sorted(bases.items()):
@@ -94,8 +118,9 @@ def main():
         empty_groups = 0
         spec = collections.Counter()
         for d, a in kept:
-            c = cdo[a["cls"]]
-            sname = c.get("SpawnerName") or a["cls"]
+            cls = concrete_class(a)
+            c = cdo[cls]
+            sname = c.get("SpawnerName") or cls
             sid = re.sub(r"^.*_UAID_", "", a["name"]) or a["name"]
             groups = c.get("SpawnGroupList") or []
             if not groups:
@@ -109,7 +134,9 @@ def main():
                 for pi, p in enumerate(g.get("PalList") or []):
                     if not isinstance(p, dict):
                         continue
-                    cid = (p.get("PalID") or {}).get("Key")
+                    # Palworld's cooked struct spells this field PalId (lowercase
+                    # d); accept PalID as well for older dumps.
+                    cid = (p.get("PalId") or p.get("PalID") or {}).get("Key")
                     if cid in (None, "", "None", "RowName"):
                         continue
                     m = mesh_for(cid)

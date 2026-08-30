@@ -9,8 +9,9 @@ inference from presence/absence plus geometry.
 """
 import json, os, sys, re, collections
 
-SP = os.path.dirname(os.path.abspath(__file__))
-UNION = os.path.join(SP, "mappal", "public", "union")
+SP = os.environ.get("PALTL_WORK") or os.path.dirname(os.path.abspath(__file__))
+MAPPAL = os.environ.get("MAPPAL_ROOT") or os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+UNION = os.path.join(MAPPAL, "public", "union")
 LOOT = "CommonDropItem3D"          # ground loot, ~1h despawn timer, not construction
 # Things that come and go on their own and were never *built*, so their
 # disappearance is not a demolition and their arrival is not a replacement:
@@ -31,9 +32,9 @@ NAMES = {"07f13218": "Glass Tower", "16fca097": "Wooden Camp",
 
 def load():
     bi = json.load(open(os.path.join(SP, "build_index.json")))
-    mr = json.load(open(os.path.join(SP, "mappal/src/data/meshRegistry.json")))
+    mr = json.load(open(os.path.join(MAPPAL, "src/data/meshRegistry.json")))
     c4 = {r["name"]: r for r in json.load(open(os.path.join(SP, "c4all_report.json")))}
-    obj = json.load(open(os.path.join(SP, "mappal/src/data/objects.json")))["types"]
+    obj = json.load(open(os.path.join(MAPPAL, "src/data/objects.json")))["types"]
     return bi, mr, c4, obj
 
 

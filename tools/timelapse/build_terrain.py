@@ -1088,7 +1088,7 @@ if os.path.exists(widx_path):
         nwater["ocean"] = len(tiles)
         print(f"  ocean: {len(tiles)} tiles < {OCEAN_R/100:.0f} m -> {nm}.glb "
               f"({len(ov)} v, {len(oi)//3} t, "
-              f"{os.path.getsize(f'{OUT_MESH}/{nm}.glb')//1024} KB), sea level "
+              f"{os.path.getsize(f'{odir}/{nm}.glb')//1024} KB), sea level "
               f"Z={oc['seaLevelZ']} cm")
 
     # ---- 3b. placed water: waterfalls, pond planes, the bend mesh ----------

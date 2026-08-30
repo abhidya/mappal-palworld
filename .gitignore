@@ -36,12 +36,17 @@ calibration_01_roundtrip.json
 # locally extracted game assets � never committed
 assets-local/
 public/equipment_meshes*/
+public/horizon_meshes/
 public/meshes*/
 public/pal_meshes*/
 public/player_meshes*/
 public/terrain_meshes/
 public/water_tex/
 public/union/
+
+# local extractor dependencies / native helper builds
+tools/palworld-extract/cue4parse
+tools/timelapse/libooz.dylib
 
 # editor work-in-progress checkpoints
 wip/

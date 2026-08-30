@@ -108,7 +108,9 @@ The chain is **order-sensitive**. Each stage consumes the previous stage's outpu
 | `pal_index.py` | same history + NAS sets | `pal_index.json` — per Pal: level, gender, nick, base, position track |
 | `player_index.py` | `Players/<UID>.sav` per snapshot | `player_index.json` |
 | `resolve_players.py` | `player_index.json` + the game's character-creation data table | `player_parts.json` |
+| `equipment_nas_appearance.py` | historical NAS Player saves | exact dated appearance observations |
 | `eol_scan.py` | same history | `eol_scan.json` — per-snapshot base-camp census |
+| `merge_gametime_scan.py` | exact `GameTimeSaveData` values recovered by `eol_scan.py` | repairs missing rows in `gametime_index.json` |
 | `paint_index.py` | same history | `paint_index.json` — when each object got painted |
 
 `build_index.py` imports `basecamp_attrib.py` (base-camp attribution) and `ooz`
@@ -123,6 +125,7 @@ All of these write into `mappal/public/union/`:
 |---|---|
 | `build_actor_scenes.py` | `pals_<b>.json`, `players_<b>.json`, `builders_<b>.json` |
 | `build_avatars.py` | `avatars.json` — per-UID appearance runs |
+| `build_equipment.py` | `equipment_<b>.json` — time-aware armor/headgear runs |
 | `build_names.py` | folds real player names from the guild rosters into `avatars.json` |
 | `build_wildpals.py` | `wildpals_<b>.json` — wild spawn points near each base |
 | `build_wildpals_draw.py` | `wildpals_draw_<b>.json` — the one weighted group the game would actually roll, day and night |
@@ -141,6 +144,7 @@ identical output.
 | Script | Purpose |
 |---|---|
 | `build_manifest.py` / `build_pal_manifest.py` | build the extraction target lists (`mesh_manifest.json`, `pal_manifest.json`) |
+| `build_actual_pal_manifest.py` | resolve every CharacterID actually present in the save history, including captured humans and inherited boss variants |
 | `build_meshdims.py` | fold measured AABBs from `palxbb` into the manifest, closing MapPal's grey-box gap |
 | `gen_registry.py` | emit `src/data/meshRegistry.json` — type → mesh → URL |
 | `build_char_xform.py` | emit `src/data/palXform.json` — the `CharacterMesh` component transform each species' own blueprint gives its skeletal mesh |
@@ -298,6 +302,7 @@ the macOS path), and `ffmpeg`.
 | `CLOSEUP` | unset | Metres; writes a second screenshot per frame from that distance off the builder avatar. Diagnostic |
 | `WHO` | unset | Logs the avatar's name per frame. Diagnostic |
 | `AVATAR_SHEET` | unset | `uid@ts` specs; renders an avatar contact sheet instead of a video |
+| `PAL_SHEET` | unset | CharacterID; renders one close-up from the base's real deterministic day-spawn draw |
 
 ### `build_terrain.py`
 
