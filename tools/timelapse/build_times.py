@@ -10,6 +10,8 @@ NAMES = {
     "16fca097": "Wooden Camp",
     "de44d9f4": "Stone Works",
     "5fed0024": "Lost Camp",
+    "a4c6da33": "Quartz Colosseum",
+    "4fdcef33": "Colosseum v1 (superseded)",
 }
 
 
@@ -23,6 +25,12 @@ def main(work_root: str) -> None:
     for row in rows:
         per_base.setdefault(row["base"], {})[row["id"]] = [row["first"], row["last"]]
     for base, times in per_base.items():
+        if not os.path.exists(os.path.join(output_dir, f"union_{base}.json")):
+            # indexed but never captured by build_union's commit sampling
+            # (e.g. a base that lived under an hour) - a render needs the
+            # union geometry, so it cannot be a site
+            print(f"{base}: indexed but no union export - not registered as a site")
+            continue
         json.dump(times, open(os.path.join(output_dir, f"times_{base}.json"), "w"))
         first_seen = sorted({clock[0] for clock in times.values()})
         manifest[base] = {
